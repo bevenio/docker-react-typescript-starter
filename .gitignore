@@ -5,3 +5,5 @@ dist
 
 # Generated files and dirs
 project.json
+.docker/docker-compose.development.yml
+.docker/docker-compose.production.yml

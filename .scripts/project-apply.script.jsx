@@ -30,7 +30,9 @@ const generateDockerFiles = () => {
     ),
     { flag: 'w' },
     (error) => {
-      throw error
+      if (error) {
+        throw error
+      }
     }
   )
 
@@ -43,7 +45,9 @@ const generateDockerFiles = () => {
     ),
     { flag: 'w' },
     (error) => {
-      throw error
+      if (error) {
+        throw error
+      }
     }
   )
 }

@@ -20,11 +20,11 @@ install:
 execute:
 	ARGS="$(command)" docker compose -f ./.docker/docker-compose.commands.yml run --rm execute_command
 serve:
-	docker compose -f ./.docker/docker-compose.development.yml -p development-container-client up --remove-orphans
+	make prepare && docker compose -f ./.docker/docker-compose.development.yml -p development-container-client up --remove-orphans
 
 ### PRODUCTION COMMANDS
 serve-production:
-	docker compose -f ./.docker/docker-compose.production.yml -p production-container-client up --remove-orphans
+	make prepare && docker compose -f ./.docker/docker-compose.production.yml -p production-container-client up --remove-orphans
 
 ### SYNC/REMOTE COMMANDS
 sync:

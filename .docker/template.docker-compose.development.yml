@@ -10,8 +10,7 @@ services:
     working_dir: /usr/src/service
     command: npm run serve:development
     ports:
-      - 8080:8080
-      - 8081:8081
+      - {{port}}:8080
 volumes:
   nodemodules:
     external: true

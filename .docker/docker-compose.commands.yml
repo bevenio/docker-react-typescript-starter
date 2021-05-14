@@ -10,7 +10,7 @@ services:
   prepare:
     extends:
       service: base
-    command: node ./package_scripts/project-setup.script.jsx
+    command: bash -c "node ./.scripts/project-setup.script.jsx && node ./.scripts/project-apply.script.jsx"
   # Installing node_modules inside of the docker environment
   install:
     extends:
@@ -40,7 +40,7 @@ services:
   sync_repository:
     extends:
       service: base
-    command: node ./package_scripts/sftp-upload.script.jsx $ARGS
+    command: node ./.scripts/sftp-upload.script.jsx $ARGS
   # Execute command that has been passed to $ARGS
   execute_command:
     extends:

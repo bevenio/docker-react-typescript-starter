@@ -16,7 +16,7 @@ setup:
 prepare:
 	ARGS="" docker compose -f ./.docker/docker-compose.commands.yml run --rm prepare
 install:
-	ARGS="" docker compose -f ./.docker/docker-compose.commands.yml run --rm install
+	ARGS="" docker compose -f ./.docker/docker-compose.commands.yml run --rm install && npm ci
 execute:
 	ARGS="$(command)" docker compose -f ./.docker/docker-compose.commands.yml run --rm execute_command
 serve:

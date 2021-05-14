@@ -1,0 +1,26 @@
+@import '@/assets/scss/themes.scss';
+
+.app-word-frame {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-word-character-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 20px;
+  height: 30px;
+  font-size: 20px;
+  border: 2px solid;
+  margin: 3px;
+  user-select: none;
+  border-radius: $default-radius;
+}
+
+.app-word-character-frame-space {
+  border: none;
+}

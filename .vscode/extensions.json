@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "formulahendry.auto-close-tag",
+    "ms-ceintl.vscode-language-pack-de",
+    "davidanson.vscode-markdownlint",
+    "christian-kohler.npm-intellisense",
+    "ionutvmi.path-autocomplete",
+    "vscode-icons-team.vscode-icons",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}

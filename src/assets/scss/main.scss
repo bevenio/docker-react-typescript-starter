@@ -1,0 +1,12 @@
+@import 'themes.scss';
+
+body {
+  margin: 0;
+  transition: background-color 500ms ease-out;
+  font-family: Arial, Helvetica, sans-serif;
+
+  @include themify($themes) {
+    color: themed('textColor');
+    background-color: themed('backgroundColor');
+  }
+}

@@ -1,0 +1,52 @@
+version: '2'
+services:
+  base:
+    image: node:12
+    volumes:
+      - nodemodules:/usr/src/service/node_modules
+      - ./../:/usr/src/service/
+    working_dir: /usr/src/service/
+  # Preparing the environment
+  prepare:
+    extends:
+      service: base
+    command: node ./package_scripts/project-setup.script.jsx
+  # Installing node_modules inside of the docker environment
+  install:
+    extends:
+      service: base
+    command: npm i
+  # Fixing node_modules inside of the docker environment
+  install_fix:
+    extends:
+      service: base
+    command: npm audit fix
+  # Run the linter
+  lint:
+    extends:
+      service: base
+    command: npx eslint 'src/**/*.{js,jsx}' -c .eslintrc.json
+  # Run tests with optional pattern
+  test:
+    extends:
+      service: base
+    command: npx jest --config .jestrc.json $ARGS
+  # Run tests for ci
+  test_noui:
+    extends:
+      service: base
+    command: npx jest --config .jestrc.json --reporters=default
+  # Syncing repository to remote machine
+  sync_repository:
+    extends:
+      service: base
+    command: node ./package_scripts/sftp-upload.script.jsx $ARGS
+  # Execute command that has been passed to $ARGS
+  execute_command:
+    extends:
+      service: base
+    command: bash -c "$ARGS"
+
+volumes:
+  nodemodules:
+    external: true

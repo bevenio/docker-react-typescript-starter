@@ -1,0 +1,12 @@
+version: '3'
+services:
+  production-service-client:
+    image: node:12
+    volumes:
+      - ./../../:/usr/src/service
+    environment:
+      - NODE_ENV=production
+    working_dir: /usr/src/service
+    command: bash -c "npm i && npm i --only=dev && npm i http-server && npm run build:production && npm run serve:production"
+    ports:
+      - 8080:8080

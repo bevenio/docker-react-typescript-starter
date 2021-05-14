@@ -1,0 +1,45 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier", "react", "import"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolver": "parcel"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/prop-types": 0,
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "jsx": "never",
+        "css": "always",
+        "scss": "always"
+      }
+    ],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["@/"]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["src/**/*.spec.jsx", "**/*.script.jsx"]
+      }
+    ],
+    "react/jsx-one-expression-per-line": "off",
+    "no-underscore-dangle": "off"
+  }
+}

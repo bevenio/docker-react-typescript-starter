@@ -1,0 +1,17 @@
+{
+  "collectCoverageFrom": [
+    "<rootDir>/**/*.js?(x)",
+    "!**/node_modules/**",
+    "!**/vendor/**"
+  ],
+  "coverageDirectory": "<rootDir>/temp/jest_coverage",
+  "moduleNameMapper": {
+    "^.*\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "@/(.*)$": "<rootDir>/src/$1"
+  },
+  "setupFilesAfterEnv": ["<rootDir>/.jest/jest.setup.jsx"],
+  "roots": ["<rootDir>/src"],
+  "testEnvironment": "node",
+  "testMatch": ["**/*.spec.js?(x)"],
+  "cacheDirectory": "<rootDir>/.temp/jest_cache"
+}

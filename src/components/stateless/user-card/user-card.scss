@@ -1,0 +1,47 @@
+@import '@/assets/scss/themes.scss';
+
+.app-user-card {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+  padding: 3px;
+  border: 2px solid;
+  margin: 3px;
+  user-select: none;
+  border-radius: $default-radius;
+}
+
+.app-user-card-emoji {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.app-user-card-name {
+  text-transform: uppercase;
+  margin-right: 5px;
+}
+
+.app-user-card-success {
+  background: linear-gradient(
+    -45deg,
+    $success-color,
+    $info-color,
+    $success-color,
+    $info-color
+  );
+  background-size: 200% 200%;
+  animation: app-user-card-success-animation 1s ease-in-out infinite;
+}
+
+@keyframes app-user-card-success-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 200% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -1,0 +1,14 @@
+@import '@/assets/scss/themes.scss';
+
+.app-countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  border: 2px solid;
+  margin: 3px;
+  user-select: none;
+  border-radius: $default-radius;
+  padding: 3px;
+}

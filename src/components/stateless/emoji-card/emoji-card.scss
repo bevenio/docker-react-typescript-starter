@@ -1,0 +1,65 @@
+@import '@/assets/scss/themes.scss';
+
+.app-emoji-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  user-select: none;
+  font-size: 800%;
+
+  --border-width: 10px;
+  position: relative;
+  padding: 1rem;
+  border-radius: var(--border-width);
+  margin: var(--border-width);
+
+  @include themify($themes) {
+    color: themed('backgroundColor');
+    background-color: themed('textColor');
+  }
+}
+
+.app-emoji-card:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--border-width));
+  left: calc(-1 * var(--border-width));
+  height: calc(100% + var(--border-width) * 2);
+  width: calc(100% + var(--border-width) * 2);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(2 * var(--border-width));
+  z-index: -1;
+  animation: app-emoji-card-gradient-animation 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes app-emoji-card-gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.app-emoji-card-alt:hover {
+  transition: transform 0.2s;
+}
+
+.app-emoji-card-alt:hover {
+  transform: scale(1.2);
+}

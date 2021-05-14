@@ -1,0 +1,66 @@
+/*
+ * Theme definitions
+ */
+$themes: (
+  light: (
+    backgroundColor: #fff,
+    textColor: #272424,
+    buttonTextColor: #3a3d3f,
+    buttonTextTransform: none,
+    buttonTextHoverColor: #413730,
+    buttonColor: #fff,
+    buttonBorder: 2px solid #fff
+  ),
+  dark: (
+    backgroundColor: #222,
+    textColor: #ddd,
+    buttonTextColor: #aaa,
+    buttonTextTransform: uppercase,
+    buttonTextHoverColor: #ddd,
+    buttonColor: #333,
+    buttonBorder: 1px solid #aaa
+  )
+);
+
+/*
+ * Implementation of themes
+ */
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+    .app-theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value
+          )
+        ) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+/*
+ * Variables
+ */
+
+/* z-index levels */
+$z-index-default: 1;
+$z-index-higher: 2;
+$z-index-highest: 10;
+
+/* default values */
+$default-radius: 6px;
+
+/* default  unthemed colors */
+$success-color: #52cf4e;
+$info-color: #2de7ce;

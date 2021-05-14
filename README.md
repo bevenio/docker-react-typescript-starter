@@ -1,8 +1,7 @@
-# parcel_react_1
+# docker-react
 
-![Tests](https://github.com/bevenio/parcel-react-web/workflows/Node.js%20CI%20%5BTest%5D/badge.svg?event=push)
-![Linter](https://github.com/bevenio/parcel-react-web/workflows/Node.js%20CI%20%5BLint%5D/badge.svg?event=push)
-![Deploy](https://github.com/bevenio/parcel-react-web/workflows/Node.js%20CI%20%5BDeploy%5D/badge.svg?event=push)
+![Test](https://github.com/bevenio/docker-react/actions/workflows/nodejs_test.yml/badge.svg?event=push)
+![Lint](https://github.com/bevenio/docker-react/actions/workflows/nodejs_lint.yml/badge.svg?event=push)
 
 ## Setting up this project
 

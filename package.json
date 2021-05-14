@@ -1,5 +1,5 @@
 {
-  "name": "parcel_react",
+  "name": "docker-react",
   "version": "1.0.0",
   "description": "",
   "author": "Benjamin Brachmann",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bevenio/parcel-react-web"
+    "url": "https://github.com/bevenio/docker-react"
   },
   "scripts": {
     "build:development": "npx cross-env  NODE_ENV=development MODE=web webpack --config .webpack/configuration.webpack.jsx",

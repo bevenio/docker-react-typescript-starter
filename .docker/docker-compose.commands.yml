@@ -35,7 +35,7 @@ services:
   test_noui:
     extends:
       service: base
-    command: npx jest --config .jestrc.json --reporters=default
+    command: npx jest --config .jestrc.json --reporters=default --coverage
   # Syncing repository to remote machine
   sync_repository:
     extends:

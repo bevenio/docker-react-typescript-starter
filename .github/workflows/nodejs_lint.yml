@@ -1,4 +1,4 @@
-name: Node.js CI [Lint]
+name: Github CI [Lint]
 
 on: [push]
 

@@ -4,7 +4,7 @@
     "!**/node_modules/**",
     "!**/vendor/**"
   ],
-  "coverageDirectory": "<rootDir>/temp/jest_coverage",
+  "coverageDirectory": "<rootDir>/.temp/jest_coverage",
   "moduleNameMapper": {
     "^.*\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "@/(.*)$": "<rootDir>/src/$1"

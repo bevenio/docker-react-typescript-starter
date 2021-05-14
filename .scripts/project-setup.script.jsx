@@ -18,7 +18,7 @@ const DEFAULT_CONFIGURATION = {
 
 const saveDefaultConfigurationIfDoesntExist = () => {
   const configurationString = JSON.stringify(DEFAULT_CONFIGURATION, null, '\t')
-  fs.writeFile(
+  fs.writeFileSync(
     path.resolve(__dirname, './../project.json'),
     configurationString,
     { flag: 'wx' },

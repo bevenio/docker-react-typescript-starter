@@ -22,7 +22,7 @@ const generateDockerFiles = () => {
   )
 
   // Save development docker compose
-  fs.writeFile(
+  fs.writeFileSync(
     path.resolve(__dirname, './../.docker/docker-compose.development.yml'),
     mustache.render(
       dockerComposeDevelopmentTemplate,
@@ -37,7 +37,7 @@ const generateDockerFiles = () => {
   )
 
   // Save production docker compose
-  fs.writeFile(
+  fs.writeFileSync(
     path.resolve(__dirname, './../.docker/docker-compose.production.yml'),
     mustache.render(
       dockerComposeProductionTemplate,

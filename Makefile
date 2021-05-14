@@ -10,7 +10,7 @@ test-noui:
 
 ### SETTING UP ENVIRONMENT FOR DEVELOPMENT
 setup:
-	docker volume create nodemodules && make prepare && make install
+	docker volume create nodemodules && make install && make prepare
 
 ### DEVELOPMENT COMMANDS
 prepare:

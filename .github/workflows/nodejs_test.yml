@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: docker volume create nodemodules
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm setup
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm test_noui
         env:

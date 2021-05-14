@@ -5,7 +5,7 @@ const options = {
 }
 
 const preset = retrieveStoreLocalStorageEntry('appearance') || {
-  title: 'Emoji Game',
+  title: 'Docker React',
   languageID: 'en',
   theme: options.themes[0],
   lettersize: 'medium',

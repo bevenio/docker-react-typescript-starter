@@ -1,0 +1,16 @@
+.app-fill-available-outer {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.app-fill-available-inner {
+  align-items: center;
+  display: flex;
+  height: fill-available;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}

@@ -1,0 +1,10 @@
+@import '@/assets/scss/themes.scss';
+
+.app-loading-spinner {
+  font-size: 100px;
+  display: flex;
+
+  @include themify($themes) {
+    color: themed('textColor');
+  }
+}

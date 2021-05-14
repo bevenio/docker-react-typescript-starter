@@ -7,11 +7,13 @@ import { Provider } from 'react-redux'
 
 import devtoolService from '@/services/devtool-service/devtool-service'
 import { store } from '@/store/redux-store'
-import Root from '@/components/root/root'
+import AppRouter from '@/routes/router'
 
 const appRootElementId = 'app'
 const appRootElement = document.getElementById(appRootElementId)
-const AppReactRootElement = devtoolService.isDevMode ? hot(Root) : Root
+const AppReactRootElement = devtoolService.isDevMode
+  ? hot(AppRouter)
+  : AppRouter
 
 if (appRootElement !== null) {
   ReactDOM.render(

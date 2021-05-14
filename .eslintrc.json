@@ -18,15 +18,6 @@
   "rules": {
     "prettier/prettier": "error",
     "react/prop-types": 0,
-    "import/extensions": [
-      "error",
-      {
-        "js": "never",
-        "jsx": "never",
-        "css": "always",
-        "scss": "always"
-      }
-    ],
     "import/no-unresolved": [
       "error",
       {

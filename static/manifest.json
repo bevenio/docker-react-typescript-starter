@@ -1,6 +1,6 @@
 {
-  "short_name": "parcel-react-web",
-  "name": "Parcel React Web",
+  "short_name": "docker-react",
+  "name": "A react app",
   "description": "A small base repository for my react apps",
   "icons": [
     {

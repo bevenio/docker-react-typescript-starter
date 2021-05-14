@@ -2,12 +2,15 @@ const chalk = require('chalk')
 const environment = process.env.NODE_ENV || 'production'
 const mode = process.env.MODE || 'web'
 
+const projectConfiguration = require('./../project.json')
+const localMachineSettings = projectConfiguration.local_machine
+
 const optionPresets = {
   development: {
     entryFile: 'index.jsx',
     targetType: 'web',
     host: '0.0.0.0',
-    port: '8080',
+    port: localMachineSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: true,
     beautify: true,
@@ -19,7 +22,7 @@ const optionPresets = {
     entryFile: 'index.jsx',
     targetType: 'web',
     host: '0.0.0.0',
-    port: '8080',
+    port: localMachineSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
     beautify: false,
@@ -31,7 +34,7 @@ const optionPresets = {
     entryFile: 'index.jsx',
     targetType: 'web',
     host: '0.0.0.0',
-    port: '8080',
+    port: localMachineSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
     beautify: false,

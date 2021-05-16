@@ -11,7 +11,7 @@ const terminateWorkersBeforeUnload = (workers) => {
 const spawnWorkers = async () => {
   try {
     const workers = {}
-    workers.demo = await spawn(new Worker('@/workers/demo.worker.jsx'))
+    workers.demo = await spawn(new Worker('@/worker/workers/demo.worker.jsx'))
 
     terminateWorkersBeforeUnload(workers)
     return workers

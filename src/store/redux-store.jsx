@@ -19,6 +19,7 @@ extendStoreWithLocalStorage(store)
 
 export { store }
 export { entries }
+
 export default {
   store,
   entries,

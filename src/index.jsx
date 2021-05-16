@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import devtoolService from '@/services/devtool-service/devtool-service'
 import { store } from '@/store/redux-store'
-import AppRouter from '@/routes/router'
+import AppRouter from '@/router/router'
 
 const appRootElementId = 'app'
 const appRootElement = document.getElementById(appRootElementId)

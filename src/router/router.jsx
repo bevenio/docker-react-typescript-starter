@@ -4,13 +4,13 @@ import { createBrowserHistory } from 'history'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
-// Componentst
+// Components
 import FillAvailable from '@/component-library/fill-available/fill-available'
 import NotAllowed from '@/component-library/not-allowed/not-allowed'
 import LoadingSpinner from '@/component-library/loading-spinner/loading-spinner'
 
 // Routes
-import DemoRoutes from '@/routes/demo.routes'
+import DemoRoutes from '@/router/routes/demo.routes'
 
 const WrongRoute = () => (
   <FillAvailable>

@@ -2,10 +2,10 @@ import React from 'react'
 import RouterUtils from '@/router/router.utility'
 
 const DemoFeatureOne = React.lazy(() =>
-  import('@/feature-library/demo-one/demo-one')
+  import('@/components/pages/demo-one/demo-one')
 )
 const DemoFeatureTwo = React.lazy(() =>
-  import('@/feature-library/demo-two/demo-two')
+  import('@/components/pages/demo-two/demo-two')
 )
 
 export default RouterUtils.createRoute({

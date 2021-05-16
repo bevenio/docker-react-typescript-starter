@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import dotProp from 'dot-prop'
 
 import { store } from '@/store/redux-store'
-import Page401 from '@/feature-library/page-401/page-401'
+import Page401 from '@/components/pages/page-401/page-401'
 
 const createRoute = ({ route, subroutes }) => {
   // Creating a function for the router to be able to create routes of

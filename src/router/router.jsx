@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
 // Components
-import FillAvailable from '@/component-library/fill-available/fill-available'
-import NotAllowed from '@/component-library/not-allowed/not-allowed'
-import LoadingSpinner from '@/component-library/loading-spinner/loading-spinner'
+import FillAvailable from '@/components/base/fill-available/fill-available'
+import NotAllowed from '@/components/base/not-allowed/not-allowed'
+import LoadingSpinner from '@/components/base/loading-spinner/loading-spinner'
 
 // Routes
 import DemoRoutes from '@/router/routes/demo.routes'

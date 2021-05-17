@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import dotProp from 'dot-prop'
 
 import { store } from '@/store/redux-store'
-import Page401 from '@/components/pages/page-401/page-401'
+import ErrorCode from '@/components/pages/error-code/error-code'
 
 const createRoute = ({ route, subroutes }) => {
   // Creating a function for the router to be able to create routes of
@@ -25,7 +25,7 @@ const createRoute = ({ route, subroutes }) => {
 
         const ActualComponent = isAllowedToOpenRoute
           ? subroute.component
-          : Page401
+          : ErrorCode
 
         return (
           <Route

@@ -1,5 +1,5 @@
 import constants from '@/store/entries/appearance/constants'
-import { preset, options } from '@/store/entries/appearance/preset'
+import { preset, options } from '@/store/entries/appearance/presets'
 
 const changeTheme = (state, action) => {
   if (options.themes.includes(action.payload)) {

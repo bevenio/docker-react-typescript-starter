@@ -1,4 +1,4 @@
-import { retrieveStoreLocalStorageEntry } from '@/store/utility/utility'
+import { retrieveStoreLocalStorageEntry } from '@/store/utility/store.utility'
 
 const options = {
   themes: ['light', 'dark'],

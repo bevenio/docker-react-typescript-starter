@@ -1,6 +1,6 @@
 export default {
   api: {
-    rest: 'https://jsonplaceholder.typicode.com/',
-    websocket: 'ws://127.0.0.1:9090',
+    rest: 'https://strapi.bevenio.org',
+    websocket: 'wss://strapi.bevenio.org',
   },
 }

@@ -12,9 +12,6 @@
       "jsx": true
     }
   },
-  "settings": {
-    "import/resolver": "parcel"
-  },
   "rules": {
     "prettier/prettier": "error",
     "react/prop-types": 0,

@@ -49,27 +49,27 @@ const options = {
   'development-web': optionPresets.development,
   'development-file': {
     ...optionPresets.development,
-    publicPath: undefined,
+    publicPath: '',
     baseHref: './',
   },
   // Production options
   'production-web': optionPresets.production,
   'production-file': {
     ...optionPresets.production,
-    publicPath: undefined,
+    publicPath: '',
     baseHref: './',
   },
   // Test options
   'test-web': optionPresets.test,
   'test-file': {
     ...optionPresets.test,
-    publicPath: undefined,
+    publicPath: '',
     baseHref: './',
   },
 }
 
 console.log(
-  `Webpack: ${chalk.blueBright(environment)}, ${chalk.blueBright(mode)}`
+  `WEBPACK: ${chalk.blueBright(environment)}, ${chalk.blueBright(mode)}`
 )
 module.exports = require(`./${environment}.webpack.jsx`)(
   options[`${environment}-${mode}`]

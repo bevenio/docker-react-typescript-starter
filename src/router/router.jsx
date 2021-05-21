@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
-import { Route, Router, Switch } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
+import { Route, BrowserRouter, HashRouter, Switch } from 'react-router-dom'
+import { createBrowserHistory, createHashHistory } from 'history'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
@@ -27,14 +27,22 @@ const LoadingFullscreen = () => (
 export class AppRouter extends React.Component {
   constructor() {
     super()
-    this.state = {
-      history: createBrowserHistory(),
+    if (window.location.hash) {
+      this.state = {
+        router: HashRouter,
+        history: createHashHistory(),
+      }
+    } else {
+      this.state = {
+        router: BrowserRouter,
+        history: createBrowserHistory(),
+      }
     }
   }
 
   render() {
     const { /* reduxActions, */ reduxState } = this.props
-    const { history } = this.state
+    const { router: Router, history } = this.state
 
     return (
       <>

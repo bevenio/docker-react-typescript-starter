@@ -1,5 +1,5 @@
 import React from 'react'
-import RouterUtils from '@/router/router.utility'
+import RouterUtils from '@/router/utility/router.utility'
 
 const DemoFeatureOne = React.lazy(() =>
   import('@/components/pages/demo-one/demo-one')

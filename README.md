@@ -66,6 +66,37 @@ For running all tests on a CI-System, execute this:
 make test-noui
 ```
 
+## Project architecture
+
+### Rough representation
+
+```dir
+src
+|   index.html
+│   index.jsx
+│   settings.jsx
+│
+└───components
+│   └───basic
+│   └───composed
+│   └───pages
+│
+└───worker
+│   │   worker.jsx
+│   └───workers
+└───router
+│   │   router.jsx
+│   └───routes
+│   └───utility
+│
+└───store
+│   │   redux-store.jsx
+│   └───entries
+│   └───utility
+└───assets
+└───services
+```
+
 ## Project configuration
 
 After running _"make setup"_ a _project.json_ file will be generated. In this file you can configure attributes like the local machine port or remote machines in order to sync your local project.

@@ -51,6 +51,9 @@ export class LoginForm extends React.Component {
   render() {
     return (
       <form className="app-login-form">
+        <center>
+          <h2>Login</h2>
+        </center>
         <InputField
           label="Username / Email"
           type="text"

@@ -5,15 +5,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
-import devtoolService from '@/services/devtool-service/devtool-service'
 import { store } from '@/store/store'
 import AppRouter from '@/router/router'
 
 const appRootElementId = 'app'
 const appRootElement = document.getElementById(appRootElementId)
-const AppReactRootElement = devtoolService.isDevMode
-  ? hot(AppRouter)
-  : AppRouter
+const AppReactRootElement = hot(AppRouter)
 
 if (appRootElement !== null) {
   ReactDOM.render(

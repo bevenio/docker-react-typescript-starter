@@ -35,8 +35,7 @@ const createOutput = (options) => ({
   chunkFilename: (pathData) => {
     const chunkId = pathData.chunk.id.replace('_jsx', '')
     const chunkEntryFileName = chunkId.substr(chunkId.lastIndexOf('_') + 1)
-    const shortHash = pathData.chunk.hash.substr(0, 4)
-    return `js/chunks/${chunkEntryFileName}.${shortHash}.chunk.js`
+    return `js/chunks/${chunkEntryFileName}.chunk.js`
   },
   path: path.resolve(distDir, './'),
   publicPath: options.publicPath,

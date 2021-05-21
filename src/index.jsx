@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import devtoolService from '@/services/devtool-service/devtool-service'
-import { store } from '@/store/redux-store'
+import { store } from '@/store/store'
 import AppRouter from '@/router/router'
 
 const appRootElementId = 'app'

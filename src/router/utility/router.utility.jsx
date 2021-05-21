@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import dotProp from 'dot-prop'
 
-import { store } from '@/store/redux-store'
+import { store } from '@/store/store'
 import ErrorCode from '@/components/pages/error-code/error-code'
 
 const createRoute = ({ route, subroutes }) => {

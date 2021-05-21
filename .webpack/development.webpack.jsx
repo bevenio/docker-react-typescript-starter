@@ -32,7 +32,12 @@ const createResolve = (/* options */) => ({
 
 const createOutput = (options) => ({
   filename: 'js/[name].bundle.js',
-  chunkFilename: 'js/chunks/[name].chunk.js',
+  chunkFilename: (pathData) => {
+    const chunkId = pathData.chunk.id.replace('_jsx', '')
+    const chunkEntryFileName = chunkId.substr(chunkId.lastIndexOf('_') + 1)
+    const shortHash = pathData.chunk.hash.substr(0, 4)
+    return `js/chunks/${chunkEntryFileName}.${shortHash}.chunk.js`
+  },
   path: path.resolve(distDir, './'),
   publicPath: options.publicPath,
 })

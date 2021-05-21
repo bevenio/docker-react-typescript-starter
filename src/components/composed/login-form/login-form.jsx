@@ -50,7 +50,7 @@ export class LoginForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <form className="app-login-form">
         <InputField
           label="Username / Email"
           type="text"

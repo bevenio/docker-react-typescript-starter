@@ -1,0 +1,35 @@
+// Theme variable definitions
+$light-primary: #d75893;
+$light-secondary: #d75893;
+$light-text: #000;
+$light-background: #fafafa;
+$light-background-contrast: #c0c0c0;
+
+$dark-primary: #d75893;
+$dark-secondary: #d75893;
+$dark-text: #d6d6d6;
+$dark-background: #2c2c2c;
+$dark-background-contrast: #3f3f3f;
+
+// Custom properties
+$--theme-text: --theme-text;
+$--theme-primary: --theme-primary;
+$--theme-secondary: --theme-secondary;
+$--theme-background: --theme-background;
+$--theme-on-primary: --theme-on-primary;
+$--theme-on-secondary: --theme-on-secondary;
+
+// Mini.css custom properties
+$--back-color: --back-color;
+$--fore-color: --fore-color;
+$--form-fore-color: --form-fore-color;
+$--form-back-color: --form-back-color;
+$--form-border-color: --form-border-color;
+$--input-fore-color: --input-fore-color;
+$--input-back-color: --input-back-color;
+$--input-border-color: --input-border-color;
+
+:root {
+  --universal-border-radius: 10px;
+  --universal-padding: 7px;
+}

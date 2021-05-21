@@ -11,10 +11,10 @@ $theme-map-light: (
   $--back-color: $light-background,
   $--fore-color: $light-text,
   $--form-fore-color: $light-text,
-  $--form-back-color: $light-background,
+  $--form-back-color: $light-background-raised,
   $--form-border-color: $light-background-contrast,
   $--input-fore-color: $light-text,
-  $--input-back-color: $light-background,
+  $--input-back-color: $light-background-raised,
   $--input-border-color: $light-background-contrast
 );
 
@@ -29,10 +29,10 @@ $theme-map-dark: (
   $--back-color: $dark-background,
   $--fore-color: $dark-text,
   $--form-fore-color: $dark-text,
-  $--form-back-color: $dark-background,
+  $--form-back-color: $dark-background-raised,
   $--form-border-color: $dark-background-contrast,
   $--input-fore-color: $dark-text,
-  $--input-back-color: $dark-background,
+  $--input-back-color: $dark-background-raised,
   $--input-border-color: $dark-background-contrast
 );
 

@@ -1,5 +1,10 @@
 import React, { Suspense } from 'react'
-import { Route, BrowserRouter, HashRouter, Switch } from 'react-router-dom'
+import {
+  Route,
+  Router as PathRouter,
+  HashRouter,
+  Switch,
+} from 'react-router-dom'
 import { createBrowserHistory, createHashHistory } from 'history'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
@@ -34,7 +39,7 @@ export class AppRouter extends React.Component {
       }
     } else {
       this.state = {
-        router: BrowserRouter,
+        router: PathRouter,
         history: createBrowserHistory(),
       }
     }

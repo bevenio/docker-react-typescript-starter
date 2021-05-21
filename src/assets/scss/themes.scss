@@ -1,58 +1,69 @@
 /*
  * Theme definitions
  */
-$themes: (
-  light: (
-    colorBackground: #fff,
-    colorText: #272424,
-    colorPrimary: rgb(118, 190, 178),
-  ),
-  dark: (
-    colorBackground: #222,
-    colorText: #fff,
-    colorPrimary: rgb(118, 190, 178),
-  ),
+
+// Variable definitions
+$light-primary: #d75893;
+$light-secondary: #d75893;
+$light-text: #000;
+$light-background: #fafafa;
+
+$dark-primary: #d75893;
+$dark-secondary: #d75893;
+$dark-text: #d6d6d6;
+$dark-background: #2c2c2c;
+
+// Custom properties
+$--theme-text: --theme-text;
+$--theme-primary: --theme-primary;
+$--theme-secondary: --theme-secondary;
+$--theme-background: --theme-background;
+$--theme-on-primary: --theme-on-primary;
+$--theme-on-secondary: --theme-on-secondary;
+
+// mini.css custom properties
+$--back-color: --back-color;
+$--fore-color: --fore-color;
+$--form-fore-color: --form-fore-color;
+$--form-back-color: --form-back-color;
+
+// Overwriting theme: light
+$theme-map-light: (
+  // Custom variables
+  $--theme-text: $light-text,
+  $--theme-primary: $light-primary,
+  $--theme-secondary: $light-secondary,
+  $--theme-background: $light-background,
+  //Custom mini.css variables
+  $--back-color: $light-background,
+  $--fore-color: $light-text,
+  $--form-fore-color: $light-text,
+  $--form-back-color: $light-background
 );
 
-/*
- * Implementation of themes
- */
-@mixin themify($themes: $themes) {
-  @each $theme, $map in $themes {
-    .app-theme-#{$theme} & {
-      $theme-map: () !global;
-      @each $key, $submap in $map {
-        $value: map-get(map-get($themes, $theme), '#{$key}');
-        $theme-map: map-merge(
-          $theme-map,
-          (
-            $key: $value,
-          )
-        ) !global;
-      }
+// Overwriting theme: dark
+$theme-map-dark: (
+  // Custom variables
+  $--theme-text: $dark-text,
+  $--theme-primary: $dark-primary,
+  $--theme-secondary: $dark-secondary,
+  $--theme-background: $dark-background,
+  //Custom mini.css variables
+  $--back-color: $dark-background,
+  $--fore-color: $dark-text,
+  $--form-fore-color: $dark-text,
+  $--form-back-color: $dark-background
+);
 
-      @content;
-      $theme-map: null !global;
-    }
+@mixin spread-map($map: ()) {
+  @each $key, $value in $map {
+    #{$key}: $value;
   }
 }
 
-@function themed($key) {
-  @return map-get($theme-map, $key);
+:root.app-theme-light {
+  @include spread-map($theme-map-light);
 }
-
-/*
- * Variables
- */
-
-/* z-index levels */
-$z-index-default: 1;
-$z-index-higher: 2;
-$z-index-highest: 10;
-
-/* default values */
-$default-radius: 6px;
-
-/* default  unthemed colors */
-$success-color: #52cf4e;
-$info-color: #2de7ce;
+:root.app-theme-dark {
+  @include spread-map($theme-map-dark);
+}

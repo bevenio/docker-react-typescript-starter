@@ -10,7 +10,7 @@ export default RouterUtils.createRoute({
       key: 'login',
       path: '/login',
       component: LoginPage,
-      exact: true,
+      exact: false,
       dependsOn: {
         'appearance.theme': 'dark',
       },

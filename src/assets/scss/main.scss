@@ -5,20 +5,20 @@ body {
   margin: 0;
   transition: background-color 500ms ease-out;
   font-family: Arial, Helvetica, sans-serif;
-
-  @include themify($themes) {
-    color: themed('colorText');
-    background-color: themed('colorBackground');
-  }
 }
 
+// Titles
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  @include themify($themes) {
-    color: themed('colorPrimary');
-  }
+  color: var($--theme-primary);
+}
+
+// Selection
+::selection {
+  color: var($--theme-background);
+  background-color: var($--theme-primary);
 }

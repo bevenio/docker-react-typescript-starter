@@ -84,6 +84,7 @@ src
 └───worker
 │   │   worker.jsx
 │   └───workers
+│
 └───router
 │   │   router.jsx
 │   └───routes
@@ -93,6 +94,7 @@ src
 │   │   redux-store.jsx
 │   └───entries
 │   └───utility
+│
 └───assets
 └───services
 ```

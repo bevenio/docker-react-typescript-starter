@@ -10,7 +10,7 @@ import NotAllowed from '@/components/basic/not-allowed/not-allowed'
 import LoadingSpinner from '@/components/basic/loading-spinner/loading-spinner'
 
 // Routes
-import DemoRoutes from '@/router/routes/demo.routes'
+import LoginRoutes from '@/router/routes/login.routes'
 
 const WrongRoute = () => (
   <FillAvailable>
@@ -56,7 +56,7 @@ export class AppRouter extends React.Component {
         <Router basename="/" history={history}>
           <Suspense fallback={<LoadingFullscreen />}>
             <Switch>
-              <Route path={DemoRoutes.route} render={DemoRoutes.subroutes} />
+              <Route path={LoginRoutes.route} render={LoginRoutes.subroutes} />
               <Route component={WrongRoute} />
             </Switch>
           </Suspense>

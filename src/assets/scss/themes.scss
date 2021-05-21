@@ -7,11 +7,13 @@ $light-primary: #d75893;
 $light-secondary: #d75893;
 $light-text: #000;
 $light-background: #fafafa;
+$light-background-contrast: #c0c0c0;
 
 $dark-primary: #d75893;
 $dark-secondary: #d75893;
 $dark-text: #d6d6d6;
 $dark-background: #2c2c2c;
+$dark-background-contrast: #3f3f3f;
 
 // Custom properties
 $--theme-text: --theme-text;
@@ -26,6 +28,10 @@ $--back-color: --back-color;
 $--fore-color: --fore-color;
 $--form-fore-color: --form-fore-color;
 $--form-back-color: --form-back-color;
+$--form-border-color: --form-border-color;
+$--input-fore-color: --input-fore-color;
+$--input-back-color: --input-back-color;
+$--input-border-color: --input-border-color;
 
 // Overwriting theme: light
 $theme-map-light: (
@@ -38,7 +44,11 @@ $theme-map-light: (
   $--back-color: $light-background,
   $--fore-color: $light-text,
   $--form-fore-color: $light-text,
-  $--form-back-color: $light-background
+  $--form-back-color: $light-background,
+  $--form-border-color: $light-background-contrast,
+  $--input-fore-color: $light-text,
+  $--input-back-color: $light-background,
+  $--input-border-color: $light-background-contrast
 );
 
 // Overwriting theme: dark
@@ -52,7 +62,11 @@ $theme-map-dark: (
   $--back-color: $dark-background,
   $--fore-color: $dark-text,
   $--form-fore-color: $dark-text,
-  $--form-back-color: $dark-background
+  $--form-back-color: $dark-background,
+  $--form-border-color: $dark-background-contrast,
+  $--input-fore-color: $dark-text,
+  $--input-back-color: $dark-background,
+  $--input-border-color: $dark-background-contrast
 );
 
 @mixin spread-map($map: ()) {

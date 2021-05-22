@@ -1,0 +1,11 @@
+@import '@/assets/scss/variables';
+
+.app-navigation-bar {
+  position: fixed;
+  width: 100vw;
+  background-color: var($--theme-primary);
+}
+
+.app-navigation-bar > .nav > .nav-logo {
+  color: var($--theme-background);
+}

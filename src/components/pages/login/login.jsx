@@ -1,6 +1,7 @@
 import React from 'react'
 
 import FillAvailable from '@/components/basic/fill-available/fill-available'
+import NavigationBar from '@/components/composed/navigation-bar/navigation-bar'
 import LoginForm from '@/components/composed/login-form/login-form'
 
 import './login.scss'
@@ -13,14 +14,17 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <FillAvailable>
-        <LoginForm
-          onSuccess={() => {
-            this.props.history.push('/explore')
-          }}
-          onFailure={() => {}}
-        />
-      </FillAvailable>
+      <>
+        <NavigationBar />
+        <FillAvailable>
+          <LoginForm
+            onSuccess={() => {
+              this.props.history.push('/explore')
+            }}
+            onFailure={() => {}}
+          />
+        </FillAvailable>
+      </>
     )
   }
 }

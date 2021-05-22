@@ -26,6 +26,9 @@ export const InputField = ({
         type={type}
         id={identifier}
         placeholder={placeholder}
+        onPaste={valueChanged}
+        onBlur={valueChanged}
+        onFocus={valueChanged}
         onChange={valueChanged}
       />
     </>

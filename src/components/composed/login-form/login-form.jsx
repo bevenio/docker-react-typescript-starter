@@ -59,7 +59,7 @@ export class LoginForm extends React.Component {
 
   render() {
     return (
-      <form className="app-login-form">
+      <form className="app-login-form" onSubmit={this.login}>
         <center>
           <h2>Login</h2>
         </center>
@@ -78,10 +78,9 @@ export class LoginForm extends React.Component {
           onChange={(password) => this.setState({ password })}
         />
         <button
-          type="button"
+          type="submit"
           className="primary"
           disabled={this.isRequesInProgress()}
-          onClick={this.login}
         >
           Login
         </button>

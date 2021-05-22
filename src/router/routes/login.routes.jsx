@@ -12,7 +12,7 @@ export default RouterUtils.createRoute({
       component: LoginPage,
       exact: false,
       dependsOn: {
-        'appearance.theme': 'dark',
+        'appearance.theme': 'light',
       },
     },
   ],

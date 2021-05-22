@@ -8,6 +8,7 @@ import {
 import { createBrowserHistory, createHashHistory } from 'history'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import { hot } from 'react-hot-loader/root'
 
 // Components
 import FillAvailable from '@/components/basic/fill-available/fill-available'
@@ -34,12 +35,12 @@ export class AppRouter extends React.Component {
     super()
     if (window.location.hash) {
       this.state = {
-        router: HashRouter,
+        router: hot(HashRouter),
         history: createHashHistory(),
       }
     } else {
       this.state = {
-        router: PathRouter,
+        router: hot(PathRouter),
         history: createBrowserHistory(),
       }
     }

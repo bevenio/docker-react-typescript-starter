@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import dotProp from 'dot-prop'
-import { hot } from 'react-hot-loader/root'
 
 import { store } from '@/store/store'
 import ErrorCode from '@/components/pages/error-code/error-code'
@@ -32,7 +31,7 @@ const createRoute = ({ route, subroutes }) => {
           <Route
             path={subroute.path}
             exact={subroute.exact}
-            component={hot(ActualComponent)}
+            component={ActualComponent}
             key={`subroute-${subroute.key}`}
           />
         )

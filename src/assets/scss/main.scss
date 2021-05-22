@@ -32,7 +32,12 @@ form {
 
 // Input
 input {
+  color: var($--theme-text);
   background-color: var($--theme-background);
+}
+
+input:hover {
+  border-color: var($--theme-background-contrast) !important;
 }
 
 input:focus {
@@ -48,4 +53,10 @@ input:focus-visible {
 input:invalid {
   border-style: dashed;
   border-color: var($--theme-error);
+}
+
+// Button
+button {
+  color: var($--theme-background) !important;
+  background-color: var($--theme-text) !important;
 }

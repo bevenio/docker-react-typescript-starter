@@ -1,6 +1,7 @@
 .app-login-form {
   display: flex;
   flex-direction: column;
-  width: inherit;
+  width: -webkit-fill-available;
   max-width: 400px;
+  min-width: 200px;
 }

@@ -7,9 +7,17 @@ export const InputField = ({
   type = 'text',
   label = '',
   placeholder = '',
+  onValidate = () => true,
   onChange = () => {},
 }) => {
   const identifier = `app-input-field-${name}`
+
+  const valueChanged = (event) => {
+    onChange(event.target.value)
+    const validationResult = onValidate(event.target.value)
+    const validationError = validationResult === true ? '' : validationResult
+    event.target.setCustomValidity(validationError)
+  }
 
   return (
     <>
@@ -18,9 +26,7 @@ export const InputField = ({
         type={type}
         id={identifier}
         placeholder={placeholder}
-        onChange={(event) => {
-          onChange(event.target.value)
-        }}
+        onChange={valueChanged}
       />
     </>
   )

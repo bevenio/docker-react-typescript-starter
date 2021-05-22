@@ -39,6 +39,12 @@ export class LoginForm extends React.Component {
     }
   }
 
+  identifierValidator = () =>
+    this.state.identifier.length >= 4 ? true : 'Identifier is too short'
+
+  passwordValidator = () =>
+    this.state.identifier.length >= 4 ? true : 'Password is too short'
+
   resetRequestProgress() {
     this.setState({ isRequesInProgress: false })
   }
@@ -58,12 +64,14 @@ export class LoginForm extends React.Component {
           label="Username / Email"
           type="text"
           name="login-identifier"
+          onValidate={this.identifierValidator}
           onChange={(identifier) => this.setState({ identifier })}
         />
         <InputField
           label="Password"
           type="password"
           name="login-password"
+          onValidate={this.passwordValidator}
           onChange={(password) => this.setState({ password })}
         />
         <button type="button" onClick={this.login.bind(this)}>

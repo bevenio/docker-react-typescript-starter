@@ -1,10 +1,12 @@
-@import 'mini.css';
-@import 'themes.scss';
+@import 'wingcss';
+@import 'properties.scss';
 
 body {
   margin: 0;
   transition: background-color 500ms ease-out;
   font-family: Arial, Helvetica, sans-serif;
+  color: var($--theme-text);
+  background-color: var($--theme-background);
 }
 
 // Titles
@@ -21,4 +23,24 @@ h6 {
 ::selection {
   color: var($--theme-background);
   background-color: var($--theme-primary);
+}
+
+// Form
+form {
+  padding: var($--defaults-padding);
+}
+
+// Input
+input {
+  background-color: var($--theme-background);
+}
+
+input:focus {
+  border-color: var($--theme-primary) !important;
+}
+
+input:focus-visible {
+  outline: none;
+  border-width: var($--defaults-border-thick);
+  border-color: var($--theme-primary) !important;
 }

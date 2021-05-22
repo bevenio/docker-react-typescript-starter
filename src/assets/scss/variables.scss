@@ -1,39 +1,31 @@
-// Theme variable definitions
-$light-primary: #d75893;
-$light-secondary: #d75893;
-$light-text: #000;
-$light-background: #d3d3d3;
-$light-background-raised: #e7e7e7;
-$light-background-contrast: #c0c0c0;
-
-$dark-primary: #d75893;
-$dark-secondary: #d75893;
-$dark-text: #d6d6d6;
-$dark-background: #1e1e1e;
-$dark-background-raised: #353535;
-$dark-background-contrast: #505050;
-
-// Custom properties
+// Custom theme properties
 $--theme-text: --theme-text;
 $--theme-primary: --theme-primary;
 $--theme-secondary: --theme-secondary;
 $--theme-background: --theme-background;
-$--theme-on-primary: --theme-on-primary;
-$--theme-on-secondary: --theme-on-secondary;
+$--theme-background-raised: --theme-background-raised;
+$--theme-background-contrast: --theme-background-contrast;
 
-// Mini.css custom properties
-$--back-color: --back-color;
-$--fore-color: --fore-color;
-$--form-fore-color: --form-fore-color;
-$--form-back-color: --form-back-color;
-$--form-border-color: --form-border-color;
-$--input-fore-color: --input-fore-color;
-$--input-back-color: --input-back-color;
-$--input-border-color: --input-border-color;
-$--button-back-color: --button-back-color;
-$--button-fore-color: --button-fore-color;
+// Theme variable definitions
+$light-primary: #d75893;
+$light-secondary: #d75893;
+$light-text: #000;
+$light-background: #e6e6e6;
+$light-background-raised: #f7f7f7;
+$light-background-contrast: #ffffff;
 
-:root {
-  --universal-border-radius: 10px;
-  --universal-padding: 7px;
-}
+$dark-text: #d6d6d6;
+$dark-primary: #d75893;
+$dark-secondary: #d75893;
+$dark-background: #1e1e1e;
+$dark-background-raised: #353535;
+$dark-background-contrast: #505050;
+
+// Default value variables
+$--defaults-padding: --defaults-padding;
+$--defaults-border: --defaults-border;
+$--defaults-border-thick: --defaults-border-thick;
+
+$default-padding: 10px;
+$default-border: 1px;
+$default-border-thick: 2px;

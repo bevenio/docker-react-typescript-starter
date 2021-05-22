@@ -2,6 +2,7 @@
 $--theme-text: --theme-text;
 $--theme-primary: --theme-primary;
 $--theme-secondary: --theme-secondary;
+$--theme-error: --theme-error;
 $--theme-background: --theme-background;
 $--theme-background-raised: --theme-background-raised;
 $--theme-background-contrast: --theme-background-contrast;
@@ -9,6 +10,7 @@ $--theme-background-contrast: --theme-background-contrast;
 // Theme variable definitions
 $light-primary: #d75893;
 $light-secondary: #d75893;
+$light-error: #a00023;
 $light-text: #000;
 $light-background: #e6e6e6;
 $light-background-raised: #f7f7f7;
@@ -17,6 +19,7 @@ $light-background-contrast: #ffffff;
 $dark-text: #d6d6d6;
 $dark-primary: #d75893;
 $dark-secondary: #d75893;
+$dark-error: #a00023;
 $dark-background: #1e1e1e;
 $dark-background-raised: #353535;
 $dark-background-contrast: #505050;

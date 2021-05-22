@@ -6,6 +6,7 @@ $theme-map-light: (
   $--theme-text: $light-text,
   $--theme-primary: $light-primary,
   $--theme-secondary: $light-secondary,
+  $--theme-error: $light-error,
   $--theme-background: $light-background,
   $--theme-background-raised: $light-background-raised,
   $--theme-background-contrast: $light-background-contrast
@@ -17,6 +18,7 @@ $theme-map-dark: (
   $--theme-text: $dark-text,
   $--theme-primary: $dark-primary,
   $--theme-secondary: $dark-secondary,
+  $--theme-error: $dark-error,
   $--theme-background: $dark-background,
   $--theme-background-raised: $dark-background-raised,
   $--theme-background-contrast: $dark-background-contrast

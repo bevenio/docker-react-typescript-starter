@@ -16,10 +16,13 @@ const createRoute = ({ route, subroutes }) => {
               if (previous === false) {
                 return false
               }
-              return (
-                dotProp.get(store.getState(), current) ===
-                subroute.dependsOn[current]
-              )
+              const dependencyValue = dotProp.get(store.getState(), current)
+              const dependencyComparison = subroute.dependsOn[current]
+
+              // Dependency can be checked by its value or by validator function
+              return typeof dependencyComparison === 'function'
+                ? dependencyComparison(dependencyValue)
+                : dependencyValue === dependencyComparison
             }, true)
           : true
 

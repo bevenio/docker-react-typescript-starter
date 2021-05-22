@@ -15,7 +15,9 @@ $theme-map-light: (
   $--form-border-color: $light-background-contrast,
   $--input-fore-color: $light-text,
   $--input-back-color: $light-background-raised,
-  $--input-border-color: $light-background-contrast
+  $--input-border-color: $light-background-contrast,
+  $--button-back-color: $light-primary,
+  $--button-fore-color: $light-text
 );
 
 // Overwriting theme: dark
@@ -33,7 +35,9 @@ $theme-map-dark: (
   $--form-border-color: $dark-background-contrast,
   $--input-fore-color: $dark-text,
   $--input-back-color: $dark-background-raised,
-  $--input-border-color: $dark-background-contrast
+  $--input-border-color: $dark-background-contrast,
+  $--button-back-color: $dark-primary,
+  $--button-fore-color: $dark-text
 );
 
 @mixin spread-map($map: ()) {

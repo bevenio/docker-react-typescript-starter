@@ -16,11 +16,9 @@ export default class Login extends React.Component {
       <FillAvailable>
         <LoginForm
           onSuccess={() => {
-            window.alert('LOGGED IN!')
+            this.props.history.push('/explore')
           }}
-          onFailure={() => {
-            window.alert('WRONG CREDENTIALS!')
-          }}
+          onFailure={() => {}}
         />
       </FillAvailable>
     )

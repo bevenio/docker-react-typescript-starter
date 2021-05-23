@@ -43,8 +43,7 @@ class Restore {
         })
       }
 
-      // eslint-disable-next-line no-param-reassign
-      delete event.returnValue
+      event.preventDefault()
     })
   }
 

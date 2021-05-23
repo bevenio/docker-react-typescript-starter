@@ -1,0 +1,17 @@
+@import '@/assets/scss/variables';
+
+.app-content-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.app-content-wrapper-with-navbar {
+  margin-top: var($--defaults-navbar-height);
+}
+
+.app-content-wrapper-inner {
+  max-width: 960px;
+  width: 100%;
+  display: block;
+}

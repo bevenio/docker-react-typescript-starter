@@ -1,7 +1,7 @@
 import React from 'react'
 
-import FillAvailable from '@/components/basic/fill-available/fill-available'
 import NavigationBar from '@/components/composed/navigation-bar/navigation-bar'
+import ContentWrapper from '@/components/basic/content-wrapper/content-wrapper'
 
 import './landing.scss'
 
@@ -15,7 +15,7 @@ export default class Landing extends React.Component {
     return (
       <>
         <NavigationBar />
-        <FillAvailable>Landing</FillAvailable>
+        <ContentWrapper navbar="true">Landing</ContentWrapper>
       </>
     )
   }

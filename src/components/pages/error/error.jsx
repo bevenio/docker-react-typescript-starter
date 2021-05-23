@@ -1,13 +1,10 @@
-import './error-code.scss'
+import './error.scss'
 
 import React from 'react'
 
 import FillAvailable from '@/components/basic/fill-available/fill-available'
 
-export const ErrorCode = ({
-  code = 'Oops..',
-  text = 'Something bad happened',
-}) => (
+export const Error = ({ code = 'Oops..', text = 'Something bad happened' }) => (
   <FillAvailable>
     <div className="app-error-code">
       <h1>{code}</h1>
@@ -16,4 +13,4 @@ export const ErrorCode = ({
   </FillAvailable>
 )
 
-export default ErrorCode
+export default Error

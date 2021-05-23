@@ -1,49 +1,26 @@
 import React, { Suspense } from 'react'
-import {
-  Route,
-  Router as PathRouter,
-  HashRouter,
-  Switch,
-} from 'react-router-dom'
-import { createBrowserHistory, createHashHistory } from 'history'
+import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { hot } from 'react-hot-loader/root'
+
+// Utility
+import RouterUtility from '@/router/utility/router.utility'
 
 // Components
-import FillAvailable from '@/components/basic/fill-available/fill-available'
-import NotAllowed from '@/components/basic/not-allowed/not-allowed'
-import LoadingSpinner from '@/components/basic/loading-spinner/loading-spinner'
+import LoadingPage from '@/components/pages/loading/loading'
+import ErrorPage from '@/components/pages/error/error'
 
 // Routes
 import LoginRoutes from '@/router/routes/login.routes'
 import SettingsRoutes from '@/router/routes/settings.routes'
-
-const WrongRoute = () => (
-  <FillAvailable>
-    <NotAllowed />
-  </FillAvailable>
-)
-
-const LoadingFullscreen = () => (
-  <FillAvailable>
-    <LoadingSpinner />
-  </FillAvailable>
-)
+import LandingRoutes from '@/router/routes/landing.routes'
 
 export class AppRouter extends React.Component {
   constructor() {
     super()
-    if (window.location.hash) {
-      this.state = {
-        router: hot(HashRouter),
-        history: createHashHistory(),
-      }
-    } else {
-      this.state = {
-        router: hot(PathRouter),
-        history: createBrowserHistory(),
-      }
+    this.state = {
+      router: RouterUtility.getRouter(),
+      history: RouterUtility.getHistory(),
     }
   }
 
@@ -61,14 +38,24 @@ export class AppRouter extends React.Component {
           />
         </Helmet>
         <Router basename="/" history={history}>
-          <Suspense fallback={<LoadingFullscreen />}>
+          <Suspense fallback={<LoadingPage />}>
             <Switch>
-              <Route path={LoginRoutes.route} render={LoginRoutes.subroutes} />
               <Route
+                exact={LoginRoutes.exact}
+                path={LoginRoutes.route}
+                render={LoginRoutes.subroutes}
+              />
+              <Route
+                exact={SettingsRoutes.exact}
                 path={SettingsRoutes.route}
                 render={SettingsRoutes.subroutes}
               />
-              <Route component={WrongRoute} />
+              <Route
+                exact={LandingRoutes.exact}
+                path={LandingRoutes.route}
+                render={LandingRoutes.subroutes}
+              />
+              <Route component={ErrorPage} />
             </Switch>
           </Suspense>
         </Router>

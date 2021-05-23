@@ -5,14 +5,15 @@ const LoginPage = React.lazy(() => import('@/components/pages/login/login'))
 
 export default RouterUtils.createRoute({
   route: '/login',
+  exact: true,
   subroutes: [
     {
       key: 'login',
       path: '/login',
+      exact: true,
       component: LoginPage,
-      exact: false,
       dependsOn: {
-        'appearance.theme': 'light',
+        'auth.jwt': (jwt) => jwt === null,
       },
     },
   ],

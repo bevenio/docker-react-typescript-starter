@@ -1,9 +1,22 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
 import dotProp from 'dot-prop'
+import { createBrowserHistory, createHashHistory } from 'history'
+import { Route, Router as PathRouter, HashRouter } from 'react-router-dom'
+import { hot } from 'react-hot-loader/root'
 
 import { store } from '@/store/store'
-import ErrorCode from '@/components/pages/error-code/error-code'
+import ErrorPage from '@/components/pages/error/error'
+import LoadingPage from '@/components/pages/loading/loading'
+
+const isAppUsingHashRoute = !!window.location.hash
+const history = isAppUsingHashRoute
+  ? createHashHistory()
+  : createBrowserHistory()
+const router = isAppUsingHashRoute ? hot(HashRouter) : hot(PathRouter)
+
+const getRouter = () => router
+
+const getHistory = () => history
 
 const createRoute = ({ route, subroutes }) => {
   // Creating a function for the router to be able to create routes of
@@ -21,14 +34,18 @@ const createRoute = ({ route, subroutes }) => {
 
               // Dependency can be checked by its value or by validator function
               return typeof dependencyComparison === 'function'
-                ? dependencyComparison(dependencyValue)
+                ? !!dependencyComparison(dependencyValue)
                 : dependencyValue === dependencyComparison
             }, true)
           : true
 
-        const ActualComponent = isAllowedToOpenRoute
-          ? subroute.component
-          : ErrorCode
+        let ActualComponent = subroute.component
+        if (!isAllowedToOpenRoute && subroute.pathFallback) {
+          ActualComponent = LoadingPage
+          getHistory().push(subroute.pathFallback)
+        } else if (!isAllowedToOpenRoute && !subroute.pathFallback) {
+          ActualComponent = ErrorPage
+        }
 
         return (
           <Route
@@ -49,5 +66,7 @@ const createRoute = ({ route, subroutes }) => {
 }
 
 export default {
+  getRouter,
+  getHistory,
   createRoute,
 }

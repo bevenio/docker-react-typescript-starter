@@ -19,7 +19,7 @@ export default class Login extends React.Component {
         <FillAvailable>
           <LoginForm
             onSuccess={() => {
-              this.props.history.push('/explore')
+              this.props.history.push('/')
             }}
             onFailure={() => {}}
           />

@@ -16,13 +16,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: var($--theme-primary);
+  color: var($--theme-secondary);
 }
 
 // Selection
 ::selection {
   color: var($--theme-background);
-  background-color: var($--theme-primary);
+  background-color: var($--theme-secondary);
 }
 
 // Form
@@ -33,6 +33,7 @@ form {
 // Input
 input {
   color: var($--theme-text);
+  border-color: var($--theme-background-contrast);
   background-color: var($--theme-background);
 }
 
@@ -41,13 +42,13 @@ input:hover {
 }
 
 input:focus {
-  border-color: var($--theme-primary) !important;
+  border-color: var($--theme-secondary) !important;
 }
 
 input:focus-visible {
   outline: none;
   border-width: var($--defaults-border-thick);
-  border-color: var($--theme-primary) !important;
+  border-color: var($--theme-background-contrast) !important;
 }
 
 input:invalid {

@@ -3,9 +3,10 @@
 .app-navigation-bar {
   position: fixed;
   width: 100vw;
-  background-color: var($--theme-primary);
+  background-color: var($--theme-secondary);
+  border-bottom: 5px solid var($--theme-primary);
 }
 
 .app-navigation-bar > .nav > .nav-logo {
-  color: var($--theme-background);
+  color: var($--theme-text);
 }

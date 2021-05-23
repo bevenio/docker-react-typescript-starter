@@ -6,7 +6,6 @@ import { hot } from 'react-hot-loader/root'
 
 import { store } from '@/store/store'
 import ErrorPage from '@/components/pages/error/error'
-import LoadingPage from '@/components/pages/loading/loading'
 
 const isAppUsingHashRoute = !!window.location.hash
 const history = isAppUsingHashRoute
@@ -18,7 +17,7 @@ const getRouter = () => router
 
 const getHistory = () => history
 
-const createRoute = ({ route, subroutes }) => {
+const createRoute = ({ route, exact, subroutes }) => {
   // Creating a function for the router to be able to create routes of
   const subrouteComponent = () => (
     <>
@@ -40,10 +39,9 @@ const createRoute = ({ route, subroutes }) => {
           : true
 
         let ActualComponent = subroute.component
-        if (!isAllowedToOpenRoute && subroute.pathFallback) {
-          ActualComponent = LoadingPage
-          getHistory().push(subroute.pathFallback)
-        } else if (!isAllowedToOpenRoute && !subroute.pathFallback) {
+        if (!isAllowedToOpenRoute && subroute.fallback) {
+          ActualComponent = subroute.fallback
+        } else if (!isAllowedToOpenRoute && !subroute.fallback) {
           ActualComponent = ErrorPage
         }
 
@@ -61,6 +59,7 @@ const createRoute = ({ route, subroutes }) => {
 
   return {
     route,
+    exact,
     subroutes: subrouteComponent,
   }
 }

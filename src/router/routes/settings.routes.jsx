@@ -1,6 +1,8 @@
 import React from 'react'
 import RouterUtils from '@/router/utility/router.utility'
 
+const LoginPage = React.lazy(() => import('@/components/pages/login/login'))
+
 const SettingsPage = React.lazy(() =>
   import('@/components/pages/settings/settings')
 )
@@ -14,6 +16,7 @@ export default RouterUtils.createRoute({
       path: '/settings',
       exact: true,
       component: SettingsPage,
+      fallback: LoginPage,
       dependsOn: {
         'auth.jwt': (jwt) => jwt !== null,
       },

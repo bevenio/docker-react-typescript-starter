@@ -15,7 +15,12 @@ export default class Landing extends React.Component {
     return (
       <>
         <NavigationBar />
-        <ContentWrapper navbar="true">Landing</ContentWrapper>
+        <ContentWrapper navbar="true">
+          <h1>Landing Page</h1>
+          <p>
+            {new Array(1000).fill('Lorem Ipsum, dipsum. ', 0, 1000).join(' ')}
+          </p>
+        </ContentWrapper>
       </>
     )
   }

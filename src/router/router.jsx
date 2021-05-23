@@ -17,6 +17,7 @@ import LoadingSpinner from '@/components/basic/loading-spinner/loading-spinner'
 
 // Routes
 import LoginRoutes from '@/router/routes/login.routes'
+import SettingsRoutes from '@/router/routes/settings.routes'
 
 const WrongRoute = () => (
   <FillAvailable>
@@ -63,6 +64,10 @@ export class AppRouter extends React.Component {
           <Suspense fallback={<LoadingFullscreen />}>
             <Switch>
               <Route path={LoginRoutes.route} render={LoginRoutes.subroutes} />
+              <Route
+                path={SettingsRoutes.route}
+                render={SettingsRoutes.subroutes}
+              />
               <Route component={WrongRoute} />
             </Switch>
           </Suspense>

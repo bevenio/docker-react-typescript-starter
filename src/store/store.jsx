@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import entries from '@/store/entries/entry-bundle'
 
 import { applyReduxExtensionDevtools } from '@/services/devtool-service/devtool-service'
-import { extendStoreWithLocalStorage } from '@/store/utility/store.utility'
+import { restore } from '@/store/utility/store.utility'
 
 const reducers = Object.fromEntries(
   Object.entries(entries).map((entry) => [entry[0], entry[1].reducer])
@@ -15,7 +15,7 @@ const store = createStore(
   applyReduxExtensionDevtools(applyMiddleware(thunkMiddleware))
 )
 
-extendStoreWithLocalStorage(store)
+restore.extendStore(store)
 
 export { store }
 export { entries }

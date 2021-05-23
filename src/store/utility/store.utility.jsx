@@ -7,36 +7,71 @@ const extendConstants = (constantPrepend, constants) => {
   return extendedConstants
 }
 
-const localStorageStoreName = 'redux-state'
-const extendStoreWithLocalStorage = (store) => {
-  window.addEventListener('beforeunload', (event) => {
-    localStorage.setItem(
-      localStorageStoreName,
-      JSON.stringify(store.getState())
-    )
-    // eslint-disable-next-line no-param-reassign
-    delete event.returnValue
-  })
+class Restore {
+  name = 'redux-entry'
+
+  storeReference = null
+
+  registeredEntries = []
+
+  constructor(name) {
+    this.name = this.name || name
+  }
+
+  isEntryName = (entry) => typeof entry === 'string'
+
+  createEntryName = (entry) => `${this.name}:${entry}`
+
+  registerEntry = (entry) => {
+    if (!this.registeredEntries.includes(entry)) {
+      this.registeredEntries.push(entry)
+    }
+  }
+
+  applyListeners = () => {
+    window.addEventListener('beforeunload', (event) => {
+      if (this.storeReference) {
+        this.registeredEntries.forEach((entry) => {
+          try {
+            localStorage.setItem(
+              this.createEntryName(entry),
+              JSON.stringify(this.storeReference.getState()[entry])
+            )
+          } catch (error) {
+            throw new Error('Store entry could not be saved', error)
+          }
+        })
+      }
+
+      // eslint-disable-next-line no-param-reassign
+      delete event.returnValue
+    })
+  }
+
+  extendStore(store) {
+    this.storeReference = store
+    this.applyListeners()
+  }
+
+  restoreEntry(entry) {
+    if (this.isEntryName(entry)) {
+      this.registerEntry(entry)
+      const restoredEntry = JSON.parse(
+        localStorage.getItem(this.createEntryName(entry))
+      )
+      const hasRestoredEntry = !!restoredEntry
+      return hasRestoredEntry !== null ? restoredEntry : null
+    }
+    return null
+  }
 }
 
-let retrievedLocalStorageStore = null
-const retrieveStoreLocalStorageEntry = (name) => {
-  if (!retrievedLocalStorageStore) {
-    retrievedLocalStorageStore = JSON.parse(
-      localStorage.getItem(localStorageStoreName)
-    )
-  }
-  return retrievedLocalStorageStore !== null
-    ? retrievedLocalStorageStore[name]
-    : null
-}
+const restore = new Restore()
 
 export { extendConstants }
-export { extendStoreWithLocalStorage }
-export { retrieveStoreLocalStorageEntry }
+export { restore }
 
 export default {
   extendConstants,
-  extendStoreWithLocalStorage,
-  retrieveStoreLocalStorageEntry,
+  restore,
 }

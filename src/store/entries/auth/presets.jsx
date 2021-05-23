@@ -1,4 +1,4 @@
-import { retrieveStoreLocalStorageEntry } from '@/store/utility/store.utility'
+import { restore } from '@/store/utility/store.utility'
 
 const options = {
   status: {
@@ -9,7 +9,7 @@ const options = {
   },
 }
 
-const preset = retrieveStoreLocalStorageEntry('AUTH') || {
+const preset = restore.restoreEntry('auth') || {
   jwt: null,
   status: options.status.unset,
 }

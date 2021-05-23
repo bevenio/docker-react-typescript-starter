@@ -91,7 +91,7 @@ src
 │   └───utility
 │
 └───store
-│   │   redux-store.jsx
+│   │   store.jsx
 │   └───entries
 │   └───utility
 │

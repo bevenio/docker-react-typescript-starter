@@ -19,6 +19,12 @@ make setup
 make install
 ```
 
+### Serving and developing locally
+
+```zsh
+make serve
+```
+
 ### Executing commands inside the docker environment
 
 In able to execute commands like _"npm audit fix"_ inside the docker environment you have to pass them to the _execute_ script as a parameter.

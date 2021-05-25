@@ -7,3 +7,4 @@ dist
 project.json
 .docker/docker-compose.development.yml
 .docker/docker-compose.production.yml
+.docker/docker-compose.deployment.yml

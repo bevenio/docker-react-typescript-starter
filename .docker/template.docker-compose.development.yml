@@ -10,7 +10,7 @@ services:
     working_dir: /usr/src/service
     command: npm run serve:development
     ports:
-      - {{port}}:{{port}}
+      - '{{local_machine.port}}:{{local_machine.port}}'
 volumes:
   nodemodules:
     external: true

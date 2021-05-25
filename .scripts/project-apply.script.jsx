@@ -4,52 +4,39 @@ const mustache = require('mustache')
 
 const projectConfiguration = require('./../project.json')
 
+const readDockerFile = (type) => {
+  return fs.readFileSync(
+    path.resolve(__dirname, `./../.docker/template.docker-compose.${type}.yml`),
+    { encoding: 'utf8', flag: 'r' }
+  )
+}
+
+const writeDockerFile = (type, file, configuration) => {
+  fs.writeFileSync(
+    path.resolve(__dirname, `./../.docker/docker-compose.${type}.yml`),
+    mustache.render(file, configuration),
+    { flag: 'w' },
+    (error) => {
+      if (error) {
+        throw error
+      }
+    }
+  )
+}
+
 const generateDockerFiles = () => {
-  const dockerComposeDevelopmentTemplate = fs.readFileSync(
-    path.resolve(
-      __dirname,
-      './../.docker/template.docker-compose.development.yml'
-    ),
-    { encoding: 'utf8', flag: 'r' }
-  )
+  const dockerFiles = ['deployment', 'development', 'production']
 
-  const dockerComposeProductionTemplate = fs.readFileSync(
-    path.resolve(
-      __dirname,
-      './../.docker/template.docker-compose.production.yml'
-    ),
-    { encoding: 'utf8', flag: 'r' }
-  )
-
-  // Save development docker compose
-  fs.writeFileSync(
-    path.resolve(__dirname, './../.docker/docker-compose.development.yml'),
-    mustache.render(
-      dockerComposeDevelopmentTemplate,
-      projectConfiguration.local_machine
-    ),
-    { flag: 'w' },
-    (error) => {
-      if (error) {
-        throw error
+  dockerFiles
+    .map((type) => {
+      return {
+        type,
+        file: readDockerFile(type),
       }
-    }
-  )
-
-  // Save production docker compose
-  fs.writeFileSync(
-    path.resolve(__dirname, './../.docker/docker-compose.production.yml'),
-    mustache.render(
-      dockerComposeProductionTemplate,
-      projectConfiguration.local_machine
-    ),
-    { flag: 'w' },
-    (error) => {
-      if (error) {
-        throw error
-      }
-    }
-  )
+    })
+    .forEach(({ type, file }) => {
+      writeDockerFile(type, file, projectConfiguration)
+    })
 }
 
 generateDockerFiles()

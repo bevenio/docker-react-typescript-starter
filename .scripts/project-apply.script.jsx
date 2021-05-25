@@ -4,7 +4,7 @@ const mustache = require('mustache')
 
 const projectConfiguration = require('./../project.json')
 
-const readDockerFile = (type) => {
+const readDockerFileTemplate = (type) => {
   return fs.readFileSync(
     path.resolve(__dirname, `./../.docker/template.docker-compose.${type}.yml`),
     { encoding: 'utf8', flag: 'r' }
@@ -31,7 +31,7 @@ const generateDockerFiles = () => {
     .map((type) => {
       return {
         type,
-        file: readDockerFile(type),
+        file: readDockerFileTemplate(type),
       }
     })
     .forEach(({ type, file }) => {

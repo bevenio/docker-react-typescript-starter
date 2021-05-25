@@ -16,11 +16,6 @@ services:
     extends:
       service: base
     command: npm i
-  # Fixing node_modules inside of the docker environment
-  install_fix:
-    extends:
-      service: base
-    command: npm audit fix
   # Building into the dist directory
   build_development:
     extends:

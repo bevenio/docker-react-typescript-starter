@@ -22,14 +22,18 @@ execute:
 serve:
 	make prepare && docker compose -f ./.docker/docker-compose.development.yml -p development-container-client up --remove-orphans
 build:
-	make prepare && docker compose -f ./.docker/docker-compose.commands.yml run --rm build_development
+	ARGS="" make prepare && docker compose -f ./.docker/docker-compose.commands.yml run --rm build_development
 
 ### PRODUCTION COMMANDS
 serve-production:
 	make prepare && docker compose -f ./.docker/docker-compose.production.yml -p production-container-client up --remove-orphans
 build-production:
-	make prepare && docker compose -f ./.docker/docker-compose.commands.yml run --rm build_production
+	ARGS="" make prepare && docker compose -f ./.docker/docker-compose.commands.yml run --rm build_production
 
 ### SYNC/REMOTE COMMANDS
 sync:
 	ARGS="$(name)" docker compose -f ./.docker/docker-compose.commands.yml run --rm sync_repository
+
+### RELEASE COMMANDS
+release:
+	ARGS="" make build-production && cp -f ./.docker/docker-compose.deployment.yml dist/docker-compose.yml

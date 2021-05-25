@@ -1,0 +1,8 @@
+version: '3'
+services:
+  deployment-service-server:
+    image: halverneus/static-file-server:latest
+    volumes:
+      - ./public/:web/
+    ports:
+      - '9010:8080'

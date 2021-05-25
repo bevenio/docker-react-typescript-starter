@@ -21,6 +21,15 @@ services:
     extends:
       service: base
     command: npm audit fix
+  # Building into the dist directory
+  build_development:
+    extends:
+      service: base
+    command: npm run build:development
+  build_production:
+    extends:
+      service: base
+    command: npm run build:production
   # Run the linter
   lint:
     extends:

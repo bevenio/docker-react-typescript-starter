@@ -21,10 +21,14 @@ execute:
 	ARGS="$(command)" docker compose -f ./.docker/docker-compose.commands.yml run --rm execute_command
 serve:
 	make prepare && docker compose -f ./.docker/docker-compose.development.yml -p development-container-client up --remove-orphans
+build:
+	make prepare && docker compose -f ./.docker/docker-compose.commands.yml run --rm build_development
 
 ### PRODUCTION COMMANDS
 serve-production:
 	make prepare && docker compose -f ./.docker/docker-compose.production.yml -p production-container-client up --remove-orphans
+build-production:
+	make prepare && docker compose -f ./.docker/docker-compose.commands.yml run --rm build_production
 
 ### SYNC/REMOTE COMMANDS
 sync:

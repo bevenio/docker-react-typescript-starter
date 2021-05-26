@@ -16,15 +16,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Build Release
+        uses: actions/create-release@v1
+        with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: docker volume create nodemodules
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_production
-      - run: cp -f ./.docker/docker-compose.deployment.yml dist/docker-compose.yml
+      - run: cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml
         env:
           CI: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

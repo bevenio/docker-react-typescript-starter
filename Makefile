@@ -36,4 +36,4 @@ sync:
 
 ### RELEASE COMMANDS
 release:
-	ARGS="" make build-production && cp -f ./.docker/docker-compose.deployment.yml dist/docker-compose.yml
+	ARGS="" make build-production && cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml

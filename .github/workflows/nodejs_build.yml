@@ -26,6 +26,7 @@ jobs:
         id: build_release
         uses: actions/create-release@v1
         with:
+          tag_name: beta-${{ github.sha }}
           release_name: beta-release ${{ github.repository }}:${{ github.sha }}
           body: Authored by ${{ github.actor }}
           draft: false

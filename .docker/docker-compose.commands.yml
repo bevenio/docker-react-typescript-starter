@@ -28,7 +28,7 @@ services:
   build_for_deployment:
     extends:
       service: base
-    command: bash -O extglob -c "npm run build:production && cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml && npx bestzip ./dist/archive.zip ./dist/ && find ./dist/** -not -name 'archive.zip' -delete"
+    command: bash -O extglob -c "npm run build:production && cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml && npx bestzip ./dist/.archive.zip ./dist/** && find ./dist/** -not -name '.archive.zip' -delete"
   # Run the linter
   lint:
     extends:

@@ -74,8 +74,6 @@ const createPlugins = (options) => {
     })
   )
 
-  plugins.push(new webpack.HotModuleReplacementPlugin())
-
   plugins.push(
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
@@ -88,6 +86,10 @@ const createPlugins = (options) => {
       Buffer: ['buffer', 'Buffer'],
     })
   )
+
+  if (options.hmr === true) {
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+  }
 
   if (options.showBundleAnalyzer === true) {
     plugins.push(
@@ -153,6 +155,8 @@ const createModules = (/* options */) => {
 const createOptimization = (/* options */) => ({
   runtimeChunk: 'single',
   chunkIds: 'deterministic',
+  usedExports: true,
+  sideEffects: false,
   splitChunks: {
     maxInitialRequests: Infinity,
     minSize: 0,

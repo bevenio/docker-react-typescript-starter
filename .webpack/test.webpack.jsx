@@ -62,8 +62,6 @@ const createPlugins = (options) => {
     })
   )
 
-  plugins.push(new webpack.HotModuleReplacementPlugin())
-
   plugins.push(
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
@@ -76,6 +74,10 @@ const createPlugins = (options) => {
       Buffer: ['buffer', 'Buffer'],
     })
   )
+
+  if (options.hmr === true) {
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+  }
 
   if (options.showBundleAnalyzer === true) {
     plugins.push(

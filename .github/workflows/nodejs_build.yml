@@ -1,0 +1,30 @@
+name: Github CI [Build]
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - run: docker volume create nodemodules
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build:production
+      - run: cp -f ./.docker/docker-compose.deployment.yml dist/docker-compose.yml
+        env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

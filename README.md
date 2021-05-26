@@ -1,7 +1,8 @@
 # docker-react
 
-![Test](https://github.com/bevenio/docker-react/actions/workflows/nodejs_test.yml/badge.svg?event=push)
 ![Lint](https://github.com/bevenio/docker-react/actions/workflows/nodejs_lint.yml/badge.svg?event=push)
+![Test](https://github.com/bevenio/docker-react/actions/workflows/nodejs_test.yml/badge.svg?event=push)
+![Build](https://github.com/bevenio/docker-react/actions/workflows/nodejs_build.yml/badge.svg?event=push)
 
 ## General
 

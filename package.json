@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "author": "Benjamin Brachmann",
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "engines": {
     "node": ">=12.18.1"

@@ -2,18 +2,20 @@ const fs = require('fs')
 const path = require('path')
 const mustache = require('mustache')
 
+const packageConfiguration = require('./../package.json')
 const projectConfiguration = require('./../project.json')
 
-const readDockerFileTemplate = (type) => {
-  return fs.readFileSync(
-    path.resolve(__dirname, `./../.docker/template.docker-compose.${type}.yml`),
-    { encoding: 'utf8', flag: 'r' }
-  )
+// Read templates and write files
+const readFileTemplate = (filePath) => {
+  return fs.readFileSync(path.resolve(__dirname, filePath), {
+    encoding: 'utf8',
+    flag: 'r',
+  })
 }
 
-const writeDockerFile = (type, file, configuration) => {
-  fs.writeFileSync(
-    path.resolve(__dirname, `./../.docker/docker-compose.${type}.yml`),
+const writeFile = (filePath, file, configuration) => {
+  fs.writeFile(
+    path.resolve(__dirname, filePath),
     mustache.render(file, configuration),
     { flag: 'w' },
     (error) => {
@@ -24,6 +26,7 @@ const writeDockerFile = (type, file, configuration) => {
   )
 }
 
+// "Docker-compose" file generation
 const generateDockerFiles = () => {
   const dockerFiles = ['deployment', 'development', 'production']
 
@@ -31,12 +34,31 @@ const generateDockerFiles = () => {
     .map((type) => {
       return {
         type,
-        file: readDockerFileTemplate(type),
+        file: readFileTemplate(
+          `./../.docker/template.docker-compose.${type}.yml`
+        ),
       }
     })
     .forEach(({ type, file }) => {
-      writeDockerFile(type, file, projectConfiguration)
+      writeFile(
+        `./../.docker/docker-compose.${type}.yml`,
+        file,
+        projectConfiguration
+      )
     })
 }
 
+// "LICENSE" file generation
+const generateLicenseFile = () => {
+  const licenseFileTemplate = readFileTemplate('./../.license/template.LICENSE')
+  const currentYear = new Date().getFullYear()
+  const configurationWithYear = {
+    ...packageConfiguration,
+    ...{ year: currentYear },
+  }
+  writeFile('./../LICENSE', licenseFileTemplate, configurationWithYear)
+}
+
+// Run
 generateDockerFiles()
+generateLicenseFile()

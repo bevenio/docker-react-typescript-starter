@@ -1,11 +1,9 @@
 name: Github CI [Build]
 
 on:
-  push
-
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
 
 jobs:
   build:

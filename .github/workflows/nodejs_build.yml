@@ -38,7 +38,6 @@ jobs:
       - run: echo "$OUTPUTS"
         env:
           OUTPUTS: ${{ toJson(steps.semantic.outputs) }}
-
         # Publish the release
       - name: Build Release
       - uses: actions/create-release@v1

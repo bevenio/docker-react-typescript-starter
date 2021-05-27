@@ -14,7 +14,6 @@ jobs:
         node-version: [12.x]
 
     steps:
-      # Use node
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -22,12 +21,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
         env:
           CI: true
-      # Build the archive.zip
       - run: docker volume create nodemodules
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
-      # Create a semver version
       - uses: codfish/semantic-release-action@v1
       - name: Create semver version
         id: create_semver_version
@@ -36,9 +33,8 @@ jobs:
       - run: echo "$OUTPUTS"
         env:
           OUTPUTS: ${{ toJson(steps.semantic.outputs) }}
-        # Publish the release
-      - name: Build Release
       - uses: actions/create-release@v1
+      - name: Build Release
         id: build_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -48,9 +44,8 @@ jobs:
           body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}
           draft: false
           prerelease: true
-      # Upload archive.zip to release assets
-      - name: Upload Release Asset
       - uses: actions/upload-release-asset@v1
+      - name: Upload Release Asset
         id: upload_release_asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

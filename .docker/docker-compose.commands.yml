@@ -25,10 +25,17 @@ services:
     extends:
       service: base
     command: npm run build:production
+  # Building and archiving for deployment
   build_for_deployment:
     extends:
       service: base
-    command: bash -c "npm run build:production && cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml && mkdir -p ./.temp/build_outputs && npx bestzip ./.temp/build_outputs/archive.zip ./dist/** && find ./dist/** -delete"
+    command: bash -O extglob -c "
+      npm run build:production &&
+      mkdir -p ./.temp/build_outputs ./dist/public &&
+      mv ./dist/!(public) ./dist/public &&
+      cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml &&
+      npx bestzip ./.temp/build_outputs/archive.zip ./dist/** &&
+      find ./dist/** -delete"
   # Run the linter
   lint:
     extends:

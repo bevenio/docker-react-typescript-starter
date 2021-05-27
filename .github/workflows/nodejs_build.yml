@@ -26,26 +26,17 @@ jobs:
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
-      - uses: codfish/semantic-release-action@v1
+      - uses: martinbeentjes/npm-get-version-action@master
         name: Create semver version
         id: create_semver_version
-        with:
-          branches: 'main'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: echo ${{ steps.semantic.outputs.release-version }}
-      - run: echo "$OUTPUTS"
-        env:
-          OUTPUTS: ${{ toJson(steps.semantic.outputs) }}
       - uses: actions/create-release@v1
         name: Build Release
         id: build_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: beta-${{ steps.create_semver_version.outputs.release-version }}
-          release_name: beta-release ${{ github.repository }}:${{ steps.create_semver_version.outputs.release-version }}
+          tag_name: beta-${{ steps.create_semver_version.outputs.current-version }}
+          release_name: beta-release ${{ github.repository }}:${{ steps.create_semver_version.outputs.current-version }}
           body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}
           draft: false
           prerelease: true

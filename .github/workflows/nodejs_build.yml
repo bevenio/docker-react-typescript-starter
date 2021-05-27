@@ -15,8 +15,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        name: Use Node.js ${{ matrix.node-version }}
+      - uses: actions/setup-node@v1
+        name: Setup Node.js ${{ matrix.node-version }}
         with:
           node-version: ${{ matrix.node-version }}
         env:
@@ -26,15 +27,16 @@ jobs:
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
       - uses: codfish/semantic-release-action@v1
-      - name: Create semver version
+        name: Create semver version
         id: create_semver_version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo ${{ steps.semantic.outputs.release-version }}
       - run: echo "$OUTPUTS"
         env:
           OUTPUTS: ${{ toJson(steps.semantic.outputs) }}
       - uses: actions/create-release@v1
-      - name: Build Release
+        name: Build Release
         id: build_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,7 +47,7 @@ jobs:
           draft: false
           prerelease: true
       - uses: actions/upload-release-asset@v1
-      - name: Upload Release Asset
+        name: Upload Release Asset
         id: upload_release_asset
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

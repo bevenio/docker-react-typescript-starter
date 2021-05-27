@@ -1,7 +1,7 @@
 name: Github CI [Build]
 
 on:
-  [push]
+  push
 
   # push:
   #   branches:

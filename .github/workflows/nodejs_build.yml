@@ -35,9 +35,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: beta-${{ steps.create_semver_version.outputs.current-version }}
-          release_name: beta-release ${{ github.repository }}:${{ steps.create_semver_version.outputs.current-version }}
-          body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}
+          tag_name: ${{ steps.create_semver_version.outputs.current-version }}
+          release_name: ${{ steps.create_semver_version.outputs.current-version }}
+          body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}, Repository ${{ github.repository }}
           draft: false
           prerelease: true
       - uses: actions/upload-release-asset@v1

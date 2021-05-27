@@ -2,7 +2,6 @@ name: Github CI [Build]
 
 on:
   push:
-  pull_request:
     branches:
       - main
 
@@ -15,6 +14,7 @@ jobs:
         node-version: [12.x]
 
     steps:
+      # Use node
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -22,28 +22,40 @@ jobs:
           node-version: ${{ matrix.node-version }}
         env:
           CI: true
+      # Build the archive.zip
       - run: docker volume create nodemodules
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
-      - name: Build Release
-        id: build_release
-        uses: actions/create-release@v1
-        with:
-          tag_name: beta-${{ github.sha }}
-          release_name: beta-release ${{ github.repository }}:${{ github.sha }}
-          body: Authored by ${{ github.actor }}
-          draft: false
-          prerelease: true
+      # Create a semver version
+      - uses: codfish/semantic-release-action@v1
+      - name: Create semver version
+        id: create_semver_version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo "$OUTPUTS"
+        env:
+          OUTPUTS: ${{ toJson(steps.semantic.outputs) }}
+        # Publish the release
+      - name: Build Release
+      - uses: actions/create-release@v1
+        id: build_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: beta-${{ steps.create_semver_version.outputs.release-version }}
+          release_name: beta-release ${{ github.repository }}:${{ steps.create_semver_version.outputs.release-version }}
+          body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}
+          draft: false
+          prerelease: true
+      # Upload archive.zip to release assets
       - name: Upload Release Asset
+      - uses: actions/upload-release-asset@v1
         id: upload_release_asset
-        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.build_release.outputs.upload_url }}
-          asset_path: ./dist/.archive.zip
+          asset_path: ./.temp/build_outputs/archive.zip
           asset_name: archive.zip
           asset_content_type: application/zip

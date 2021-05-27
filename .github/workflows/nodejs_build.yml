@@ -28,14 +28,14 @@ jobs:
       - name: Build Release
         id: build_release
         uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: beta-${{ github.sha }}
           release_name: beta-release ${{ github.repository }}:${{ github.sha }}
           body: Authored by ${{ github.actor }}
           draft: false
           prerelease: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Release Asset
         id: upload_release_asset
         uses: actions/upload-release-asset@v1

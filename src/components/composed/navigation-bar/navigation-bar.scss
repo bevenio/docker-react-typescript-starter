@@ -1,7 +1,15 @@
 @import '@/assets/scss/variables';
 
-.app-navigation-bar {
+.app-navigation-bar-browser {
   top: 0;
+  position: fixed;
+  width: 100vw;
+  background-color: var($--theme-secondary);
+  border-bottom: 5px solid var($--theme-primary);
+}
+
+.app-navigation-bar-mobile {
+  bottom: 0;
   position: fixed;
   width: 100vw;
   background-color: var($--theme-secondary);

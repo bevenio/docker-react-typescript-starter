@@ -6,17 +6,56 @@ import './navigation-bar.scss'
 export class NavigationBar extends React.Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      isMobileNavigation: false,
+    }
   }
 
-  render() {
+  componentDidMount() {
+    this.registerEventListeners()
+  }
+
+  componentWillUnmount() {
+    this.unregisterEventListeners()
+  }
+
+  unregisterEventListeners = () => {}
+
+  registerEventListeners = () => {
+    const mobileSize = 800
+    window.addEventListener('resize', (event) => {
+      if (event.target.innerWidth <= mobileSize) {
+        this.setState({ isMobileNavigation: true })
+      } else {
+        this.setState({ isMobileNavigation: false })
+      }
+    })
+  }
+
+  renderMobileNavigation() {
     return (
-      <div className="app-navigation-bar">
+      <div className="app-navigation-bar-mobile">
         <div className="nav">
           <h5 className="nav-logo">{this.props.reduxState.appearance.title}</h5>
         </div>
       </div>
     )
+  }
+
+  renderBrowserNavigation() {
+    return (
+      <div className="app-navigation-bar-browser">
+        <div className="nav">
+          <h5 className="nav-logo">{this.props.reduxState.appearance.title}</h5>
+        </div>
+      </div>
+    )
+  }
+
+  render() {
+    return this.state.isMobileNavigation
+      ? this.renderMobileNavigation()
+      : this.renderBrowserNavigation()
   }
 }
 

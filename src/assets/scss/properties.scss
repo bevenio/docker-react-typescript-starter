@@ -29,7 +29,6 @@ $defaults-map: (
   $--defaults-navbar-height: $default-navbar-height,
   $--defaults-border: $default-border,
   $--defaults-border-thick: $default-border-thick,
-  $--defaults-sizes-mobile: $default-sizes-mobile,
 );
 
 @mixin spread-map($map: ()) {

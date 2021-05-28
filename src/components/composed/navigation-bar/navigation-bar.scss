@@ -1,15 +1,6 @@
 @import '@/assets/scss/variables';
 
-.app-navigation-bar-browser {
-  top: 0;
-  position: fixed;
-  width: 100vw;
-  background-color: var($--theme-secondary);
-  border-bottom: 5px solid var($--theme-primary);
-}
-
-.app-navigation-bar-mobile {
-  bottom: 0;
+.app-navigation-bar {
   position: fixed;
   width: 100vw;
   background-color: var($--theme-secondary);
@@ -18,4 +9,16 @@
 
 .app-navigation-bar > .nav > .nav-logo {
   color: var($--theme-text);
+}
+
+@media only screen and (max-width: $default-sizes-mobile) {
+  .app-navigation-bar {
+    bottom: 0;
+  }
+}
+
+@media only screen and (min-width: $default-sizes-mobile) {
+  .app-navigation-bar {
+    top: 0;
+  }
 }

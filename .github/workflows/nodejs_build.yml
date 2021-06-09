@@ -22,11 +22,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
         env:
           CI: true
-      - run: docker volume create nodemodules
-      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
-      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
-      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
-      - run: ls -lisa ./.temp/build_outputs
+      - run: sudo docker volume create nodemodules
+      - run: sudo docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
+      - run: sudo docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
+      - run: sudo docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
 
       - uses: martinbeentjes/npm-get-version-action@master
         name: Create semver version

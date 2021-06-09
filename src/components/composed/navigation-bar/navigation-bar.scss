@@ -1,7 +1,6 @@
 @import '@/assets/scss/variables';
 
 .app-navigation-bar {
-  top: 0;
   position: fixed;
   width: 100vw;
   background-color: var($--theme-secondary);
@@ -10,4 +9,16 @@
 
 .app-navigation-bar > .nav > .nav-logo {
   color: var($--theme-text);
+}
+
+@media only screen and (max-width: $default-sizes-mobile) {
+  .app-navigation-bar {
+    bottom: 0;
+  }
+}
+
+@media only screen and (min-width: $default-sizes-mobile) {
+  .app-navigation-bar {
+    top: 0;
+  }
 }

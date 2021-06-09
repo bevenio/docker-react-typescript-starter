@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "engines": {
-    "node": ">=12.18.1"
+    "node": ">=16"
   },
   "browserslist": [
     "last 1 Chrome version"

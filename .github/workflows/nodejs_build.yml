@@ -26,6 +26,7 @@ jobs:
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
+      - run: ls -lisa /usr/src/service
 
       - uses: martinbeentjes/npm-get-version-action@master
         name: Create semver version

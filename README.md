@@ -31,7 +31,7 @@ make serve
 In able to execute commands like _"npm audit fix"_ inside the docker environment you have to pass them to the _execute_ script as a parameter.
 
 ```zsh
-make execute command="<actual-command>"
+make execute command=<actual-command>
 ```
 
 ### Linting this project

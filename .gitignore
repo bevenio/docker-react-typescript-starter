@@ -1,7 +1,6 @@
 # Standard files and dirs
 node_modules
 dist
-build
 .temp
 
 # Generated files and dirs

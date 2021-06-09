@@ -31,10 +31,10 @@ services:
       service: base
     command: bash -O extglob -c "
       npm run build:production &&
-      mkdir -p ./build ./dist/public &&
+      mkdir -p ./.temp/build_outputs ./dist/public &&
       mv ./dist/!(public) ./dist/public &&
       cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml &&
-      npx bestzip ./build/archive.zip ./dist/** &&
+      npx bestzip ./.temp/build_outputs/archive.zip ./dist/** &&
       find ./dist/** -delete"
   # Run the linter
   lint:

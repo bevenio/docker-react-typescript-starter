@@ -1,7 +1,7 @@
 version: '3'
 services:
   production-service-client:
-    image: node:16
+    image: node:14
     volumes:
       - nodemodules:/usr/src/service/node_modules:consistent
       - ./../:/usr/src/service:consistent

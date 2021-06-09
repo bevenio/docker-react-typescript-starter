@@ -11,21 +11,22 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
         name: Use Node.js ${{ matrix.node-version }}
+
       - uses: actions/setup-node@v1
         name: Setup Node.js ${{ matrix.node-version }}
         with:
           node-version: ${{ matrix.node-version }}
         env:
           CI: true
-      - run: sudo docker volume create nodemodules
-      - run: sudo docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
-      - run: sudo docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
-      - run: sudo docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
+      - run: docker volume create nodemodules
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
 
       - uses: martinbeentjes/npm-get-version-action@master
         name: Create semver version
@@ -37,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: beta-release
+          tag_name: ${{ steps.create_semver_version.outputs.current-version }}
           release_name: ${{ steps.create_semver_version.outputs.current-version }}
           body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}, Repository ${{ github.repository }}
           draft: false

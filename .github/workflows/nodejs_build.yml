@@ -26,9 +26,12 @@ jobs:
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
+      - run: ls -lisa .temp/build_outputs
+
       - uses: martinbeentjes/npm-get-version-action@master
         name: Create semver version
         id: create_semver_version
+
       - uses: actions/create-release@v1
         name: Build Release
         id: build_release
@@ -40,6 +43,7 @@ jobs:
           body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}, Repository ${{ github.repository }}
           draft: false
           prerelease: true
+
       - uses: actions/upload-release-asset@v1
         name: Upload Release Asset
         id: upload_release_asset

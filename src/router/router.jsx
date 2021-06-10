@@ -34,7 +34,7 @@ export class AppRouter extends React.Component {
           <title>{reduxState.appearance.title}</title>
           <html
             lang={reduxState.appearance.languageID}
-            className={`app-theme-${reduxState.appearance.theme}`}
+            color-scheme={reduxState.appearance.theme}
           />
         </Helmet>
         <Router basename="/" history={history}>

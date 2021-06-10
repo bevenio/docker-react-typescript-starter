@@ -1,0 +1,36 @@
+/* Root */
+:root {
+  /* General colors */
+  --color-brand-hue: 140;
+  --color-error-hue: 0;
+
+  /* Palette: default */
+  --color-brand: hsl(var(--color-brand-hue) 40% 50%);
+  --color-brand-alternative: hsl(var(--color-brand-hue) 10% 80%);
+  --color-error: hsl(var(--color-error-hue) 100% 50%);
+  --color-background-regular: #d5d5d5;
+  --color-background-raised: #f7f7f7;
+  --color-background-contrast: #636363;
+  --color-text: #000000;
+}
+
+/* Color schemes */
+[color-scheme='light'] {
+  --color-brand: hsl(var(--color-brand-hue) 40% 50%);
+  --color-brand-alternative: hsl(var(--color-brand-hue) 40% 80%);
+  --color-error: hsl(var(--color-error-hue) 100% 50%);
+  --color-background-regular: #d5d5d5;
+  --color-background-raised: #f7f7f7;
+  --color-background-contrast: #636363;
+  --color-text: #000000;
+}
+
+[color-scheme='dark'] {
+  --color-brand: hsl(var(--color-brand-hue) 40% 75%);
+  --color-brand-alternative: hsl(var(--color-brand-hue) 10% 10%);
+  --color-error: hsl(var(--color-error-hue) 100% 50%);
+  --color-background-regular: #101010;
+  --color-background-raised: #353535;
+  --color-background-contrast: #e2e2e2;
+  --color-text: #d6d6d6;
+}

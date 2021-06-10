@@ -1,0 +1,65 @@
+@import 'wingcss';
+@import 'palettes.scss';
+@import 'properties.scss';
+
+/* Body */
+body {
+  margin: 0;
+  transition: background-color 500ms ease-out;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background-regular);
+}
+
+/* Titles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: --color-brand;
+}
+
+/* Selection */
+::selection {
+  color: var(--color-background-regular);
+  background-color: var(--color-brand);
+}
+
+/* Forms */
+form {
+  padding: var(--default-padding);
+}
+
+/* Inputs */
+input {
+  color: var(--color-text);
+  border-color: var(--color-background-contrast);
+  background-color: var(--color-background-regular);
+}
+
+input:hover {
+  border-color: var(--color-background-contrast) !important;
+}
+
+input:focus {
+  border-color: var(--color-brand) !important;
+}
+
+input:focus-visible {
+  outline: none;
+  border-width: var(--default-border-thick);
+  border-color: var(--color-background-contrast) !important;
+}
+
+input:invalid {
+  border-style: dashed;
+  border-color: var(--color-error);
+}
+
+/* Buttons */
+button {
+  color: var(--color-background-regular) !important;
+  background-color: var(--color-text) !important;
+}

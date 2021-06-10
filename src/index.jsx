@@ -1,4 +1,4 @@
-import '@/assets/scss/main.scss'
+import '@/assets/scss/index.scss'
 
 import { hot } from 'react-hot-loader/root'
 import React from 'react'

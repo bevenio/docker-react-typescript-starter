@@ -1,47 +1,7 @@
-@import 'variables.scss';
-
-// Overwriting theme: light
-$theme-map-light: (
-  // Custom variables
-  $--theme-text: $light-text,
-  $--theme-primary: $light-primary,
-  $--theme-secondary: $light-secondary,
-  $--theme-error: $light-error,
-  $--theme-background: $light-background,
-  $--theme-background-raised: $light-background-raised,
-  $--theme-background-contrast: $light-background-contrast
-);
-
-// Overwriting theme: dark
-$theme-map-dark: (
-  // Custom variables
-  $--theme-text: $dark-text,
-  $--theme-primary: $dark-primary,
-  $--theme-secondary: $dark-secondary,
-  $--theme-error: $dark-error,
-  $--theme-background: $dark-background,
-  $--theme-background-raised: $dark-background-raised,
-  $--theme-background-contrast: $dark-background-contrast
-);
-
-$defaults-map: (
-  $--defaults-padding: $default-padding,
-  $--defaults-navbar-height: $default-navbar-height,
-  $--defaults-border: $default-border,
-  $--defaults-border-thick: $default-border-thick,
-);
-
-@mixin spread-map($map: ()) {
-  @each $key, $value in $map {
-    #{$key}: $value;
-  }
-}
-
-:root.app-theme-light {
-  @include spread-map($theme-map-light);
-  @include spread-map($defaults-map);
-}
-:root.app-theme-dark {
-  @include spread-map($theme-map-dark);
-  @include spread-map($defaults-map);
+/* Root - defaults */
+:root {
+  --default-padding: 10px;
+  --default-border: 1px;
+  --default-border-thick: 2px;
+  --default-navbar-height: 100px;
 }

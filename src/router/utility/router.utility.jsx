@@ -8,9 +8,7 @@ import { store } from '@/store/store'
 import ErrorPage from '@/components/pages/error/error'
 
 const isAppUsingHashRoute = !!window.location.hash
-const history = isAppUsingHashRoute
-  ? createHashHistory()
-  : createBrowserHistory()
+const history = isAppUsingHashRoute ? createHashHistory() : createBrowserHistory()
 const router = isAppUsingHashRoute ? hot(HashRouter) : hot(PathRouter)
 
 const getRouter = () => router

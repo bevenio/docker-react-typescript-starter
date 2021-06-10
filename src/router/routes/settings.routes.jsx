@@ -3,9 +3,7 @@ import RouterUtils from '@/router/utility/router.utility'
 
 const LoginPage = React.lazy(() => import('@/components/pages/login/login'))
 
-const SettingsPage = React.lazy(() =>
-  import('@/components/pages/settings/settings')
-)
+const SettingsPage = React.lazy(() => import('@/components/pages/settings/settings'))
 
 export default RouterUtils.createRoute({
   route: '/settings',

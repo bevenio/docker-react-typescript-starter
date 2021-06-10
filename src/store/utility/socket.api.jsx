@@ -63,9 +63,7 @@ class SocketInterface {
   }
 
   _pushActionListener(action, callback, once) {
-    const actionListeners = once
-      ? this._actionOnceListeners
-      : this._actionListeners
+    const actionListeners = once ? this._actionOnceListeners : this._actionListeners
 
     if (typeof action === 'string' && typeof callback === 'function') {
       if (!actionListeners[action]) {

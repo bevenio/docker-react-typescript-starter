@@ -28,10 +28,7 @@ export class LoginForm extends React.Component {
         this.state.success()
         this.resetRequestProgress()
       }
-    } else if (
-      this.props.reduxState.auth.status === 'FAILED' &&
-      this.state.isRequesInProgress
-    ) {
+    } else if (this.props.reduxState.auth.status === 'FAILED' && this.state.isRequesInProgress) {
       if (this.state.failure) {
         this.state.failure()
         this.resetRequestProgress()
@@ -39,11 +36,9 @@ export class LoginForm extends React.Component {
     }
   }
 
-  identifierValidator = () =>
-    this.state.identifier.length >= 4 ? true : 'Identifier is too short'
+  identifierValidator = () => (this.state.identifier.length >= 4 ? true : 'Identifier is too short')
 
-  passwordValidator = () =>
-    this.state.identifier.length >= 4 ? true : 'Password is too short'
+  passwordValidator = () => (this.state.identifier.length >= 4 ? true : 'Password is too short')
 
   resetRequestProgress = () => {
     this.setState({ isRequesInProgress: false })
@@ -77,11 +72,7 @@ export class LoginForm extends React.Component {
           onValidate={this.passwordValidator}
           onChange={(password) => this.setState({ password })}
         />
-        <button
-          type="submit"
-          className="primary"
-          disabled={this.isRequesInProgress()}
-        >
+        <button type="submit" className="primary" disabled={this.isRequesInProgress()}>
           Login
         </button>
       </form>

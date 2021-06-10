@@ -17,11 +17,7 @@ export default class Settings extends React.Component {
         <NavigationBar />
         <ContentWrapper navbar="true">
           <h1>Settings Page</h1>
-          <p>
-            {new Array(1000)
-              .fill('Lorem Ipsum, dipsum settings. ', 0, 1000)
-              .join(' ')}
-          </p>
+          <p>{new Array(1000).fill('Lorem Ipsum, dipsum settings. ', 0, 1000).join(' ')}</p>
         </ContentWrapper>
       </>
     )

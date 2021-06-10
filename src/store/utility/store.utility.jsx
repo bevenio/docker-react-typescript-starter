@@ -55,9 +55,7 @@ class Restore {
   restoreEntry(entry) {
     if (this.isEntryName(entry)) {
       this.registerEntry(entry)
-      const restoredEntry = JSON.parse(
-        localStorage.getItem(this.createEntryName(entry))
-      )
+      const restoredEntry = JSON.parse(localStorage.getItem(this.createEntryName(entry)))
       const hasRestoredEntry = !!restoredEntry
       return hasRestoredEntry !== null ? restoredEntry : null
     }

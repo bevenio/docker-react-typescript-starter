@@ -25,9 +25,7 @@ export class NavigationBar extends React.Component {
   )
 
   createIconButtons = (iconButtonsData = []) =>
-    iconButtonsData.map((iconButtonData) =>
-      this.createIconButton(iconButtonData)
-    )
+    iconButtonsData.map((iconButtonData) => this.createIconButton(iconButtonData))
 
   render() {
     const { navigationButtons } = this.props
@@ -51,7 +49,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (/* dispatch */) => ({
   reduxActions: {},
 })
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(NavigationBar))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavigationBar))

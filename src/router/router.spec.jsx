@@ -26,8 +26,6 @@ describe('router component', () => {
   test('the element has gotten state property "appearance.theme"', () => {
     const store = mockStore(mockInitialState)
     const wrapper = shallow(<ConnectedRouter store={store} />).children()
-    expect(wrapper.props().reduxState.appearance.theme).toBe(
-      mockInitialState.appearance.theme
-    )
+    expect(wrapper.props().reduxState.appearance.theme).toBe(mockInitialState.appearance.theme)
   })
 })

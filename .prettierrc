@@ -1,6 +1,7 @@
 {
-  "singleQuote": true,
-  "semi": false,
   "arrowParens": "always",
-  "implicit-arrow-linebreak": "always"
+  "implicit-arrow-linebreak": "always",
+  "printWidth": 100,
+  "semi": false,
+  "singleQuote": true
 }

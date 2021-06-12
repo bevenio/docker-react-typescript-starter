@@ -7,7 +7,8 @@ import './spotify-player.scss'
 const CONSTANTS = {
   SPOTIFY_PLAYER_NAME: 'app-spotify-player',
   SPOTIFY_SDK_URL: 'https://sdk.scdn.co/spotify-player.js',
-  SPOTIFY_TOKEN: '',
+  SPOTIFY_TOKEN:
+    'BQDP1TI_a3-JwMNFSB8UZj-UL3EyCbAMjuVDIIrvFbeHGCMCVg40cbNKdMm_FabkHH1AIZUU6IG3uH9_UkVTFWp_m9gke7nvqbezfgaIfbFGCwYUxqfDArT2TX3x85a1wBRaqU0ikpnz1E7TbCWu5Uo6ZKMEX2t3',
 }
 
 export class SpotifyPlayer extends React.Component {
@@ -16,6 +17,9 @@ export class SpotifyPlayer extends React.Component {
     this.state = {
       spotifyPlayer: null,
       spotifySDK: null,
+      spotifyDeviceId: null,
+      spotifyError: null,
+      spotifyState: null,
     }
   }
 
@@ -52,64 +56,95 @@ export class SpotifyPlayer extends React.Component {
         },
       })
 
-      // Error handling
       spotifyPlayer.addListener('initialization_error', ({ message }) => {
-        console.error(message)
+        this.setState({ spotifyError: message })
       })
       spotifyPlayer.addListener('authentication_error', ({ message }) => {
-        console.error(message)
+        this.setState({ spotifyError: message })
       })
       spotifyPlayer.addListener('account_error', ({ message }) => {
-        console.error(message)
+        this.setState({ spotifyError: message })
       })
       spotifyPlayer.addListener('playback_error', ({ message }) => {
-        console.error(message)
+        this.setState({ spotifyError: message })
       })
 
-      // Playback status updates
       spotifyPlayer.addListener('player_state_changed', (state) => {
-        console.log(state)
+        this.setState({ spotifyState: state })
+        this.onSpotifyPlayerChanged()
       })
 
-      // Ready
-      spotifyPlayer.addListener('ready', ({ deviceId }) => {
-        console.log('Ready with Device ID', deviceId)
+      // eslint-disable-next-line camelcase
+      spotifyPlayer.addListener('ready', ({ device_id: deviceId }) => {
+        this.setState({ spotifyDeviceId: deviceId })
+        this.onSpotifySDKReady()
       })
 
-      // Not Ready
-      spotifyPlayer.addListener('not_ready', ({ deviceId }) => {
-        console.log('Device ID has gone offline', deviceId)
+      spotifyPlayer.addListener('not_ready', () => {
+        this.setState({
+          spotifyDeviceId: null,
+        })
       })
 
-      // Connect to the player!
       spotifyPlayer.connect()
 
-      this.setState({
-        spotifyPlayer,
-      })
+      this.setState({ spotifyPlayer })
     }
   }
 
+  onSpotifySDKReady = () => {
+    this.state.spotifyPlayer.setVolume(1)
+  }
+
+  onSpotifyPlayerChanged = () => {}
+
   unregisterSpotifySDK = () => {
     if (this.state.spotifyPlayer) {
+      this.state.disconnect()
       this.setState({ spotifyPlayer: null })
     }
   }
 
+  getTrackInformation = () => {
+    const trackInformation = {
+      name: '',
+      artist: '',
+      images: [],
+      paused: false,
+      position: 0,
+    }
+
+    const { spotifyState } = this.state
+    if (spotifyState && spotifyState.track_window && spotifyState.track_window.current_track) {
+      const currentTrack = spotifyState.track_window.current_track
+      trackInformation.name = currentTrack.name
+      trackInformation.artist = currentTrack.artists.map((artist) => artist.name).join(', ')
+      trackInformation.images = currentTrack.album.images
+      trackInformation.paused = currentTrack.paused
+      trackInformation.position = currentTrack.position
+    }
+
+    return trackInformation
+  }
+
+  getDeviceInformation = () => ({
+    name: CONSTANTS.SPOTIFY_PLAYER_NAME,
+    id: this.state.spotifyDeviceId,
+  })
+
   render() {
-    const { songId } = this.props
+    const track = this.getTrackInformation()
+    const device = this.getDeviceInformation()
 
     return (
-      <>
-        <iframe
-          title={CONSTANTS.SPOTIFY_PLAYER_NAME}
-          className="app-spotify-player"
-          src={`https://open.spotify.com/embed/track/${songId}`}
-          frameBorder="0"
-          allowtransparency="true"
-          allow="encrypted-media"
-        />
-      </>
+      <div className="app-spotify-player">
+        Track: {track.name} by {track.artist} <br />
+        Status: {track.paused
+          ? 'Playback paused'
+          : `Playing at position ${track.position || 0}`}{' '}
+        <br />
+        [Device: {device.id} | Error: {this.state.spotifyError}]
+      </div>
     )
   }
 }

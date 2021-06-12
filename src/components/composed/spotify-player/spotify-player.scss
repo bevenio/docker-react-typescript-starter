@@ -1,4 +1,8 @@
 .app-spotify-player {
   width: 100%;
   height: 85px;
+  border-radius: var(--default-radius-big);
+  background-color: var(--color-brand);
+  padding: var(--default-padding);
+  box-sizing: border-box;
 }

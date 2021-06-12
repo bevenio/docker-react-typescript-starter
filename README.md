@@ -106,6 +106,18 @@ src
 └───services
 ```
 
+### File types
+
+| Filetype         | Purpose                                                      | Location                |
+| ---------------- | ------------------------------------------------------------ | ----------------------- |
+| \*.scss          | A file that contains the styling for a component or the app  | assets / components     |
+| index.jsx        | Entrypoint to a service / component / store                  | no location restriction |
+| \*.component.jsx | A file that contains one or multiple react components        | component directory     |
+| \*.sdk.jsx       | A file that interacts with a third party library or software | components / services   |
+| \*.service.jsx   | A file that contains side-effect free business logic         | services directory      |
+| \*.route.jsx     | A file that contains one or multiple routes                  | router directory        |
+| \*.worker.jsx    | A file that contains a webworker                             | worker directory        |
+
 ## Project configuration
 
 After running _"make setup"_ a _project.json_ file will be generated. In this file you can configure attributes like the local machine port or remote machines in order to sync your local project.

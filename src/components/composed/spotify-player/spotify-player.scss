@@ -1,8 +1,35 @@
+$spotify-player-height: 85px;
+
 .app-spotify-player {
   width: 100%;
-  height: 85px;
+  height: $spotify-player-height;
   border-radius: var(--default-radius-big);
   background-color: var(--color-brand);
   padding: var(--default-padding);
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.app-spotify-player-progress {
+  margin: calc(var(--default-padding) * -1);
+  position: absolute;
+  height: $spotify-player-height;
+  transition: width 0.45s linear;
+  border-bottom: 3px solid var(--color-text);
+  box-sizing: border-box;
+}
+
+.app-spotify-player-text {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.app-spotify-player-cover {
+  margin: calc(var(--default-padding) * -1);
+  border-radius: var(--default-radius-big);
 }

@@ -112,6 +112,7 @@ src
 | ---------------- | ------------------------------------------------------------ | ----------------------- |
 | \*.scss          | A file that contains the styling for a component or the app  | assets / components     |
 | index.jsx        | Entrypoint to a service / component / store                  | no location restriction |
+| \*.utility.jsx   | Utility functions for a component / isolated module          | no location restriction |
 | \*.component.jsx | A file that contains one or multiple react components        | component directory     |
 | \*.sdk.jsx       | A file that interacts with a third party library or software | components / services   |
 | \*.service.jsx   | A file that contains side-effect free business logic         | services directory      |

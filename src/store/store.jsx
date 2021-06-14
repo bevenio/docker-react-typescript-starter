@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk'
 
 import entries from '@/store/entries/entry-bundle'
 
-import { applyReduxExtensionDevtools } from '@/services/devtool-service/devtool-service'
+import { applyReduxExtensionDevtools } from '@/services/devtool-service'
 import { restore } from '@/store/utility/store.utility'
 
 const reducers = Object.fromEntries(

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import NavigationBar from '@/components/composed/navigation-bar/navigation-bar'
-import ContentWrapper from '@/components/basic/content-wrapper/content-wrapper'
+import NavigationBar from '@/components/composed/navigation-bar'
+import ContentWrapper from '@/components/basic/content-wrapper'
 import SpotifyPlayer from '@/components/composed/spotify-player'
 
 import './landing.scss'

@@ -1,9 +1,8 @@
 import React from 'react'
 import RouterUtils from '@/router/utility/router.utility'
 
-const LoginPage = React.lazy(() => import('@/components/pages/login/login'))
-
-const LandingPage = React.lazy(() => import('@/components/pages/landing/landing'))
+const LoginPage = React.lazy(() => import('@/components/pages/login'))
+const LandingPage = React.lazy(() => import('@/components/pages/landing'))
 
 export default RouterUtils.createRoute({
   route: '/',

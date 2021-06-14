@@ -7,8 +7,8 @@ import { Helmet } from 'react-helmet'
 import RouterUtility from '@/router/utility/router.utility'
 
 // Components
-import LoadingPage from '@/components/pages/loading/loading'
-import ErrorPage from '@/components/pages/error/error'
+import LoadingPage from '@/components/pages/loading'
+import ErrorPage from '@/components/pages/error'
 
 // Routes
 import LoginRoutes from '@/router/routes/login.routes'

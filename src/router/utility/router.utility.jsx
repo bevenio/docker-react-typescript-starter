@@ -5,7 +5,7 @@ import { Route, Router as PathRouter, HashRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
 
 import { store } from '@/store/store'
-import ErrorPage from '@/components/pages/error/error'
+import ErrorPage from '@/components/pages/error'
 
 const isAppUsingHashRoute = !!window.location.hash
 const history = isAppUsingHashRoute ? createHashHistory() : createBrowserHistory()

@@ -2,7 +2,7 @@ import './error.scss'
 
 import React from 'react'
 
-import FillAvailable from '@/components/basic/fill-available/fill-available'
+import FillAvailable from '@/components/basic/fill-available'
 
 export const Error = ({ code = 'Oops..', text = 'Something bad happened' }) => (
   <FillAvailable>

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { entries } from '@/store/store'
 
-import InputField from '@/components/basic/input-field/input-field'
+import InputField from '@/components/basic/input-field'
 
 import './login-form.scss'
 

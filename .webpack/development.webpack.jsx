@@ -11,10 +11,17 @@ const rootDir = path.resolve(__dirname, './../')
 const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
-const createEntry = (options) => [
-  'react-hot-loader/patch',
-  path.resolve(srcDir, options.entryFile),
-]
+const extractChunkName = (pathData) => {
+  const chunkId = pathData.chunk.id.replace('_jsx', '')
+  const chunkPathParts = chunkId.split('_')
+  if (chunkPathParts[chunkPathParts.length - 1] === 'index') {
+    return `js/chunks/${chunkPathParts[chunkPathParts.length - 2]}.chunk.js`
+  } else {
+    return `js/chunks/${chunkPathParts[chunkPathParts.length - 1]}.chunk.js`
+  }
+}
+
+const createEntry = (options) => ['react-hot-loader/patch', path.resolve(srcDir, options.entryFile)]
 
 const createTarget = (options) => options.targetType
 
@@ -33,9 +40,7 @@ const createResolve = (/* options */) => ({
 const createOutput = (options) => ({
   filename: 'js/[name].bundle.js',
   chunkFilename: (pathData) => {
-    const chunkId = pathData.chunk.id.replace('_jsx', '')
-    const chunkEntryFileName = chunkId.substr(chunkId.lastIndexOf('_') + 1)
-    return `js/chunks/${chunkEntryFileName}.chunk.js`
+    return extractChunkName(pathData)
   },
   path: path.resolve(distDir, './'),
   publicPath: options.publicPath,
@@ -170,9 +175,7 @@ const createOptimization = (/* options */) => ({
       vendor: {
         test: /[\\/]node_modules[\\/]/,
         name(module) {
-          const packageName = module.context.match(
-            /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-          )[1]
+          const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
           return `npm.${packageName.replace('@', '')}`
         },
       },

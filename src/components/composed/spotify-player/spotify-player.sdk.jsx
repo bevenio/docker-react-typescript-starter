@@ -1,4 +1,4 @@
-import ExternalScriptService from '@/services/external-script-service/external-script-service'
+import ExternalScriptService from '@/services/external-script-service'
 
 const CONSTANTS = {
   SPOTIFY_PLAYER_NAME: 'app-spotify-player',

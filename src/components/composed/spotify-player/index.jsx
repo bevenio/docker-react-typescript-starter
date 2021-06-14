@@ -1,7 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { entries } from '@/store/store'
 
 import SpotifyPlayerSDK from './spotify-player.sdk'
-import { SpotifyPlaybackPlayer } from './spotify-player.component'
+import { SpotifyPlaybackPlayer } from './spotify-playback-player.component'
+import { SpotifyLoginRedirect } from './spotify-login-redirect.component'
 
 import './spotify-player.scss'
 
@@ -20,15 +23,17 @@ export class SpotifyPlayer extends React.Component {
   }
 
   componentDidMount() {
-    this.state.spotifyPlayerSDK.register()
-    this.state.spotifyPlayerSDK.onUpdate(() => {
-      this.forceUpdate()
-    })
-    this.state.spotifyPlayerSDK.select(this.props.track)
-    this.state.spotifyPlayerSDK.resume()
-    this.setState({
-      timelineIntervalId: window.setInterval(this.updateProgress, CONSTANTS.PROGRESS_UPDATE_TIME),
-    })
+    if (this.props.reduxState.spotify.jwt) {
+      this.state.spotifyPlayerSDK.register()
+      this.state.spotifyPlayerSDK.onUpdate(() => {
+        this.forceUpdate()
+      })
+      this.state.spotifyPlayerSDK.select(this.props.track)
+      this.state.spotifyPlayerSDK.resume()
+      this.setState({
+        timelineIntervalId: window.setInterval(this.updateProgress, CONSTANTS.PROGRESS_UPDATE_TIME),
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -51,7 +56,13 @@ export class SpotifyPlayer extends React.Component {
     const toggle = () => {
       this.state.spotifyPlayerSDK.toggle()
     }
+    const redirect = () => {
+      this.props.reduxActions.redirectToSpotify()
+    }
 
+    if (!this.props.reduxState.spotify.jwt) {
+      return <SpotifyLoginRedirect redirectToSpotify={redirect} />
+    }
     return (
       <SpotifyPlaybackPlayer
         track={track}
@@ -62,4 +73,17 @@ export class SpotifyPlayer extends React.Component {
   }
 }
 
-export default SpotifyPlayer
+// Redux Connection
+const mapStateToProps = (state) => ({
+  reduxState: {
+    spotify: state.spotify,
+  },
+})
+const mapDispatchToProps = (dispatch) => ({
+  reduxActions: {
+    redirectToSpotify: () => {
+      dispatch(entries.spotify.actions.redirectToSpotify())
+    },
+  },
+})
+export default connect(mapStateToProps, mapDispatchToProps)(SpotifyPlayer)

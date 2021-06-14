@@ -2,9 +2,13 @@
 import appearanceActions from '@/store/entries/appearance/actions'
 import appearanceReducer from '@/store/entries/appearance/reducers'
 
-/* USER */
+/* AUTH */
 import authActions from '@/store/entries/auth/actions'
 import authReducer from '@/store/entries/auth/reducers'
+
+/* SPOTIFY */
+import spotifyActions from '@/store/entries/spotify/actions'
+import spotifyReducer from '@/store/entries/spotify/reducers'
 
 export default {
   appearance: {
@@ -14,5 +18,9 @@ export default {
   auth: {
     actions: authActions,
     reducer: authReducer,
+  },
+  spotify: {
+    actions: spotifyActions,
+    reducer: spotifyReducer,
   },
 }

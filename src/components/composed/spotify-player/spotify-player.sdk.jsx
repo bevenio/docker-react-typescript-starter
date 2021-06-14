@@ -4,7 +4,7 @@ const CONSTANTS = {
   SPOTIFY_PLAYER_NAME: 'app-spotify-player',
   SPOTIFY_SDK_URL: 'https://sdk.scdn.co/spotify-player.js',
   SPOTIFY_TOKEN:
-    'BQBLo2kZ5fdOSR0HOMBjnaKy76Wjx0FGbBB3cmfhcwf1x75qmaDnncBWjTnyQ919qQbfURcW8qhf2cQ99lW037a90yHXfoUqQebTMFbpQUX13lDnovWdT8g8pt-lNi283ZxJ6B7iKVRA7mXDXOWLEu9U6TxNkouT',
+    'BQA3nF9i71mMwGV6FT28GVieSMRjxUb027GRObh1ko0ZNp8q-jbheB5q5GTbrXOcg9iiGNS7Irc-Vj7h2BKLGTS95MOm5CsKD2XjPLYRZXEx1FE-u2yokxMxFl2gevGcHcGe4pUvummL2zGgy8aiu61_vLRWvbQT',
 }
 
 export default class SpotifyPlayerSDK {

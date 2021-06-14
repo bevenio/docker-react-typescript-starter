@@ -11,10 +11,10 @@ const CONSTANTS = {
   SCOPE: 'user-read-private user-read-email',
 }
 
-const spotifyApi = axios.create({
-  baseURL: CONSTANTS.API_URL,
-  timeout: 1000,
-})
+// const spotifyApi = axios.create({
+//   baseURL: CONSTANTS.API_URL,
+//   timeout: 1000,
+// })
 
 const redirectToSpotify = (/* payload */) => (dispatch /* , getStore */) => {
   dispatch({ type: constants.REDIRECT_TO_SPOTIFY })

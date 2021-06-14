@@ -8,7 +8,7 @@ body {
   transition: background-color 500ms ease-out;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--color-text);
-  background-color: var(--color-background-regular);
+  background-color: var(--color-mono-1);
 }
 
 /* Titles */
@@ -23,7 +23,7 @@ h6 {
 
 /* Selection */
 ::selection {
-  color: var(--color-background-regular);
+  color: var(--color-mono-1);
   background-color: var(--color-brand);
 }
 
@@ -35,31 +35,32 @@ form {
 /* Inputs */
 input {
   color: var(--color-text);
-  border-color: var(--color-background-contrast);
-  background-color: var(--color-background-regular);
+  border: none !important;
+  border-radius: var(--default-radius) !important;
+  background-color: var(--color-mono-translucent);
 }
 
 input:hover {
-  border-color: var(--color-background-contrast) !important;
+  background-color: var(--color-mono-translucent-2);
 }
 
 input:focus {
-  border-color: var(--color-brand) !important;
+  background-color: var(--color-brand-translucent) !important;
 }
 
+input:focus,
 input:focus-visible {
   outline: none;
-  border-width: var(--default-border-thick);
-  border-color: var(--color-background-contrast) !important;
+  background-color: var(--color-mono-translucent-2);
 }
 
 input:invalid {
-  border-style: dashed;
-  border-color: var(--color-error);
+  background-color: var(--color-error-translucent) !important;
 }
 
 /* Buttons */
 button {
-  color: var(--color-background-regular) !important;
+  color: var(--color-mono-1) !important;
+  border-radius: var(--default-radius) !important;
   background-color: var(--color-text) !important;
 }

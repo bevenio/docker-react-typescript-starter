@@ -3,7 +3,7 @@ $spotify-player-height: 85px;
 .app-spotify-player {
   width: 100%;
   height: $spotify-player-height;
-  border-radius: var(--default-radius-big);
+  border-radius: var(--default-radius);
   background-color: var(--color-brand);
   padding: var(--default-padding);
   box-sizing: border-box;
@@ -31,5 +31,5 @@ $spotify-player-height: 85px;
 
 .app-spotify-player-cover {
   margin: calc(var(--default-padding) * -1);
-  border-radius: var(--default-radius-big);
+  border-radius: var(--default-radius);
 }

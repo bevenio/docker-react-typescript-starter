@@ -21,6 +21,7 @@ export default class SpotifyPlayerSDK {
 
   actions = {
     selectTrack: () => {},
+    selectDevice: () => {},
   }
 
   constructor({ token = '', actions = {} }) {
@@ -81,6 +82,7 @@ export default class SpotifyPlayerSDK {
       this.state.spotifyPlayer.addListener('ready', ({ device_id: deviceId }) => {
         this.state.spotifyDeviceId = deviceId
         this.state.isSpotifyConnected = true
+        this.actions.selectDevice({ deviceId: this.state.spotifyDeviceId })
         connection.ready()
       })
 
@@ -193,10 +195,7 @@ export default class SpotifyPlayerSDK {
   select(trackId) {
     this.ensureConnection()
       .then(() => {
-        this.actions.selectTrack({
-          deviceId: this.state.spotifyDeviceId,
-          trackId,
-        })
+        this.actions.selectTrack({ trackId })
       })
       .catch((error) => {
         throw new Error(error)

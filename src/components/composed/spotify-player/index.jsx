@@ -90,19 +90,23 @@ export class SpotifyPlayer extends React.Component {
   }
 }
 
-// Redux Connection
+/* Redux Connection */
 const mapStateToProps = (state) => ({
   reduxState: {
     spotify: state.spotify,
   },
 })
+
 const mapDispatchToProps = (dispatch) => ({
   reduxActions: {
     redirectToSpotify: () => {
       dispatch(entries.spotify.actions.redirectToSpotify())
     },
-    selectTrack: ({ deviceId, trackId }) => {
-      dispatch(entries.spotify.actions.selectTrack({ deviceId, trackId }))
+    selectDevice: ({ deviceId }) => {
+      dispatch(entries.spotify.actions.selectDevice({ deviceId }))
+    },
+    selectTrack: ({ trackId }) => {
+      dispatch(entries.spotify.actions.selectTrack({ trackId }))
     },
   },
 })

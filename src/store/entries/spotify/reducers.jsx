@@ -9,6 +9,14 @@ const logoutFromSpotify = (state /* , action */) => ({
   },
 })
 
+const selectDevice = (state, action) => ({
+  ...state,
+  player: {
+    ...state.player,
+    deviceId: action.payload.deviceId || null,
+  },
+})
+
 const selectTrack = (state, action) => ({
   ...state,
   player: {
@@ -23,6 +31,8 @@ const spotifyReducers = (state = preset, action) => {
       return state
     case constants.LOGOUT_FROM_SPOTIFY:
       return logoutFromSpotify(state, action)
+    case constants.SELECT_DEVICE:
+      return selectDevice(state, action)
     case constants.SELECT_TRACK:
       return selectTrack(state, action)
     default:

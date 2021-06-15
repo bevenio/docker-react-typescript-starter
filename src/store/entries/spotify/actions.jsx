@@ -59,10 +59,16 @@ const redirectToSpotify = (/* payload */) => (dispatch /* , getStore */) => {
   window.location.replace(redirectUrl)
 }
 
-const selectTrack = (payload) => (dispatch /* , getStore */) => {
+const selectDevice = (payload) => ({
+  type: constants.SELECT_DEVICE,
+  payload,
+})
+
+const selectTrack = (payload) => (dispatch, getStore) => {
   dispatch({ type: constants.SELECT_TRACK, payload })
 
-  const { deviceId, trackId } = payload
+  const { deviceId } = getStore().spotify.player
+  const { trackId } = payload
 
   const params = new URLSearchParams([['device_id', deviceId]])
 
@@ -72,9 +78,11 @@ const selectTrack = (payload) => (dispatch /* , getStore */) => {
 }
 
 export { redirectToSpotify }
+export { selectDevice }
 export { selectTrack }
 
 export default {
   redirectToSpotify,
+  selectDevice,
   selectTrack,
 }

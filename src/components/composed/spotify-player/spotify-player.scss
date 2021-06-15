@@ -27,6 +27,8 @@ $spotify-player-height: 85px;
   overflow: hidden;
   display: flex;
   align-items: center;
+  text-overflow: clip;
+  padding: 20px;
 }
 
 .app-spotify-player-cover {

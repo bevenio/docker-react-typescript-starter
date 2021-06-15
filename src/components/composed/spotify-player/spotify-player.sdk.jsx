@@ -143,6 +143,10 @@ export default class SpotifyPlayerSDK {
     return this.state.spotifyError
   }
 
+  get ready() {
+    return this.state.isSpotifyConnected
+  }
+
   get exactTrackTime() {
     const { spotifyState } = this.state
     if (spotifyState) {

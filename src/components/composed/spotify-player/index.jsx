@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { entries } from '@/store/store'
 
 import SpotifyPlayerSDK from './spotify-player.sdk'
-import { SpotifyPlaybackPlayer } from './spotify-playback-player.component'
-import { SpotifyLoginRedirect } from './spotify-login-redirect.component'
+import { SpotifyPlaybackPlayer } from './components/spotify-playback-player.component'
+import { SpotifyLoginRedirect } from './components/spotify-login-redirect.component'
+import { SpotifyLoading } from './components/spotify-loading.component'
 
 import './spotify-player.scss'
 
@@ -68,11 +69,14 @@ export class SpotifyPlayer extends React.Component {
       this.props.reduxActions.redirectToSpotify()
     }
 
+    if (!this.props.reduxState.spotify.auth.jwt) {
+      return <SpotifyLoginRedirect redirectToSpotify={redirect} />
+    }
     if (!this.state.spotifyPlayerSDK) {
       return <SpotifyLoginRedirect redirectToSpotify={redirect} />
     }
-    if (!this.props.reduxState.spotify.auth.jwt) {
-      return <SpotifyLoginRedirect redirectToSpotify={redirect} />
+    if (!this.state.spotifyPlayerSDK.ready) {
+      return <SpotifyLoading />
     }
 
     const track = this.state.spotifyPlayerSDK.trackInformation

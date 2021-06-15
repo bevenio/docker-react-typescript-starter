@@ -1,35 +1,33 @@
 import constants from '@/store/entries/spotify/constants'
 import { preset, options } from '@/store/entries/spotify/presets'
 
-const requestLogin = (state /* , action */) => ({
+const logoutFromSpotify = (state /* , action */) => ({
   ...state,
-  jwt: null,
-  status: options.status.trying,
+  auth: {
+    jwt: null,
+    status: options.status.unset,
+  },
 })
 
-const responseLoginSuccess = (state, action) => ({
+const selectTrack = (state, action) => ({
   ...state,
-  jwt: action.payload.jwt,
-  status: options.status.succeeded,
+  player: {
+    ...state.player,
+    trackId: action.payload.trackId || null,
+  },
 })
 
-const responseLoginFailed = (state /* , action */) => ({
-  ...state,
-  jwt: null,
-  status: options.status.failed,
-})
-
-const authReducers = (state = preset, action) => {
+const spotifyReducers = (state = preset, action) => {
   switch (action.type) {
-    case constants.LOGIN_REQUEST:
-      return requestLogin(state, action)
-    case constants.LOGIN_RESPONSE_SUCCESS:
-      return responseLoginSuccess(state, action)
-    case constants.LOGIN_RESPONSE_FAILED:
-      return responseLoginFailed(state, action)
+    case constants.REDIRECT_TO_SPOTIFY:
+      return state
+    case constants.LOGOUT_FROM_SPOTIFY:
+      return logoutFromSpotify(state, action)
+    case constants.SELECT_TRACK:
+      return selectTrack(state, action)
     default:
       return state
   }
 }
 
-export default authReducers
+export default spotifyReducers

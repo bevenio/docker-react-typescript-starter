@@ -8,6 +8,8 @@ const extendConstants = (constantPrepend, constants) => {
 }
 
 class Restore {
+  key = 'redux-storage'
+
   name = 'redux-entry'
 
   storeReference = null
@@ -16,6 +18,7 @@ class Restore {
 
   constructor(name) {
     this.name = this.name || name
+    this.registerStore()
   }
 
   isEntryName = (entry) => typeof entry === 'string'
@@ -28,9 +31,15 @@ class Restore {
     }
   }
 
+  registerStore = () => {
+    localStorage.setItem(this.key, 'active')
+  }
+
+  isStoreRegistered = () => localStorage.getItem(this.key) === 'active'
+
   applyListeners = () => {
     window.addEventListener('beforeunload', (event) => {
-      if (this.storeReference) {
+      if (this.storeReference && this.isStoreRegistered()) {
         this.registeredEntries.forEach((entry) => {
           try {
             localStorage.setItem(

@@ -10,7 +10,7 @@ const Client = require('ssh2-sftp-client')
 const { Gaze } = require('gaze')
 const readline = require('readline').createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 })
 
 const consoleArguments = process.argv.slice(2)
@@ -41,14 +41,14 @@ const createSFTPConnection = (name, projectConfiguration) => {
         username: projectConfiguration.remote_machines[name].user,
         privateKey: fs.readFileSync(
           path.resolve(projectConfiguration.remote_machines[name].ssh_key)
-        )
+        ),
       })
       .then(resolve.bind(null, sftp))
       .catch(reject)
   })
 }
 
-const uploadComplete = async (sftp, name, projectConfiguration) => {
+const uploadComplete = (sftp, name, projectConfiguration) => {
   const srcDir = path.join(__dirname, '../')
   const distDir = projectConfiguration.remote_machines[name].path
 

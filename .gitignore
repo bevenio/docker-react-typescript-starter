@@ -2,6 +2,7 @@
 node_modules
 dist
 .temp
+.authorization
 
 # Generated files and dirs
 project.json

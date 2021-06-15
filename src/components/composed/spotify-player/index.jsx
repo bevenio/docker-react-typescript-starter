@@ -16,33 +16,41 @@ export class SpotifyPlayer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      spotifyPlayerSDK: new SpotifyPlayerSDK(),
+      spotifyPlayerSDK: null,
       timelineIntervalId: null,
       trackProgress: 0,
     }
   }
 
   componentDidMount() {
-    if (this.props.reduxState.spotify.jwt) {
-      this.state.spotifyPlayerSDK.register()
-      this.state.spotifyPlayerSDK.onUpdate(() => {
+    if (this.props.reduxState.spotify.auth.jwt) {
+      const playerSDK = new SpotifyPlayerSDK({
+        token: this.props.reduxState.spotify.auth.jwt,
+        actions: this.props.reduxActions,
+      })
+
+      playerSDK.register()
+      playerSDK.select(this.props.track)
+      playerSDK.resume()
+      playerSDK.onUpdate(() => {
         this.forceUpdate()
       })
-      this.state.spotifyPlayerSDK.select(this.props.track)
-      this.state.spotifyPlayerSDK.resume()
+
       this.setState({
         timelineIntervalId: window.setInterval(this.updateProgress, CONSTANTS.PROGRESS_UPDATE_TIME),
+        spotifyPlayerSDK: playerSDK,
       })
     }
   }
 
   componentWillUnmount() {
-    this.state.spotifyPlayerSDK.unregister()
+    const playerSDK = this.state.spotifyPlayerSDK
+    playerSDK.unregister()
     window.clearInterval(this.state.timelineIntervalId)
   }
 
   updateProgress = () => {
-    const track = this.state.spotifyPlayerSDK.trackInformation
+    const track = this.state.spotifyPlayerSDK.exactTrackTime
     const { position, duration } = track
     const progressInPercent = position && duration ? (position / duration) * 100 : 0
 
@@ -52,7 +60,6 @@ export class SpotifyPlayer extends React.Component {
   }
 
   render() {
-    const track = this.state.spotifyPlayerSDK.trackInformation
     const toggle = () => {
       this.state.spotifyPlayerSDK.toggle()
     }
@@ -60,9 +67,14 @@ export class SpotifyPlayer extends React.Component {
       this.props.reduxActions.redirectToSpotify()
     }
 
-    if (!this.props.reduxState.spotify.jwt) {
+    if (!this.state.spotifyPlayerSDK) {
       return <SpotifyLoginRedirect redirectToSpotify={redirect} />
     }
+    if (!this.props.reduxState.spotify.auth.jwt) {
+      return <SpotifyLoginRedirect redirectToSpotify={redirect} />
+    }
+
+    const track = this.state.spotifyPlayerSDK.trackInformation
     return (
       <SpotifyPlaybackPlayer
         track={track}
@@ -83,6 +95,9 @@ const mapDispatchToProps = (dispatch) => ({
   reduxActions: {
     redirectToSpotify: () => {
       dispatch(entries.spotify.actions.redirectToSpotify())
+    },
+    selectTrack: ({ deviceId, trackId }) => {
+      dispatch(entries.spotify.actions.selectTrack({ deviceId, trackId }))
     },
   },
 })

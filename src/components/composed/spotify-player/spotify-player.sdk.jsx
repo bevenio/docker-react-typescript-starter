@@ -3,12 +3,11 @@ import ExternalScriptService from '@/services/external-script-service'
 const CONSTANTS = {
   SPOTIFY_PLAYER_NAME: 'app-spotify-player',
   SPOTIFY_SDK_URL: 'https://sdk.scdn.co/spotify-player.js',
-  SPOTIFY_TOKEN:
-    'BQA3nF9i71mMwGV6FT28GVieSMRjxUb027GRObh1ko0ZNp8q-jbheB5q5GTbrXOcg9iiGNS7Irc-Vj7h2BKLGTS95MOm5CsKD2XjPLYRZXEx1FE-u2yokxMxFl2gevGcHcGe4pUvummL2zGgy8aiu61_vLRWvbQT',
 }
 
 export default class SpotifyPlayerSDK {
   state = {
+    spotifyToken: '',
     spotifyDeviceId: null,
     spotifyPlayer: null,
     spotifySDKReference: null,
@@ -18,6 +17,18 @@ export default class SpotifyPlayerSDK {
     spotifyUpdateTime: new Date(),
     isSpotifyConnected: false,
     updateFuncs: [],
+  }
+
+  actions = {
+    selectTrack: () => {},
+  }
+
+  constructor({ token = '', actions = {} }) {
+    this.state.spotifyToken = token
+    this.actions = {
+      ...this.actions,
+      ...actions,
+    }
   }
 
   /* Prepare SDK */
@@ -40,7 +51,7 @@ export default class SpotifyPlayerSDK {
     })
 
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = CONSTANTS.SPOTIFY_TOKEN
+      const token = this.state.spotifyToken
       this.state.spotifyPlayer = new window.Spotify.Player({
         name: CONSTANTS.SPOTIFY_PLAYER_NAME,
         getOAuthToken: (spotifyAuthtenticate) => {
@@ -170,19 +181,9 @@ export default class SpotifyPlayerSDK {
   select(trackId) {
     this.ensureConnection()
       .then(() => {
-        const { getOAuthToken } = this.state.spotifyPlayer._options
-        getOAuthToken((token) => {
-          fetch(
-            `https://api.spotify.com/v1/me/player/play?device_id=${this.state.spotifyDeviceId}`,
-            {
-              method: 'PUT',
-              body: JSON.stringify({ uris: [`spotify:track:${trackId}`] }),
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
+        this.actions.selectTrack({
+          deviceId: this.state.spotifyDeviceId,
+          trackId,
         })
       })
       .catch((error) => {

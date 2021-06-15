@@ -50,8 +50,9 @@ export class SpotifyPlayer extends React.Component {
   }
 
   updateProgress = () => {
-    const track = this.state.spotifyPlayerSDK.exactTrackTime
-    const { position, duration } = track
+    const position = this.state.spotifyPlayerSDK.exactTrackTime
+    const duration = this.state.spotifyPlayerSDK.exactTrackDuration
+
     const progressInPercent = position && duration ? (position / duration) * 100 : 0
 
     this.setState({

@@ -154,6 +154,14 @@ export default class SpotifyPlayerSDK {
     return 0
   }
 
+  get exactTrackDuration() {
+    const { spotifyState } = this.state
+    if (spotifyState && spotifyState.track_window && spotifyState.track_window.current_track) {
+      return spotifyState.track_window.current_track.duration_ms
+    }
+    return 0
+  }
+
   get trackInformation() {
     const trackInformation = {
       name: '',

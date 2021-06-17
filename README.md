@@ -111,7 +111,7 @@ src
 | File name        | Purpose                                                      | Location                |
 | ---------------- | ------------------------------------------------------------ | ----------------------- |
 | \*.scss          | A file that contains the styling for a component or the app  | assets / components     |
-| index.jsx        | Entrypoint to a service / component / store                  | no location restriction |
+| index.jsx        | An entrypoint to a service / component / store               | no location restriction |
 | \*.module.jsx    | A file that contains one or multiple plain js modules        | no location restriction |
 | \*.component.jsx | A file that contains one or multiple react components        | component directory     |
 | \*.service.jsx   | A file that contains side-effect free business logic         | services directory      |
@@ -121,11 +121,11 @@ src
 
 ### Common directory types
 
-| Directory name  | Purpose                                 | Location                |
-| --------------- | --------------------------------------- | ----------------------- |
-| \*\*/components | A directory containing react components | _src/components_        |
-| \*\*/modules    | A directory containing plain js modules | no location restriction |
-| \*\*/utility    | A directory containing utility modules  | no location restriction |
+| Directory name     | Purpose                                 | Location                |
+| ------------------ | --------------------------------------- | ----------------------- |
+| \*/\*\*/components | A directory containing react components | _src/components_        |
+| \*/\*\*/modules    | A directory containing plain js modules | no location restriction |
+| \*/\*\*/utility    | A directory containing utility modules  | no location restriction |
 
 ## Project configuration
 

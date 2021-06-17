@@ -7,15 +7,14 @@ const extendConstants = (constantPrepend, constants) => {
   return extendedConstants
 }
 
-class Restore {
+class RestoreSingleton {
+  /* Private properties */
   key = 'redux-storage'
-
   name = 'redux-entry'
-
   storeReference = null
-
   registeredEntries = []
 
+  /* Class implementation */
   constructor(name) {
     this.name = this.name || name
     this.registerStore()
@@ -72,12 +71,12 @@ class Restore {
   }
 }
 
-const restore = new Restore()
+const Restore = new RestoreSingleton()
 
 export { extendConstants }
-export { restore }
+export { Restore }
 
 export default {
   extendConstants,
-  restore,
+  Restore,
 }

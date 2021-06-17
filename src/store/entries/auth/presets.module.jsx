@@ -1,4 +1,4 @@
-import { restore } from '@/store/utility/store.utility'
+import { Restore } from '@/store/utility/store-utility.module'
 
 const options = {
   status: {
@@ -9,7 +9,7 @@ const options = {
   },
 }
 
-const preset = restore.restoreEntry('auth') || {
+const preset = Restore.restoreEntry('auth') || {
   jwt: null,
   status: options.status.unset,
 }

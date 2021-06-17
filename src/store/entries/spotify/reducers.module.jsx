@@ -1,5 +1,5 @@
-import constants from '@/store/entries/spotify/constants'
-import { preset, options } from '@/store/entries/spotify/presets'
+import constants from '@/store/entries/spotify/constants.module'
+import { preset, options } from '@/store/entries/spotify/presets.module'
 
 const logoutFromSpotify = (state /* , action */) => ({
   ...state,

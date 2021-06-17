@@ -1,5 +1,5 @@
-import constants from '@/store/entries/auth/constants'
-import api from '@/store/utility/rest.api'
+import constants from '@/store/entries/auth/constants.module'
+import api from '@/store/utility/rest-api.module'
 
 const responseLoginSuccess = (payload) => ({
   type: constants.LOGIN_RESPONSE_SUCCESS,

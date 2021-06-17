@@ -29,6 +29,7 @@
     ],
     "react/jsx-one-expression-per-line": "off",
     "no-underscore-dangle": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
   }
 }

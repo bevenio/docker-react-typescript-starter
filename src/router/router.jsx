@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
 // Utility
-import RouterUtility from '@/router/utility/router.utility'
+import RouterUtility from '@/router/utility/router-utility.module'
 
 // Components
 import LoadingPage from '@/components/pages/loading'

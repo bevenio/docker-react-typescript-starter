@@ -106,18 +106,26 @@ src
 └───services
 ```
 
-### File types
+### Common file types
 
-| Filetype         | Purpose                                                      | Location                |
+| File name        | Purpose                                                      | Location                |
 | ---------------- | ------------------------------------------------------------ | ----------------------- |
 | \*.scss          | A file that contains the styling for a component or the app  | assets / components     |
 | index.jsx        | Entrypoint to a service / component / store                  | no location restriction |
-| \*.utility.jsx   | Utility functions for a component / isolated module          | no location restriction |
+| \*.module.jsx    | A file that contains one or multiple plain js modules        | no location restriction |
 | \*.component.jsx | A file that contains one or multiple react components        | component directory     |
-| \*.sdk.jsx       | A file that interacts with a third party library or software | components / services   |
 | \*.service.jsx   | A file that contains side-effect free business logic         | services directory      |
+| \*.sdk.jsx       | A file that interacts with a third party library or software | components / services   |
 | \*.route.jsx     | A file that contains one or multiple routes                  | router directory        |
 | \*.worker.jsx    | A file that contains a webworker                             | worker directory        |
+
+### Common directory types
+
+| Directory name  | Purpose                                 | Location                |
+| --------------- | --------------------------------------- | ----------------------- |
+| \*\*/components | A directory containing react components | _src/components_        |
+| \*\*/modules    | A directory containing plain js modules | no location restriction |
+| \*\*/utility    | A directory containing utility modules  | no location restriction |
 
 ## Project configuration
 

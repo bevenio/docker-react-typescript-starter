@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 import { store } from '@/store/store'
-import constants from '@/store/entries/spotify/constants'
+
+import constants from '@/store/entries/spotify/constants.module'
 
 const CONSTANTS = {
   AUTH_URL: 'https://accounts.spotify.com/',

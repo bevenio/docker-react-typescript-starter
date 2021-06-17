@@ -1,5 +1,5 @@
-import constants from '@/store/entries/auth/constants'
-import { preset, options } from '@/store/entries/auth/presets'
+import constants from '@/store/entries/auth/constants.module'
+import { preset, options } from '@/store/entries/auth/presets.module'
 
 const requestLogin = (state /* , action */) => ({
   ...state,

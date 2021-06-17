@@ -1,9 +1,9 @@
 import React from 'react'
-import RouterUtils from '@/router/utility/router.utility'
+import RouterUtility from '@/router/utility/router-utility.module'
 
 const LoginPage = React.lazy(() => import('@/components/pages/login'))
 
-export default RouterUtils.createRoute({
+export default RouterUtility.createRoute({
   route: '/login',
   exact: true,
   subroutes: [

@@ -1,4 +1,4 @@
-import constants from '@/store/entries/appearance/constants'
+import constants from '@/store/entries/appearance/constants.module'
 
 const changeTheme = (payload) => ({
   type: constants.CHANGE_THEME,

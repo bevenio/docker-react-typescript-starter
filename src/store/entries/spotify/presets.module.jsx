@@ -1,4 +1,4 @@
-import { restore } from '@/store/utility/store.utility'
+import { Restore } from '@/store/utility/store-utility.module'
 
 const options = {
   status: {
@@ -9,7 +9,7 @@ const options = {
   },
 }
 
-const preset = restore.restoreEntry('spotify') || {
+const preset = Restore.restoreEntry('spotify') || {
   auth: {
     jwt: 'BQDShOz90yiN98hSRe6r9b1mXEC6KSNXygRQi906XZBQotwxZbyABM5FjJFKLD91ha9nWMXatoUL-m687KlurZXxxDJOep6uacgDR9OTFz8yrNcCCoT1oNlihwShQnKkompfYj9_wEZmLs-vZCdlJEzUSr3ucGsQ',
     status: options.status.unset,

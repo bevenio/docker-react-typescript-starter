@@ -1,4 +1,4 @@
-import storeUtility from '@/store/utility/store.utility'
+import storeUtility from '@/store/utility/store-utility.module'
 
 export default storeUtility.extendConstants('SPOTIFY', {
   REDIRECT_TO_SPOTIFY: 'REDIRECT_TO_SPOTIFY',

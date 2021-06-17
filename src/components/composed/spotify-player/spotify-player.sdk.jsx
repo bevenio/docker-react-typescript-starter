@@ -141,15 +141,38 @@ export default class SpotifyPlayerSDK {
     this.state.updateFuncs.push(func)
   }
 
-  get error() {
-    return this.state.spotifyError
+  getTrackDuration = () => {
+    const { spotifyState } = this.state
+    if (spotifyState && spotifyState.track_window && spotifyState.track_window.current_track) {
+      return spotifyState.track_window.current_track.duration_ms
+    }
+    return 0
   }
 
-  get ready() {
-    return this.state.isSpotifyConnected
+  getTrackPosition = () => {
+    const { spotifyState } = this.state
+    if (spotifyState && spotifyState) {
+      return spotifyState.position
+    }
+    return 0
   }
 
-  get exactTrackTime() {
+  getTrackStatus = () => {
+    const { spotifyState } = this.state
+    if (spotifyState && spotifyState) {
+      return spotifyState.paused ? 'paused' : 'play'
+    }
+    return 'paused'
+  }
+
+  getTrackUpdateTime = () => {
+    if (this.state.spotifyUpdateTime) {
+      return this.state.spotifyUpdateTime.getTime()
+    }
+    return 0
+  }
+
+  getExactTrackPosition = () => {
     const { spotifyState } = this.state
     if (spotifyState) {
       if (spotifyState.paused) {
@@ -160,20 +183,32 @@ export default class SpotifyPlayerSDK {
     return 0
   }
 
-  get exactTrackDuration() {
-    const { spotifyState } = this.state
-    if (spotifyState && spotifyState.track_window && spotifyState.track_window.current_track) {
-      return spotifyState.track_window.current_track.duration_ms
-    }
-    return 0
+  get error() {
+    return this.state.spotifyError
+  }
+
+  get ready() {
+    return this.state.isSpotifyConnected
+  }
+
+  get exactTrackPosition() {
+    return this.getExactTrackPosition()
+  }
+
+  get trackDuration() {
+    return this.getTrackDuration()
+  }
+
+  get trackPosition() {
+    return this.getTrackPosition()
   }
 
   get trackStatus() {
-    const { spotifyState } = this.state
-    if (spotifyState && spotifyState) {
-      return spotifyState.paused ? 'paused' : 'play'
-    }
-    return 'paused'
+    return this.getTrackStatus()
+  }
+
+  get trackUpdateTime() {
+    return this.getTrackUpdateTime()
   }
 
   get trackInformation() {

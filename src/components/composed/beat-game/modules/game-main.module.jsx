@@ -59,16 +59,18 @@ class Game {
   /* Public functions */
   set trackPosition(positionInMilliseconds) {
     this.state.positionInMilliseconds = positionInMilliseconds
-    this.state.lastUpdateTimeInMilliseconds = new Date().getTime()
   }
 
   set trackDuration(durationInMilliseconds) {
     this.state.durationInMilliseconds = durationInMilliseconds
-    this.state.lastUpdateTimeInMilliseconds = new Date().getTime()
   }
 
   set trackStatus(status) {
     this.state.status = status || 'paused'
+  }
+
+  set trackUpdateTime(timeInMilliseconds) {
+    this.state.lastUpdateTimeInMilliseconds = timeInMilliseconds
   }
 
   continue() {

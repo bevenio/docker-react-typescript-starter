@@ -54,19 +54,20 @@ export class SpotifyPlayer extends React.Component {
   updateCallbackCall = () => {
     if (this.props.onUpdate && typeof this.props.onUpdate === 'function') {
       this.props.onUpdate({
-        position: this.state.spotifyPlayerSDK.exactTrackTime,
-        duration: this.state.spotifyPlayerSDK.exactTrackDuration,
+        position: this.state.spotifyPlayerSDK.exactTrackPosition,
+        duration: this.state.spotifyPlayerSDK.trackDuration,
         status: this.state.spotifyPlayerSDK.trackStatus,
       })
     }
   }
 
   updateProgress = () => {
-    const position = this.state.spotifyPlayerSDK.exactTrackTime
-    const duration = this.state.spotifyPlayerSDK.exactTrackDuration
+    const position = this.state.spotifyPlayerSDK.exactTrackPosition
+    const duration = this.state.spotifyPlayerSDK.trackDuration
 
     const progressInPercent = position && duration ? (position / duration) * 100 : 0
 
+    this.updateCallbackCall()
     this.setState({
       trackProgress: progressInPercent,
     })

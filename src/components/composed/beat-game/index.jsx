@@ -22,17 +22,22 @@ export class BeatGame extends React.Component {
         canvas: canvasReference.current,
       }),
     })
+    this.resizeCanvas()
+    this.addListeners()
   }
 
   componentDidUpdate() {
-    if (this.state.game && this.props.position) {
-      this.state.game.trackPosition = this.props.position
-    }
-    if (this.state.game && this.props.duration) {
-      this.state.game.trackDuration = this.props.duration
-    }
-    if (this.state.game && this.props.status) {
-      this.state.game.trackStatus = this.props.status
+    if (this.state.game) {
+      if (this.props.position) {
+        this.state.game.trackPosition = this.props.position
+        this.state.game.trackUpdateTime = new Date().getTime()
+      }
+      if (this.props.duration) {
+        this.state.game.trackDuration = this.props.duration
+      }
+      if (this.props.status) {
+        this.state.game.trackStatus = this.props.status
+      }
     }
   }
 
@@ -40,6 +45,18 @@ export class BeatGame extends React.Component {
     if (this.state.game) {
       this.state.game.pause()
     }
+  }
+
+  resizeCanvas = () => {
+    if (this.state.canvasReference.current) {
+      const canvas = this.state.canvasReference.current
+      canvas.width = canvas.scrollWidth
+      canvas.height = canvas.scrollHeight
+    }
+  }
+
+  addListeners = () => {
+    window.addEventListener('resize', this.resizeCanvas)
   }
 
   render() {

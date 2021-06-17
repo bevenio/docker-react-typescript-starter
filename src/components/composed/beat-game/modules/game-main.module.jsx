@@ -1,3 +1,6 @@
+import GameVisuals from './game-visuals.module'
+import GameKeyboardInuts from './game-keyboard-input.module'
+
 class Game {
   /* Private properties */
   isGameActive = false
@@ -11,6 +14,9 @@ class Game {
     durationInMilliseconds: 0,
     lastUpdateTimeInMilliseconds: new Date().getTime(),
   }
+
+  Visuals = new GameVisuals()
+  KeyboardInputs = new GameKeyboardInuts()
 
   /* Class implementation */
   constructor({ canvas, track }) {
@@ -31,14 +37,20 @@ class Game {
     return this.state.positionInMilliseconds + timeDifferenceInMilliseconds
   }
 
-  renderVisuals = () => {
-    console.log(this.getCurrentTrackPosition())
+  render = () => {
+    this.Visuals.render({
+      canvas: this.canvas,
+      context: this.context,
+      track: this.track,
+      duration: this.state.durationInMilliseconds,
+      position: this.getCurrentTrackPosition(),
+    })
   }
 
   loop = () => {
     if (this.isGameActive) {
       if (this.state.status === 'play') {
-        this.renderVisuals()
+        this.render()
       }
       window.requestAnimationFrame(this.loop)
     }
@@ -47,10 +59,12 @@ class Game {
   /* Public functions */
   set trackPosition(positionInMilliseconds) {
     this.state.positionInMilliseconds = positionInMilliseconds
+    this.state.lastUpdateTimeInMilliseconds = new Date().getTime()
   }
 
   set trackDuration(durationInMilliseconds) {
     this.state.durationInMilliseconds = durationInMilliseconds
+    this.state.lastUpdateTimeInMilliseconds = new Date().getTime()
   }
 
   set trackStatus(status) {

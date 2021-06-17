@@ -11,7 +11,7 @@ const options = {
 
 const preset = Restore.restoreEntry('spotify') || {
   auth: {
-    jwt: 'BQCe1FnoWAyqkQgGMyB6J8j5ugAPLs98WK2YTBxPSnDCnPKdReCkp6hedg5WsM1DeDex31OWA3q54Ynf3BkJ8Eca1EZsxHG9kM7abbynJiUlDg4Dm7ZSjihGbXCxs1azqzwDA6KblLkmLu3u_ISaCo9KFS148Hdd',
+    jwt: 'BQCWfZeaD0muTH5iSG6BlAOMsGhrL73JgozzucCO3KslZlM_bJylyZ86gMVWEkYyohjctrQ1xA0Ji68zMjr2zAFxaYwnzyaeW8KAW-vGrhbYQqXkm-Y50j072M83CuLufMN709IPk-BoYFNbRb368I-W5fnEPexd',
     status: options.status.unset,
   },
   player: {

@@ -1,9 +1,10 @@
 .app-navigation-bar {
   position: fixed;
   width: 100vw;
-  background-color: var(--color-brand-alt);
   border-bottom: 5px solid var(--color-brand);
   z-index: 1;
+  background-color: var(--color-brand-translucent);
+  backdrop-filter: blur(5px) saturate(0.1);
 }
 
 .app-navigation-bar > .nav > .nav-logo {

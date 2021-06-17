@@ -14,6 +14,7 @@ import ErrorPage from '@/components/pages/error'
 import LoginRoutes from '@/router/routes/login.routes'
 import SettingsRoutes from '@/router/routes/settings.routes'
 import LandingRoutes from '@/router/routes/landing.routes'
+import GameRoutes from '@/router/routes/game.routes'
 
 export class AppRouter extends React.Component {
   constructor() {
@@ -49,6 +50,11 @@ export class AppRouter extends React.Component {
                 exact={SettingsRoutes.exact}
                 path={SettingsRoutes.route}
                 render={SettingsRoutes.subroutes}
+              />
+              <Route
+                exact={GameRoutes.exact}
+                path={GameRoutes.route}
+                render={GameRoutes.subroutes}
               />
               <Route
                 exact={LandingRoutes.exact}

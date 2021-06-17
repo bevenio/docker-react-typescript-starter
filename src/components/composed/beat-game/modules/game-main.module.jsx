@@ -57,7 +57,11 @@ class Game {
     this.state.status = status || 'paused'
   }
 
-  end() {
+  continue() {
+    this.isGameActive = true
+  }
+
+  pause() {
     this.isGameActive = false
   }
 }

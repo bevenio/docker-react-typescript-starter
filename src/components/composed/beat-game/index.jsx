@@ -38,7 +38,7 @@ export class BeatGame extends React.Component {
 
   componentWillUnmount() {
     if (this.state.game) {
-      this.state.game.end()
+      this.state.game.pause()
     }
   }
 

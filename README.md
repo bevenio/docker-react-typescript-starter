@@ -121,11 +121,11 @@ src
 
 ### Common directory types
 
-| Directory name      | Purpose                                 | Location                |
-| ------------------- | --------------------------------------- | ----------------------- |
-| \*/\*\*/components/ | A directory containing react components | _src/components_        |
-| \*/\*\*/modules/    | A directory containing plain js modules | no location restriction |
-| \*/\*\*/utility/    | A directory containing utility modules  | no location restriction |
+| Directory name        | Purpose                                 | Location                |
+| --------------------- | --------------------------------------- | ----------------------- |
+| _\*/\*\*/components/_ | A directory containing react components | _src/components_        |
+| _\*/\*\*/modules/_    | A directory containing plain js modules | no location restriction |
+| _\*/\*\*/utility/_    | A directory containing utility modules  | no location restriction |
 
 ## Project configuration
 

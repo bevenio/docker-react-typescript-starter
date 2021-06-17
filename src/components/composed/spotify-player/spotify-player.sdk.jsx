@@ -168,6 +168,14 @@ export default class SpotifyPlayerSDK {
     return 0
   }
 
+  get trackStatus() {
+    const { spotifyState } = this.state
+    if (spotifyState && spotifyState) {
+      return spotifyState.paused ? 'paused' : 'play'
+    }
+    return 'paused'
+  }
+
   get trackInformation() {
     const trackInformation = {
       name: '',

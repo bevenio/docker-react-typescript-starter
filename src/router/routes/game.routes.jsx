@@ -19,7 +19,7 @@ export default RouterUtility.createRoute({
       },
     },
     {
-      key: 'game',
+      key: 'game-id',
       path: '/game/:id',
       exact: true,
       component: GamePage,

@@ -34,6 +34,7 @@ export class SpotifyPlayer extends React.Component {
       playerSDK.select(this.props.track)
       playerSDK.resume()
       playerSDK.onUpdate(() => {
+        this.updateCallbackCall()
         this.forceUpdate()
       })
 
@@ -48,6 +49,16 @@ export class SpotifyPlayer extends React.Component {
     const playerSDK = this.state.spotifyPlayerSDK
     playerSDK.unregister()
     window.clearInterval(this.state.timelineIntervalId)
+  }
+
+  updateCallbackCall = () => {
+    if (this.props.onUpdate && typeof this.props.onUpdate === 'function') {
+      this.props.onUpdate({
+        position: this.state.spotifyPlayerSDK.exactTrackTime,
+        duration: this.state.spotifyPlayerSDK.exactTrackDuration,
+        status: this.state.spotifyPlayerSDK.trackStatus,
+      })
+    }
   }
 
   updateProgress = () => {

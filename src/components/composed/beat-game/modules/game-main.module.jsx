@@ -1,5 +1,6 @@
+import GameScore from './game-score.module'
 import GameVisuals from './game-visuals.module'
-import GameKeyboardInuts from './game-keyboard-input.module'
+import GameKeyboard from './game-keyboard.module'
 
 class Game {
   /* Private properties */
@@ -15,8 +16,11 @@ class Game {
     lastUpdateTimeInMilliseconds: new Date().getTime(),
   }
 
-  Visuals = new GameVisuals()
-  KeyboardInputs = new GameKeyboardInuts()
+  classes = {
+    score: new GameScore(),
+    visuals: new GameVisuals(),
+    keyboard: new GameKeyboard(),
+  }
 
   /* Class implementation */
   constructor({ canvas, track }) {
@@ -26,6 +30,7 @@ class Game {
       this.state.track = track || []
       this.isGameActive = true
       this.loop()
+      this.listen()
     } else {
       throw new Error('Cannot initialize without valid canvas element')
     }
@@ -38,10 +43,10 @@ class Game {
   }
 
   render = () => {
-    this.Visuals.render({
+    this.classes.visuals.render({
       canvas: this.canvas,
       context: this.context,
-      track: this.track,
+      track: this.state.track,
       duration: this.state.durationInMilliseconds,
       position: this.getCurrentTrackPosition(),
     })
@@ -54,6 +59,23 @@ class Game {
       }
       window.requestAnimationFrame(this.loop)
     }
+  }
+
+  hit = (action) => {
+    if (this.isGameActive) {
+      const result = this.classes.score.hit({
+        action,
+        track: this.state.track,
+        duration: this.state.durationInMilliseconds,
+        position: this.getCurrentTrackPosition(),
+      })
+      console.log(result)
+    }
+  }
+
+  listen = () => {
+    this.classes.keyboard.onHit(this.hit)
+    this.classes.visuals.onHit(this.hit)
   }
 
   /* Public functions */

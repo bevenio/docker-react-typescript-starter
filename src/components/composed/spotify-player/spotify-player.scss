@@ -18,7 +18,7 @@ $spotify-player-height: 85px;
   margin: calc(var(--default-padding) * -1);
   position: absolute;
   height: $spotify-player-height;
-  transition: width 0.45s linear;
+  transition: width 1s linear;
   border-bottom: 3px solid var(--color-text);
   box-sizing: border-box;
 }

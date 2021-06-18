@@ -63,13 +63,13 @@ class Game {
 
   hit = (action) => {
     if (this.isGameActive) {
-      const result = this.classes.score.hit({
+      const { score, combo, hitType } = this.classes.score.hit({
         action,
         track: this.state.track,
         duration: this.state.durationInMilliseconds,
         position: this.getCurrentTrackPosition(),
       })
-      console.log(result)
+      this.classes.visuals.updateScore({ score, combo, hitType })
     }
   }
 

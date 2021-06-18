@@ -6,10 +6,10 @@ const ACTIONS = {
 }
 
 const HIT_TYPES = {
-  MISS: { points: 0, name: 'miss' },
-  OK: { points: 1, name: 'ok' },
-  GOOD: { points: 2, name: 'good' },
-  PERFECT: { points: 3, name: 'perfect' },
+  MISS: { points: 0, name: 'miss', radius: Infinity },
+  OK: { points: 1, name: 'ok', radius: 50 },
+  GOOD: { points: 2, name: 'good', radius: 30 },
+  PERFECT: { points: 3, name: 'perfect', radius: 10 },
 }
 
 export { ACTIONS }

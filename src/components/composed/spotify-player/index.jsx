@@ -10,7 +10,7 @@ import { SpotifyLoading } from './components/spotify-loading.component'
 import './spotify-player.scss'
 
 const CONSTANTS = {
-  PROGRESS_UPDATE_TIME: 500,
+  PROGRESS_UPDATE_TIME: 1000,
 }
 
 export class SpotifyPlayer extends React.Component {
@@ -34,7 +34,7 @@ export class SpotifyPlayer extends React.Component {
       playerSDK.select(this.props.track)
       playerSDK.resume()
       playerSDK.onUpdate(() => {
-        this.updateCallbackCall()
+        this.updateProgress()
         this.forceUpdate()
       })
 
@@ -51,26 +51,20 @@ export class SpotifyPlayer extends React.Component {
     window.clearInterval(this.state.timelineIntervalId)
   }
 
-  updateCallbackCall = () => {
+  updateCallbackCall = ({ position, duration, status }) => {
     if (this.props.onUpdate && typeof this.props.onUpdate === 'function') {
-      this.props.onUpdate({
-        position: this.state.spotifyPlayerSDK.exactTrackPosition,
-        duration: this.state.spotifyPlayerSDK.trackDuration,
-        status: this.state.spotifyPlayerSDK.trackStatus,
-      })
+      this.props.onUpdate({ position, duration, status })
     }
   }
 
   updateProgress = () => {
     const position = this.state.spotifyPlayerSDK.exactTrackPosition
     const duration = this.state.spotifyPlayerSDK.trackDuration
-
+    const status = this.state.spotifyPlayerSDK.trackStatus
     const progressInPercent = position && duration ? (position / duration) * 100 : 0
 
-    this.updateCallbackCall()
-    this.setState({
-      trackProgress: progressInPercent,
-    })
+    this.setState({ trackProgress: progressInPercent })
+    this.updateCallbackCall({ position, duration, status })
   }
 
   render() {

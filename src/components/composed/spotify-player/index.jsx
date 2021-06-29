@@ -31,8 +31,9 @@ export class SpotifyPlayer extends React.Component {
       })
 
       playerSDK.register()
-      playerSDK.select(this.props.track)
-      playerSDK.resume()
+      playerSDK.select(this.props.track).then(() => {
+        playerSDK.resume()
+      })
       playerSDK.onUpdate(() => {
         this.updateProgress()
         this.forceUpdate()

@@ -9,7 +9,7 @@ const extendConstants = (constantPrepend, constants) => {
 
 class RestoreSingleton {
   /* Private properties */
-  key = 'redux-storage'
+  key = 'redux-storage:state'
   name = 'redux-entry'
   storeReference = null
   registeredEntries = []

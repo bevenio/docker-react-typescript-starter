@@ -13,10 +13,13 @@ export default class SpotifyPlayerSDK {
     spotifySDKReference: null,
     spotifyError: null,
     spotifyState: null,
-    spotifyConnectPromise: null,
     spotifyUpdateTime: new Date(),
-    isSpotifyConnected: false,
     updateFuncs: [],
+    isSpotifyConnected: false,
+    spotifyConnectPromise: null,
+    isSpotifyTrackSelected: true,
+    spotifySelectedTrackId: '',
+    spotifyTrackSelectPromiseResolve: null,
   }
 
   actions = {
@@ -77,6 +80,7 @@ export default class SpotifyPlayerSDK {
         this.state.spotifyState = state
         this.state.spotifyUpdateTime = new Date()
         this.onSpotifyPlayerChanged()
+        this.ensureTrackSelection()
       })
 
       this.state.spotifyPlayer.addListener('ready', ({ device_id: deviceId }) => {
@@ -123,6 +127,29 @@ export default class SpotifyPlayerSDK {
     return new Promise((resolve) => {
       resolve()
     })
+  }
+
+  ensureTrackSelection() {
+    const {
+      spotifyState,
+      isSpotifyTrackSelected,
+      spotifyTrackSelectPromiseResolve,
+      spotifySelectedTrackId,
+    } = this.state
+
+    if (!isSpotifyTrackSelected && spotifyTrackSelectPromiseResolve && spotifySelectedTrackId) {
+      if (spotifyState && spotifyState.track_window && spotifyState.track_window.current_track) {
+        const currentTrackId = spotifyState.track_window.current_track.id
+
+        if (currentTrackId === spotifySelectedTrackId) {
+          setTimeout(() => {
+            spotifyTrackSelectPromiseResolve()
+          }, 5100)
+          this.state.isSpotifyTrackSelected = true
+          this.state.spotifyTrackSelectPromiseResolve = null
+        }
+      }
+    }
   }
 
   /* Exposed SDK functions */
@@ -236,42 +263,45 @@ export default class SpotifyPlayerSDK {
   }
 
   select(trackId) {
-    this.ensureConnection()
-      .then(() => {
-        this.actions.selectTrack({ trackId })
-      })
-      .catch((error) => {
-        throw new Error(error)
-      })
+    return new Promise((resolve, reject) => {
+      this.ensureConnection()
+        .then(() => {
+          this.state.isSpotifyTrackSelected = false
+          this.state.spotifySelectedTrackId = trackId
+          this.state.spotifyTrackSelectPromiseResolve = resolve
+          this.actions.selectTrack({ trackId })
+        })
+        .catch(reject)
+    })
   }
 
   resume() {
-    this.ensureConnection()
-      .then(() => {
-        this.state.spotifyPlayer.resume()
-      })
-      .catch((error) => {
-        throw new Error(error)
-      })
+    return new Promise((resolve, reject) => {
+      this.ensureConnection()
+        .then(() => {
+          this.state.spotifyPlayer.resume().then(resolve).catch(reject)
+        })
+        .catch(reject)
+    })
   }
 
   pause() {
-    this.ensureConnection()
-      .then(() => {
-        this.state.spotifyPlayer.pause()
-      })
-      .catch((error) => {
-        throw new Error(error)
-      })
+    return new Promise((resolve, reject) => {
+      this.ensureConnection()
+        .then(() => {
+          this.state.spotifyPlayer.pause().then(resolve).catch(reject)
+        })
+        .catch(reject)
+    })
   }
 
   toggle() {
-    this.ensureConnection()
-      .then(() => {
-        this.state.spotifyPlayer.togglePlay()
-      })
-      .catch((error) => {
-        throw new Error(error)
-      })
+    return new Promise((resolve, reject) => {
+      this.ensureConnection()
+        .then(() => {
+          this.state.spotifyPlayer.togglePlay().then(resolve).catch(reject)
+        })
+        .catch(reject)
+    })
   }
 }

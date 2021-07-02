@@ -160,6 +160,12 @@ const createModules = (/* options */) => {
     use: ['@svgr/webpack'],
   })
 
+  rules.push({
+    test: /\.(js|jsx)$/,
+    enforce: 'pre',
+    use: ['source-map-loader'],
+  })
+
   return {
     rules,
   }

@@ -1,8 +1,8 @@
 /* Root */
 :root {
   /* General colors */
-  --color-brand-hsl: 140, 40%, 50%;
-  --color-brand-hsl-alt: 140, 40%, 80%;
+  --color-brand-hsl: 50, 60%, 50%;
+  --color-brand-hsl-alt: 230, 50%, 20%;
   --color-error-hsl: 0, 100%, 50%;
 
   /* Palette: default */
@@ -10,9 +10,9 @@
   /* Colors */
   --color-brand: hsl(var(--color-brand-hsl));
   --color-brand-alt: hsl(var(--color-brand-hsl-alt));
-  --color-brand-translucent: hsla(var(--color-brand-hsl), 0.4);
+  --color-brand-translucent: hsla(var(--color-brand-hsl), 0.3);
   --color-error: hsl(var(--color-error-hsl));
-  --color-error-translucent: hsla(var(--color-error-hsl), 0.4);
+  --color-error-translucent: hsla(var(--color-error-hsl), 0.3);
 
   /* Greyscale shades */
   --color-mono-1: #d5d5d5;
@@ -34,7 +34,7 @@
 }
 
 [color-scheme='dark'] {
-  --color-mono-1: #101010;
+  --color-mono-1: #020014;
   --color-mono-2: #353535;
   --color-mono-3: #e2e2e2;
   --color-mono-translucent: #e2e2e220;

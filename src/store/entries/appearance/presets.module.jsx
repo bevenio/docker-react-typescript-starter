@@ -7,7 +7,7 @@ const options = {
 const preset = Restore.restoreEntry('appearance') || {
   title: 'Docker React',
   languageID: 'en',
-  theme: options.themes[0],
+  theme: options.themes[1],
   lettersize: 'medium',
 }
 

@@ -35,32 +35,40 @@ form {
 /* Inputs */
 input {
   color: var(--color-text);
-  border: none !important;
-  border-radius: var(--default-radius) !important;
-  background-color: var(--color-mono-translucent);
+  border: var(--default-border-width) solid !important;
+  border-right: calc(var(--default-border-width) * 4) solid !important;
+  border-radius: 0 !important;
+  border-color: var(--color-brand) !important;
+  background-color: var(--color-mono-translucent-1);
 }
 
 input:hover {
-  background-color: var(--color-mono-translucent-2);
+  background-color: var(--color-brand-translucent);
 }
 
 input:focus {
-  background-color: var(--color-brand-translucent) !important;
+  background-color: var(--color-brand-translucent);
 }
 
 input:focus,
 input:focus-visible {
   outline: none;
-  background-color: var(--color-mono-translucent-2);
+  background-color: var(--color-brand-translucent);
 }
 
 input:invalid {
-  background-color: var(--color-error-translucent) !important;
+  border-color: var(--color-error) !important;
+  background-color: var(--color-error-translucent);
 }
 
 /* Buttons */
 button {
   color: var(--color-mono-1) !important;
-  border-radius: var(--default-radius) !important;
-  background-color: var(--color-text) !important;
+  border-radius: 0 !important;
+  background-color: var(--color-brand) !important;
+}
+
+button:hover {
+  color: var(--color-brand) !important;
+  background-color: var(--color-mono-1) !important;
 }

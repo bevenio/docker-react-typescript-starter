@@ -187,7 +187,6 @@ class Noise {
       this.renderEraseLayer()
       this.renderDivisionPixelsLayer()
       this.renderSubdivisionPixelsLayer()
-      this.renderGlitch()
     }
   }
 }

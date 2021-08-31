@@ -11,9 +11,9 @@ const rootDir = path.resolve(__dirname, './../')
 const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
-const createEntry = (options) => [path.resolve(srcDir, options.entryFile)]
+const createEntry = (/* options */) => [path.resolve(srcDir, 'index.jsx')]
 
-const createTarget = (options) => options.targetType
+const createTarget = (/* options */) => 'web'
 
 const createResolve = (/* options */) => ({
   extensions: ['.js', '.jsx'],
@@ -150,9 +150,7 @@ const createOptimization = (/* options */) => ({
       vendor: {
         test: /[\\/]node_modules[\\/]/,
         name(module) {
-          const packageName = module.context.match(
-            /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-          )[1]
+          const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
           return `npm.${packageName.replace('@', '')}`
         },
       },

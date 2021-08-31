@@ -6,6 +6,9 @@ import { Helmet } from 'react-helmet'
 // Utility
 import RouterUtility from '@/router/utility/router-utility.module'
 
+// Services
+import ServiceworkerService from '@/services/serviceworker-service'
+
 // Components
 import LoadingPage from '@/components/pages/loading'
 import ErrorPage from '@/components/pages/error'
@@ -23,6 +26,10 @@ export class AppRouter extends React.Component {
       router: RouterUtility.getRouter(),
       history: RouterUtility.getHistory(),
     }
+  }
+
+  componentDidMount() {
+    ServiceworkerService.registerServiceworker()
   }
 
   render() {

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 const path = require('path')
 
 const rootDir = path.resolve(__dirname, './../')
@@ -21,9 +22,9 @@ const extractChunkName = (pathData) => {
   }
 }
 
-const createEntry = (options) => ['react-hot-loader/patch', path.resolve(srcDir, options.entryFile)]
+const createEntry = (/* options */) => ['react-hot-loader/patch', path.resolve(srcDir, 'index.jsx')]
 
-const createTarget = (options) => options.targetType
+const createTarget = (/* options */) => 'web'
 
 const createResolve = (/* options */) => ({
   extensions: ['.js', '.jsx'],
@@ -47,7 +48,7 @@ const createOutput = (options) => ({
 })
 
 const createDevServer = (options) => ({
-  host: options.host,
+  host: '0.0.0.0',
   port: options.port,
   contentBase: distDir,
   compress: false,
@@ -97,6 +98,15 @@ const createPlugins = (options) => {
   plugins.push(
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
+    })
+  )
+
+  plugins.push(
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      mode: options.mode,
+      swDest: './static/pwa/service-worker.js',
     })
   )
 
@@ -191,7 +201,7 @@ const createOptimization = (/* options */) => ({
 })
 
 const config = (options) => ({
-  mode: 'development',
+  mode: options.mode,
   entry: createEntry(options),
   target: createTarget(options),
   resolve: createResolve(options),

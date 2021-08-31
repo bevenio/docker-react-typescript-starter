@@ -7,9 +7,7 @@ const localMachineSettings = projectConfiguration.local_machine
 
 const optionPresets = {
   development: {
-    entryFile: 'index.jsx',
-    targetType: 'web',
-    host: '0.0.0.0',
+    mode: 'development',
     port: localMachineSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: true,
@@ -20,9 +18,7 @@ const optionPresets = {
     baseHref: '/',
   },
   production: {
-    entryFile: 'index.jsx',
-    targetType: 'web',
-    host: '0.0.0.0',
+    mode: 'production',
     port: localMachineSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
@@ -33,9 +29,7 @@ const optionPresets = {
     baseHref: '/',
   },
   test: {
-    entryFile: 'index.jsx',
-    targetType: 'web',
-    host: '0.0.0.0',
+    mode: 'test',
     port: localMachineSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
@@ -71,9 +65,5 @@ const options = {
   },
 }
 
-console.log(
-  `WEBPACK: ${chalk.blueBright(environment)}, ${chalk.blueBright(mode)}`
-)
-module.exports = require(`./${environment}.webpack.jsx`)(
-  options[`${environment}-${mode}`]
-)
+console.log(`WEBPACK: ${chalk.blueBright(environment)}, ${chalk.blueBright(mode)}`)
+module.exports = require(`./${environment}.webpack.jsx`)(options[`${environment}-${mode}`])

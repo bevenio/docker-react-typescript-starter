@@ -2,10 +2,10 @@ import { Restore } from '@/store/utility/store-utility.module'
 
 const options = {
   status: {
-    unset: 'UNSET',
-    trying: 'TRYING',
-    failed: 'FAILED',
-    succeeded: 'SUCCEEDED',
+    unset: 'unset',
+    trying: 'trying',
+    failed: 'failed',
+    succeeded: 'succeeded',
   },
 }
 

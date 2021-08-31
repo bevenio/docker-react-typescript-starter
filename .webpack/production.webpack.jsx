@@ -88,14 +88,16 @@ const createPlugins = (options) => {
     })
   )
 
-  plugins.push(
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-      mode: options.mode,
-      swDest: './static/pwa/service-worker.js',
-    })
-  )
+  if (options.sw === true) {
+    plugins.push(
+      new WorkboxPlugin.GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+        mode: options.mode,
+        swDest: './static/pwa/service-worker.js',
+      })
+    )
+  }
 
   if (options.hmr === true) {
     plugins.push(new webpack.HotModuleReplacementPlugin())

@@ -8,7 +8,7 @@
     }
   },
   "typeAcquisition": {
-    "exclude": ["dotenv", "crc-32"]
+    "exclude": ["dotenv", "crc-32", "fast-safe-stringify"]
   },
   "exclude": ["node_modules", "dist"]
 }

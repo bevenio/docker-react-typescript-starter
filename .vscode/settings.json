@@ -2,8 +2,6 @@
   "editor.wordWrap": "on",
   "npm-scripts.showStartNotification": false,
   "editor.tabSize": 2,
-  "vsicons.presets.foldersAllDefaultIcon": true,
-  "vsicons.presets.hideFolders": true,
   "path-autocomplete.pathMappings": {
     "@": "${workspace}/src"
   },

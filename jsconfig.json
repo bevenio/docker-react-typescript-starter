@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "jsx": "react-jsx",
     "target": "es6",
     "baseUrl": ".",
     "paths": {

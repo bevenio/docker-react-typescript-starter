@@ -1,13 +1,14 @@
 import { spawn, Thread, Worker } from 'threads'
 
 const terminateWorkersBeforeUnload = (workers) => {
-  window.addEventListener('beforeunload', () => {
+  window.addEventListener('pagehide', () => {
     const workerNames = Object.keys(workers)
     workerNames.forEach((workerName) => {
       Thread.terminate(workers[workerName])
     })
   })
 }
+
 const spawnWorkers = async () => {
   try {
     const workers = {}

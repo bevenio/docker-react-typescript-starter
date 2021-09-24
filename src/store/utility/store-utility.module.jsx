@@ -37,22 +37,25 @@ class RestoreSingleton {
   isStoreRegistered = () => localStorage.getItem(this.key) === 'active'
 
   applyListeners = () => {
-    window.addEventListener('beforeunload', (event) => {
-      if (this.storeReference && this.isStoreRegistered()) {
-        this.registeredEntries.forEach((entry) => {
-          try {
-            localStorage.setItem(
-              this.createEntryName(entry),
-              JSON.stringify(this.storeReference.getState()[entry])
-            )
-          } catch (error) {
-            throw new Error('Store entry could not be saved', error)
-          }
-        })
-      }
-
-      event.preventDefault()
-    })
+    window.addEventListener(
+      'pagehide',
+      (event) => {
+        if (this.storeReference && this.isStoreRegistered()) {
+          this.registeredEntries.forEach((entry) => {
+            try {
+              localStorage.setItem(
+                this.createEntryName(entry),
+                JSON.stringify(this.storeReference.getState()[entry])
+              )
+            } catch (error) {
+              throw new Error('Store entry could not be saved', error)
+            }
+          })
+        }
+        event.preventDefault()
+      },
+      { capture: true }
+    )
   }
 
   extendStore(store) {

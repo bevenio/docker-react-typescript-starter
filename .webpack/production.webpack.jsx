@@ -107,6 +107,8 @@ const createPlugins = (options) => {
     plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
+        port: options.port,
+        reportFilename: 'bundle-analyzer.html',
       })
     )
   }

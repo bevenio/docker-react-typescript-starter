@@ -159,6 +159,13 @@ const createModules = (/* options */) => {
     use: ['@svgr/webpack'],
   })
 
+  rules.push({
+    test: /\.(woff|woff2|ttf)$/,
+    use: {
+      loader: 'url-loader',
+    },
+  })
+
   return {
     rules,
   }

@@ -173,6 +173,13 @@ const createModules = (/* options */) => {
   })
 
   rules.push({
+    test: /\.(woff|woff2|ttf)$/,
+    use: {
+      loader: 'url-loader',
+    },
+  })
+
+  rules.push({
     test: /\.(js|jsx)$/,
     enforce: 'pre',
     use: ['source-map-loader'],

@@ -9,6 +9,8 @@
 
 .app-navigation-bar > .nav > .nav-logo {
   color: var(--color-text);
+  max-width: 30px;
+  max-height: 30px;
 }
 
 @media only screen and (max-width: 800px) {

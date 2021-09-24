@@ -32,7 +32,7 @@ export class NavigationBar extends React.Component {
     return (
       <div className="app-navigation-bar">
         <div className="nav">
-          <h5 className="nav-logo">{this.props.reduxState.appearance.title}</h5>
+          <img className="nav-logo" src="static/images/icon-192x192.png" alt="nav-logo" />
           {this.createIconButtons(navigationButtons)}
         </div>
       </div>

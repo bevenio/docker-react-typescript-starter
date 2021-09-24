@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const path = require('path')
 
@@ -101,6 +102,15 @@ const createPlugins = (options) => {
 
   if (options.hmr === true) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
+  }
+
+  if (options.compress === true) {
+    plugins.push(
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.(js|css)$/,
+      })
+    )
   }
 
   if (options.showBundleAnalyzer === true) {

@@ -16,12 +16,7 @@ export default class Landing extends React.Component {
       <>
         <NavigationBar />
         <ContentWrapper navbar="true">
-          <h1>Landing Page</h1>
-          <p>
-            {new Array(1000)
-              .fill('Laura Brachmann muss noch Hausaufgaben machen. ', 0, 1000)
-              .join(' ')}
-          </p>
+          <h2>Bevenio Playground</h2>
         </ContentWrapper>
       </>
     )

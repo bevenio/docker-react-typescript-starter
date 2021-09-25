@@ -11,8 +11,11 @@
   --color-brand: hsl(var(--color-brand-hsl));
   --color-brand-alt: hsl(var(--color-brand-hsl-alt));
   --color-brand-translucent: hsla(var(--color-brand-hsl), 0.3);
+  --color-brand-translucent-2: hsla(var(--color-brand-hsl), 0.15);
+
   --color-error: hsl(var(--color-error-hsl));
   --color-error-translucent: hsla(var(--color-error-hsl), 0.3);
+  --color-error-translucent-2: hsla(var(--color-error-hsl), 0.15);
 
   /* Greyscale shades */
   --color-mono-1: #d5d5d5;

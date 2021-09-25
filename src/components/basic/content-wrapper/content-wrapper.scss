@@ -4,13 +4,15 @@
   justify-content: center;
 }
 
-.app-content-wrapper-with-navbar {
-  margin-top: var(--default-navbar-height);
-}
-
 .app-content-wrapper-inner {
   max-width: 960px;
   width: 100%;
   display: block;
   padding: var(--default-padding);
+}
+
+@media only screen and (min-width: 800px) {
+  .app-content-wrapper-with-navbar {
+    margin-top: var(--default-navbar-height);
+  }
 }

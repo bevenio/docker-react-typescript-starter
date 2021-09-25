@@ -27,7 +27,7 @@ h5,
 h6 {
   font-family: 'things digital', sans-serif;
   color: var(--color-brand);
-  animation: app-glitch-animation 1s infinite;
+  animation: app-glitch-animation 1.3s infinite;
 }
 
 /* Glitch animation */
@@ -38,7 +38,7 @@ h6 {
   }
   7% {
     transform: skew(-0.5deg, -0.9deg);
-    opacity: 0.75;
+    opacity: 0.95;
   }
   10% {
     transform: none;
@@ -62,7 +62,7 @@ h6 {
   }
   55% {
     transform: skew(-1deg, 0.2deg);
-    opacity: 0.75;
+    opacity: 0.85;
   }
   50% {
     transform: none;
@@ -74,7 +74,7 @@ h6 {
   }
   75% {
     transform: skew(0.4deg, 1deg);
-    opacity: 0.75;
+    opacity: 0.95;
   }
   80% {
     transform: none;
@@ -104,7 +104,8 @@ input {
   border-right: calc(var(--default-border-width) * 4) solid !important;
   border-radius: 0 !important;
   border-color: var(--color-brand) !important;
-  background-color: var(--color-mono-translucent-1);
+  background-color: var(--color-brand-translucent-2);
+  box-sizing: border-box;
 }
 
 input:hover {

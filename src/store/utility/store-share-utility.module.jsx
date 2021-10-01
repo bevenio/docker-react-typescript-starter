@@ -1,3 +1,5 @@
+import { BroadcastChannel as BroadcastChannelFallback } from 'broadcast-channel'
+
 class StoreShareSingleton {
   /* Constant properties */
   CONTENT_TYPES = {
@@ -19,7 +21,9 @@ class StoreShareSingleton {
   /* Class implementation */
   /* Channel methods and functions */
   registerChannel = () => {
-    this.broadcastChannel = new BroadcastChannel(this.key)
+    this.broadcastChannel = window.BroadcastChannel
+      ? new BroadcastChannelFallback(this.key)
+      : new BroadcastChannel(this.key)
     this.broadcastChannel.addEventListener('message', this.onChannelMessage)
   }
 
@@ -58,7 +62,7 @@ class StoreShareSingleton {
   }
 
   onChannelMessage = (event) => {
-    const message = event.data
+    const message = event && event.data ? event.data : event
 
     switch (message.type) {
       // Another instance triggers a store action

@@ -84,6 +84,7 @@
   },
   "dependencies": {
     "axios": "^0.21.4",
+    "broadcast-channel": "^4.2.0",
     "dot-prop": "^6.0.1",
     "history": "^5.0.1",
     "react": "^17.0.2",

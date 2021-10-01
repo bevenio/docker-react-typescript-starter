@@ -1,4 +1,4 @@
-import { BroadcastChannel as BroadcastChannelFallback } from 'broadcast-channel'
+import { BroadcastChannel } from 'broadcast-channel'
 
 class StoreShareSingleton {
   /* Constant properties */
@@ -21,10 +21,8 @@ class StoreShareSingleton {
   /* Class implementation */
   /* Channel methods and functions */
   registerChannel = () => {
-    this.broadcastChannel = window.BroadcastChannel
-      ? new BroadcastChannelFallback(this.key)
-      : new BroadcastChannel(this.key)
-    this.broadcastChannel.addEventListener('message', this.onChannelMessage)
+    this.broadcastChannel = new BroadcastChannel(this.key)
+    this.broadcastChannel = this.broadcastChannel.addEventListener('message', this.onChannelMessage)
   }
 
   registerStateRequest = () => {

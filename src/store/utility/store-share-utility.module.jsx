@@ -22,7 +22,7 @@ class StoreShareSingleton {
   /* Channel methods and functions */
   registerChannel = () => {
     this.broadcastChannel = new BroadcastChannel(this.key)
-    this.broadcastChannel = this.broadcastChannel.addEventListener('message', this.onChannelMessage)
+    this.broadcastChannel.addEventListener('message', this.onChannelMessage)
   }
 
   registerStateRequest = () => {

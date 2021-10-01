@@ -1,4 +1,7 @@
 import { BroadcastChannel } from 'broadcast-channel'
+import LoggingService from '@/services/logging-service'
+
+const logger = new LoggingService('store-share')
 
 class StoreShareSingleton {
   /* Constant properties */
@@ -22,11 +25,17 @@ class StoreShareSingleton {
   /* Channel methods and functions */
   registerChannel = () => {
     this.broadcastChannel = new BroadcastChannel(this.key)
-    this.broadcastChannel.addEventListener('message', this.onChannelMessage)
+    window.addEventListener('pageshow', () => {
+      this.broadcastChannel.addEventListener('message', this.onChannelMessage)
+    })
+    window.addEventListener('pagehide', () => {
+      this.broadcastChannel.removeEventListener('message', this.onChannelMessage)
+    })
   }
 
   registerStateRequest = () => {
     window.addEventListener('pageshow', () => {
+      logger.debug('requested state')
       this.sendChannelMessage(this.CONTENT_TYPES.STATE_REQUEST, {})
     })
   }
@@ -41,6 +50,7 @@ class StoreShareSingleton {
   }
 
   onStateRequest = () => {
+    logger.debug('received state request')
     const localState = this.storeReference.getState()
     this.sendChannelMessage(this.CONTENT_TYPES.STATE_RESPONSE, {
       date: new Date(),
@@ -50,6 +60,7 @@ class StoreShareSingleton {
 
   onStateResponse = ({ date, state }) => {
     if (date > this.broadcastUpdateDate) {
+      logger.debug('received state response')
       const action = {
         type: this.ACTION_TYPES.INIT,
         payload: state,

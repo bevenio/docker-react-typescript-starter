@@ -1,3 +1,7 @@
+import LoggingService from '@/services/logging-service'
+
+const logger = new LoggingService('store-persist')
+
 class StorePersistSingleton {
   /* Private properties */
   key = 'redux-storage:state'
@@ -33,6 +37,7 @@ class StorePersistSingleton {
         if (this.storeReference && this.isStoreRegistered()) {
           this.registeredEntries.forEach((entry) => {
             try {
+              logger.debug('persisting state')
               localStorage.setItem(
                 this.createEntryName(entry),
                 JSON.stringify(this.storeReference.getState()[entry])
@@ -50,6 +55,7 @@ class StorePersistSingleton {
 
   restoreEntry(entry) {
     if (this.isEntryName(entry)) {
+      logger.debug(`restoring entry (${entry})`)
       this.registerEntry(entry)
       const restoredEntry = JSON.parse(localStorage.getItem(this.createEntryName(entry)))
       const hasRestoredEntry = !!restoredEntry

@@ -66,7 +66,7 @@ class LoggingService {
 
   get warn() {
     if (this.selectedLevel > this.LEVELS.WARN.VALUE) return () => {}
-    return window.console.log
+    return window.console.warn
       .bind(window.console, this.modifiedPrefixStyle(this.selectedName, 'WARN'))
       .bind(window.console, this.modifiedNameStyle())
       .bind(window.console, this.modifiedLevelStyle(this.LEVELS.WARN.COLOR))
@@ -74,7 +74,7 @@ class LoggingService {
 
   get error() {
     if (this.selectedLevel > this.LEVELS.ERROR.VALUE) return () => {}
-    return window.console.log
+    return window.console.error
       .bind(window.console, this.modifiedPrefixStyle(this.selectedName, 'ERROR'))
       .bind(window.console, this.modifiedNameStyle())
       .bind(window.console, this.modifiedLevelStyle(this.LEVELS.ERROR.COLOR))

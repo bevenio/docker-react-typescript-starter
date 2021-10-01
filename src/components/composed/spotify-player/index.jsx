@@ -107,13 +107,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   reduxActions: {
     redirectToSpotify: () => {
-      dispatch(entries.spotify.actions.redirectToSpotify())
+      dispatch(entries.actions.spotify.redirectToSpotify())
     },
     selectDevice: ({ deviceId }) => {
-      dispatch(entries.spotify.actions.selectDevice({ deviceId }))
+      dispatch(entries.actions.spotify.selectDevice({ deviceId }))
     },
     selectTrack: ({ trackId }) => {
-      dispatch(entries.spotify.actions.selectTrack({ trackId }))
+      dispatch(entries.actions.spotify.selectTrack({ trackId }))
     },
   },
 })

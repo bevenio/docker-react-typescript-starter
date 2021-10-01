@@ -1,21 +1,17 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import { applyReduxExtensionDevtools } from '@/services/devtool-service'
 import entries from '@/store/entries'
 
-import { Restore } from '@/store/utility/store-utility.module'
+import { storePersist } from '@/store/utility/store-persist-utility.module'
+import { storeShare } from '@/store/utility/store-share-utility.module'
 
-const reducers = Object.fromEntries(
-  Object.entries(entries).map((entry) => [entry[0], entry[1].reducer])
-)
+const combinedMiddleware = applyMiddleware(thunkMiddleware, storeShare.middleware)
+const store = createStore(entries.reducer, applyReduxExtensionDevtools(combinedMiddleware))
 
-const store = createStore(
-  combineReducers(reducers),
-  applyReduxExtensionDevtools(applyMiddleware(thunkMiddleware))
-)
-
-Restore.extendStore(store)
+storePersist.extendStore(store)
+storeShare.extendStore(store)
 
 export { store }
 export { entries }

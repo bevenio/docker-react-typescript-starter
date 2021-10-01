@@ -1,4 +1,4 @@
-import { Restore } from '@/store/utility/store-utility.module'
+import { storePersist } from '@/store/utility/store-persist-utility.module'
 
 const options = {
   status: {
@@ -9,7 +9,7 @@ const options = {
   },
 }
 
-const preset = Restore.restoreEntry('auth') || {
+const preset = storePersist.restoreEntry('auth') || {
   jwt: null,
   status: options.status.unset,
 }

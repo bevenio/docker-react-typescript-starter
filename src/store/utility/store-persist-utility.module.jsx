@@ -1,13 +1,4 @@
-const extendConstants = (constantPrepend, constants) => {
-  const extendedConstants = {}
-  const keys = Object.keys(constants)
-  for (let i = 0; i < keys.length; i += 1) {
-    extendedConstants[keys[i]] = `${constantPrepend}:${constants[keys[i]]}`
-  }
-  return extendedConstants
-}
-
-class RestoreSingleton {
+class StorePersistSingleton {
   /* Private properties */
   key = 'redux-storage:state'
   name = 'redux-entry'
@@ -15,8 +6,7 @@ class RestoreSingleton {
   registeredEntries = []
 
   /* Class implementation */
-  constructor(name) {
-    this.name = this.name || name
+  constructor() {
     this.registerStore()
   }
 
@@ -58,11 +48,6 @@ class RestoreSingleton {
     )
   }
 
-  extendStore(store) {
-    this.storeReference = store
-    this.applyListeners()
-  }
-
   restoreEntry(entry) {
     if (this.isEntryName(entry)) {
       this.registerEntry(entry)
@@ -72,14 +57,13 @@ class RestoreSingleton {
     }
     return null
   }
+
+  extendStore(store) {
+    this.storeReference = store
+    this.applyListeners()
+  }
 }
 
-const Restore = new RestoreSingleton()
-
-export { extendConstants }
-export { Restore }
-
-export default {
-  extendConstants,
-  Restore,
-}
+const storePersist = new StorePersistSingleton()
+export { storePersist }
+export default { storePersist }

@@ -91,7 +91,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   reduxActions: {
     login: (identifier, password) => {
-      dispatch(entries.auth.actions.requestLogin({ identifier, password }))
+      dispatch(entries.actions.auth.requestLogin({ identifier, password }))
     },
   },
 })

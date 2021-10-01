@@ -29,15 +29,15 @@ class LoggingService {
     }
   }
 
-  modifiedPrefixStyle = (name, level) => `%c${name}%c[${level}]`
+  modifiedPrefixStyle = (name, level) => `%c${level}%c[${name}]`
 
   modifiedLevelStyle = (color) =>
     `
     color: ${color};
+    font-weight: bold;
     background-color: #000000;
     padding-left: 2px;
     padding-right: 2px;
-    vertical-align: bottom;
     `
 
   modifiedNameStyle = () =>
@@ -52,32 +52,32 @@ class LoggingService {
     if (this.selectedLevel > this.LEVELS.DEBUG.VALUE) return () => {}
     return window.console.log
       .bind(window.console, this.modifiedPrefixStyle(this.selectedName, 'DEBUG'))
-      .bind(window.console, this.modifiedNameStyle())
       .bind(window.console, this.modifiedLevelStyle(this.LEVELS.DEBUG.COLOR))
+      .bind(window.console, this.modifiedNameStyle())
   }
 
   get log() {
     if (this.selectedLevel > this.LEVELS.LOG.VALUE) return () => {}
     return window.console.log
       .bind(window.console, this.modifiedPrefixStyle(this.selectedName, 'LOG'))
-      .bind(window.console, this.modifiedNameStyle())
       .bind(window.console, this.modifiedLevelStyle(this.LEVELS.LOG.COLOR))
+      .bind(window.console, this.modifiedNameStyle())
   }
 
   get warn() {
     if (this.selectedLevel > this.LEVELS.WARN.VALUE) return () => {}
     return window.console.warn
       .bind(window.console, this.modifiedPrefixStyle(this.selectedName, 'WARN'))
-      .bind(window.console, this.modifiedNameStyle())
       .bind(window.console, this.modifiedLevelStyle(this.LEVELS.WARN.COLOR))
+      .bind(window.console, this.modifiedNameStyle())
   }
 
   get error() {
     if (this.selectedLevel > this.LEVELS.ERROR.VALUE) return () => {}
     return window.console.error
       .bind(window.console, this.modifiedPrefixStyle(this.selectedName, 'ERROR'))
-      .bind(window.console, this.modifiedNameStyle())
       .bind(window.console, this.modifiedLevelStyle(this.LEVELS.ERROR.COLOR))
+      .bind(window.console, this.modifiedNameStyle())
   }
 }
 

@@ -18,6 +18,7 @@ class StoreShareSingleton {
 
   /* Private properties */
   key = 'redux-broadcast-channel'
+  stateHash = null
   storeReference = null
   broadcastChannel = null
 
@@ -40,10 +41,13 @@ class StoreShareSingleton {
     })
   }
 
-  createStateHash = () => (this.storeReference ? hash(this.storeReference.getState()) : null)
+  updateStateHash = () => {
+    this.stateHash = this.storeReference ? hash(this.storeReference.getState()) : null
+  }
 
-  onAction = async ({ action: remoteAction, hash: remoteHash }) => {
-    if (this.createStateHash() === remoteHash) {
+  onRemoteAction = async ({ action: remoteAction, hash: remoteHash }) => {
+    if (this.stateHash === remoteHash) {
+      logger.debug('state hash match')
       // Remote is executing action on the same state
       const action = {
         type: remoteAction.type,
@@ -59,17 +63,16 @@ class StoreShareSingleton {
   }
 
   onStateRequest = async () => {
-    logger.debug('received state request')
-    const localState = this.storeReference.getState()
+    logger.debug('broadcasting state due to request')
     this.sendChannelMessage(this.CONTENT_TYPES.STATE_RESPONSE, {
       date: new Date(),
-      state: localState,
-      hash: this.createStateHash(),
+      state: this.storeReference.getState(),
+      hash: this.stateHash,
     })
   }
 
   onStateResponse = async ({ state: remoteState, hash: remoteHash }) => {
-    if (this.createStateHash() !== remoteHash) {
+    if (this.stateHash !== remoteHash) {
       logger.debug('received state response')
       const action = {
         type: this.ACTION_TYPES.INIT,
@@ -86,7 +89,7 @@ class StoreShareSingleton {
     switch (message.type) {
       // Another instance triggers a store action, content: { action, hash }
       case this.CONTENT_TYPES.ACTION: {
-        this.onAction(message.content)
+        this.onRemoteAction(message.content)
         break
       }
       // Another instance requests a state update, content: undefined
@@ -120,9 +123,11 @@ class StoreShareSingleton {
 
   reduxActionMiddleware = (/* store */) => (next) => (action) => {
     if (!action.shared) {
-      this.sendChannelMessage(this.CONTENT_TYPES.ACTION, { action, hash: this.createStateHash() })
+      this.sendChannelMessage(this.CONTENT_TYPES.ACTION, { action, hash: this.stateHash })
     }
-    return next(action)
+    const middlewareResult = next(action)
+    this.updateStateHash()
+    return middlewareResult
   }
 
   /* Exposed methods and functions */
@@ -132,6 +137,7 @@ class StoreShareSingleton {
 
   extendStore(store) {
     this.storeReference = store
+    this.updateStateHash()
     this.registerChannel()
     this.registerStateRequest()
   }

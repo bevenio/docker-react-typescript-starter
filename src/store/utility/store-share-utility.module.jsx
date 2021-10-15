@@ -36,7 +36,7 @@ class StoreShareSingleton {
 
   registerStateRequest = () => {
     window.addEventListener('pageshow', () => {
-      logger.debug('requested state')
+      logger.debug('requesting state')
       this.sendChannelMessage(this.CONTENT_TYPES.STATE_REQUEST, {})
     })
   }
@@ -47,7 +47,6 @@ class StoreShareSingleton {
 
   onRemoteAction = async ({ action: remoteAction, hash: remoteHash }) => {
     if (this.stateHash === remoteHash) {
-      logger.debug('state hash match')
       // Remote is executing action on the same state
       const action = {
         type: remoteAction.type,
@@ -65,7 +64,6 @@ class StoreShareSingleton {
   onStateRequest = async () => {
     logger.debug('broadcasting state due to request')
     this.sendChannelMessage(this.CONTENT_TYPES.STATE_RESPONSE, {
-      date: new Date(),
       state: this.storeReference.getState(),
       hash: this.stateHash,
     })

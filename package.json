@@ -86,6 +86,7 @@
     "axios": "^0.21.4",
     "broadcast-channel": "^4.2.0",
     "dot-prop": "^6.0.1",
+    "hash-sum": "^2.0.0",
     "history": "^5.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -95,18 +96,17 @@
     "react-router-dom": "^5.3.0",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
-    "threads": "^1.6.5",
     "wingcss": "^1.0.0-beta"
   },
   "references": {
+    "enzyme": "https://airbnb.io/enzyme/docs/api/",
+    "guide-destructuring": "https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f",
+    "jest-cheatsheet": "https://github.com/sapegin/jest-cheat-sheet",
     "react": "https://reactjs.org/",
     "react-howto": "https://github.com/petehunt/react-howto",
     "react-patterns": "https://reactpatterns.com/",
     "react-testing": "https://www.valentinog.com/blog/testing-react/",
     "react-test-renderer": "https://reactjs.org/docs/test-renderer.html",
-    "jest-cheatsheet": "https://github.com/sapegin/jest-cheat-sheet",
-    "enzyme": "https://airbnb.io/enzyme/docs/api/",
-    "guide-destructuring": "https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f",
     "react-helmet": "https://github.com/nfl/react-helmet"
   }
 }

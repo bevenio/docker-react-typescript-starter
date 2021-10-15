@@ -88,10 +88,6 @@ src
 │   └───composed
 │   └───pages
 │
-└───worker
-│   │   worker.jsx
-│   └───workers
-│
 └───router
 │   │   router.jsx
 │   └───routes
@@ -117,7 +113,7 @@ src
 | \*.service.jsx   | A file that contains side-effect free business logic         | services directory      |
 | \*.sdk.jsx       | A file that interacts with a third party library or software | components / services   |
 | \*.route.jsx     | A file that contains one or multiple routes                  | router directory        |
-| \*.worker.jsx    | A file that contains a webworker                             | worker directory        |
+| \*.worker.jsx    | A file that contains a webworker                             | components / services   |
 
 ### Common directory types
 

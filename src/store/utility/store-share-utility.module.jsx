@@ -57,7 +57,7 @@ class StoreShareSingleton {
       this.reduxDispatch(action, remoteHash)
     } else {
       // Remote is executing action on a different state (hash mismatch)
-      logger.debug('hash mismatch')
+      logger.debug(`hash mismatch [${this.stateHash}:${remoteHash}]`)
       this.sendChannelMessage(this.CONTENT_TYPES.STATE_REQUEST, {})
     }
   }
@@ -137,7 +137,6 @@ class StoreShareSingleton {
 
   extendStore(store) {
     this.storeReference = store
-    this.updateStateHash()
     this.registerChannel()
     this.registerStateRequest()
   }

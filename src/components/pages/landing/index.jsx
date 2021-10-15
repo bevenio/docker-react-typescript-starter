@@ -14,7 +14,12 @@ export default class Landing extends React.Component {
   render() {
     return (
       <>
-        <NavigationBar navigationButtons={[{ name: 'Some route' }, { name: 'Another route' }]} />
+        <NavigationBar
+          navigationButtons={[
+            { name: 'Game', route: '/game' },
+            { name: 'Settings', route: '/settings' },
+          ]}
+        />
         <ContentWrapper navbar="true">
           <h2>Main</h2>
         </ContentWrapper>

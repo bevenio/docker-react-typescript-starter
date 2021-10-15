@@ -24,7 +24,6 @@ export class AppRouter extends React.Component {
     super()
     this.state = {
       router: RouterUtility.getRouter(),
-      history: RouterUtility.getHistory(),
     }
   }
 
@@ -34,7 +33,7 @@ export class AppRouter extends React.Component {
 
   render() {
     const { /* reduxActions, */ reduxState } = this.props
-    const { router: Router, history } = this.state
+    const { router: Router } = this.state
 
     return (
       <>
@@ -46,13 +45,13 @@ export class AppRouter extends React.Component {
             color-scheme={reduxState.appearance.theme}
           />
         </Helmet>
-        <Router basename="/" history={history}>
+        <Router basename="/">
           <Suspense fallback={<LoadingPage />}>
             <Switch>
               <Route path={LoginRoute.route} render={LoginRoute.render} />
               <Route path={SettingsRoute.route} render={SettingsRoute.render} />
-              <Route path={LandingRoute.route} render={LandingRoute.render} />
               <Route path={GameRoute.route} render={GameRoute.render} />
+              <Route path={LandingRoute.route} render={LandingRoute.render} />
               <Route component={ErrorPage} />
             </Switch>
           </Suspense>

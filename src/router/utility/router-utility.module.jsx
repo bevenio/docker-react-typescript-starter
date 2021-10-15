@@ -1,19 +1,15 @@
 import React from 'react'
 import dotProp from 'dot-prop'
-import { createBrowserHistory, createHashHistory } from 'history'
-import { Redirect, Router as PathRouter, HashRouter } from 'react-router-dom'
+import { Redirect, BrowserRouter as PathRouter, HashRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
 
 import { store } from '@/store/store'
 import ErrorPage from '@/components/pages/error'
 
 const isAppUsingHashRoute = !!window.location.hash
-const history = isAppUsingHashRoute ? createHashHistory() : createBrowserHistory()
 const router = isAppUsingHashRoute ? hot(HashRouter) : hot(PathRouter)
 
 const getRouter = () => router
-
-const getHistory = () => history
 
 const createRoute = ({ component: Component, route, redirection, dependencies }) => {
   const mustRedirect = () =>
@@ -52,6 +48,5 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
 
 export default {
   getRouter,
-  getHistory,
   createRoute,
 }

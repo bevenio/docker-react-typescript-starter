@@ -112,7 +112,7 @@ class StoreShareSingleton {
   }
 
   /* Redux methods and functions */
-  reduxDispatch = (action, remoteHash) => {
+  reduxDispatch = (action) => {
     if (this.storeReference) {
       this.storeReference.dispatch(action)
     }

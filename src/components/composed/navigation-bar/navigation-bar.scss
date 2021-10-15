@@ -1,26 +1,24 @@
 .app-navigation-bar {
+  top: 0;
   position: fixed;
   width: 100vw;
+  height: var(--default-navbar-height);
   border-bottom: 5px solid var(--color-brand);
   z-index: 1;
   background-color: var(--color-brand-translucent);
   backdrop-filter: blur(5px) saturate(0.1);
 }
 
+.nav {
+  padding: 0 var(--default-padding) 0 var(--default-padding);
+}
+
+.nav > * {
+  margin-right: var(--default-padding);
+}
+
 .app-navigation-bar > .nav > .nav-logo {
   color: var(--color-text);
   width: 50px;
-  height: 50px;
-}
-
-@media only screen and (max-width: 800px) {
-  .app-navigation-bar {
-    bottom: 0;
-  }
-}
-
-@media only screen and (min-width: 800px) {
-  .app-navigation-bar {
-    top: 0;
-  }
+  height: var(--default-navbar-height);
 }

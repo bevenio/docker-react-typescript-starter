@@ -14,10 +14,10 @@ import LoadingPage from '@/components/pages/loading'
 import ErrorPage from '@/components/pages/error'
 
 // Routes
-import LoginRoutes from '@/router/routes/login.routes'
-import SettingsRoutes from '@/router/routes/settings.routes'
-import LandingRoutes from '@/router/routes/landing.routes'
-import GameRoutes from '@/router/routes/game.routes'
+import LoginRoute from '@/router/routes/login.route'
+import SettingsRoute from '@/router/routes/settings.route'
+import LandingRoute from '@/router/routes/landing.route'
+import GameRoute from '@/router/routes/game.route'
 
 export class AppRouter extends React.Component {
   constructor() {
@@ -49,26 +49,10 @@ export class AppRouter extends React.Component {
         <Router basename="/" history={history}>
           <Suspense fallback={<LoadingPage />}>
             <Switch>
-              <Route
-                exact={LoginRoutes.exact}
-                path={LoginRoutes.route}
-                render={LoginRoutes.subroutes}
-              />
-              <Route
-                exact={SettingsRoutes.exact}
-                path={SettingsRoutes.route}
-                render={SettingsRoutes.subroutes}
-              />
-              <Route
-                exact={GameRoutes.exact}
-                path={GameRoutes.route}
-                render={GameRoutes.subroutes}
-              />
-              <Route
-                exact={LandingRoutes.exact}
-                path={LandingRoutes.route}
-                render={LandingRoutes.subroutes}
-              />
+              <Route path={LoginRoute.route} render={LoginRoute.render} />
+              <Route path={SettingsRoute.route} render={SettingsRoute.render} />
+              <Route path={LandingRoute.route} render={LandingRoute.render} />
+              <Route path={GameRoute.route} render={GameRoute.render} />
               <Route component={ErrorPage} />
             </Switch>
           </Suspense>

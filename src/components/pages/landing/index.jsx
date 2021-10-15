@@ -14,9 +14,9 @@ export default class Landing extends React.Component {
   render() {
     return (
       <>
-        <NavigationBar />
+        <NavigationBar navigationButtons={[{ name: 'Some route' }, { name: 'Another route' }]} />
         <ContentWrapper navbar="true">
-          <h2>Bevenio Playground</h2>
+          <h2>Main</h2>
         </ContentWrapper>
       </>
     )

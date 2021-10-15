@@ -132,7 +132,6 @@ class StoreShareSingleton {
 
   extendStore(store) {
     this.storeReference = store
-    this.statehash = hash(store.getState())
     this.registerChannel()
     this.registerStateRequest()
   }

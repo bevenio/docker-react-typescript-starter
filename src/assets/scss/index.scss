@@ -14,34 +14,32 @@ body {
 
 /* React root element */
 #app {
-  position: absolute;
   height: 100vh;
   width: 100vw;
 }
 
 /* Router */
 .app-router-transition-group {
-  position: absolute;
   width: 100%;
   height: 100%;
 }
 
 .app-route-change-enter {
-  opacity: 0;
+  margin-left: -100vw;
 }
 
 .app-route-change-enter-active {
-  opacity: 1;
-  transition: opacity var(--default-time-long);
+  margin-left: 0px;
+  transition: all var(--default-time-long);
 }
 
 .app-route-change-exit {
-  opacity: 1;
+  margin-left: 0px;
 }
 
 .app-route-change-exit-active {
-  opacity: 0;
-  transition: opacity var(--default-time-long);
+  margin-left: 100vw;
+  transition: all var(--default-time-long);
 }
 
 /* Titles */

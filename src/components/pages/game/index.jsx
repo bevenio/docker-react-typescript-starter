@@ -1,5 +1,6 @@
 import React from 'react'
 
+import PageLayout from '@/components/basic/page-layout'
 import BeatGame from '@/components/composed/beat-game'
 import SpotifyPlayer from '@/components/composed/spotify-player'
 
@@ -70,19 +71,21 @@ export default class Game extends React.Component {
 
   render() {
     return (
-      <div className="app-game-container">
-        <div className="app-game-beat-game">
-          <BeatGame
-            track={this.state.track}
-            status={this.state.trackStatus}
-            position={this.state.trackPosition}
-            duration={this.state.trackDuration}
-          />
+      <PageLayout>
+        <div className="app-game-container">
+          <div className="app-game-beat-game">
+            <BeatGame
+              track={this.state.track}
+              status={this.state.trackStatus}
+              position={this.state.trackPosition}
+              duration={this.state.trackDuration}
+            />
+          </div>
+          <div className="app-game-spotify-player">
+            <SpotifyPlayer track={this.state.trackId} onUpdate={this.onSpotifyPlayerUpdate} />
+          </div>
         </div>
-        <div className="app-game-spotify-player">
-          <SpotifyPlayer track={this.state.trackId} onUpdate={this.onSpotifyPlayerUpdate} />
-        </div>
-      </div>
+      </PageLayout>
     )
   }
 }

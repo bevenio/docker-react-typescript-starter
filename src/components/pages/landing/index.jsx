@@ -1,5 +1,6 @@
 import React from 'react'
 
+import PageLayout from '@/components/basic/page-layout'
 import NavigationBar from '@/components/composed/navigation-bar'
 import ContentWrapper from '@/components/basic/content-wrapper'
 
@@ -13,7 +14,7 @@ export default class Landing extends React.Component {
 
   render() {
     return (
-      <>
+      <PageLayout>
         <NavigationBar
           navigationButtons={[
             { name: 'Game', route: '/game' },
@@ -23,7 +24,7 @@ export default class Landing extends React.Component {
         <ContentWrapper navbar="true">
           <h2>Main</h2>
         </ContentWrapper>
-      </>
+      </PageLayout>
     )
   }
 }

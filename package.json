@@ -94,6 +94,7 @@
     "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
+    "react-transition-group": "^4.4.2",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "wingcss": "^1.0.0-beta"

@@ -1,7 +1,10 @@
 import React from 'react'
 
+/* Services */
 import StylesheetService from '@/services/stylesheet-service'
 
+/* Components */
+import PageLayout from '@/components/basic/page-layout'
 import FillAvailable from '@/components/basic/fill-available'
 import LoginForm from '@/components/composed/login-form'
 import NoiseBackground from '@/components/basic/noise-background'
@@ -16,7 +19,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <>
+      <PageLayout>
         <NoiseBackground color={StylesheetService.getVariable('--color-brand-alt')}>
           <FillAvailable>
             <LoginForm
@@ -27,7 +30,7 @@ export default class Login extends React.Component {
             />
           </FillAvailable>
         </NoiseBackground>
-      </>
+      </PageLayout>
     )
   }
 }

@@ -4,6 +4,8 @@ import PageLayout from '@/components/basic/page-layout'
 import NavigationBar from '@/components/composed/navigation-bar'
 import ContentWrapper from '@/components/basic/content-wrapper'
 
+import TranslationService from '@/services/translation-service'
+
 import './landing.scss'
 
 export default class Landing extends React.Component {
@@ -23,6 +25,9 @@ export default class Landing extends React.Component {
         />
         <ContentWrapper navbar="true">
           <h2>Main</h2>
+          <p>
+            foo: {TranslationService.translate('foo')} poo: {TranslationService.translate('poo')}
+          </p>
         </ContentWrapper>
       </PageLayout>
     )

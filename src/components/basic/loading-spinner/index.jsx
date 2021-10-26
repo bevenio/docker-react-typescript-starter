@@ -4,7 +4,11 @@ import './loading-spinner.scss'
 
 export const LoadingSpinner = (/* props */) => (
   <div className="app-loading-spinner-container">
-    <div className="app-loading-spinner">...</div>
+    <div className="app-loading-spinner">
+      <div />
+      <div />
+      <div />
+    </div>
   </div>
 )
 

@@ -3,6 +3,7 @@ import React from 'react'
 import PageLayout from '@/components/basic/page-layout'
 import NavigationBar from '@/components/composed/navigation-bar'
 import ContentWrapper from '@/components/basic/content-wrapper'
+import LoadingSpinner from '@/components/basic/loading-spinner'
 
 import TranslationService from '@/services/translation-service'
 
@@ -33,6 +34,7 @@ export default class Landing extends React.Component {
               who: 'Benjamin',
               what: 'Übersetzer',
             })}
+            <LoadingSpinner />
           </p>
         </ContentWrapper>
       </PageLayout>

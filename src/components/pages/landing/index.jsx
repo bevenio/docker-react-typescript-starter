@@ -26,7 +26,9 @@ export default class Landing extends React.Component {
         <ContentWrapper navbar="true">
           <h2>Main</h2>
           <p>
-            foo: {TranslationService.translate('foo')} poo: {TranslationService.translate('poo')}
+            foo: {TranslationService.translate('foo')}
+            <br />
+            level.one: {TranslationService.translate('level.one')}
           </p>
         </ContentWrapper>
       </PageLayout>

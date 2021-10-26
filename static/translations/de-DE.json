@@ -1,3 +1,6 @@
 {
-  "foo": "bär"
+  "foo": "bär",
+  "level": {
+    "one": "eins!"
+  }
 }

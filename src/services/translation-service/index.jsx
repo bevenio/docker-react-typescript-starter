@@ -1,3 +1,5 @@
+import dotProp from 'dot-prop'
+
 import LoggingService from '@/services/logging-service'
 
 const logger = new LoggingService('translation-service')
@@ -61,7 +63,7 @@ class TranslationServiceSingleton {
 
   translate(identifier) {
     return this.translations[this.code]
-      ? this.translations[this.code][identifier] || this.DEFAULT_TRANSLATION
+      ? dotProp.get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION
       : this.DEFAULT_TRANSLATION
   }
 }

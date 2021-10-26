@@ -75,7 +75,7 @@ export class LoginForm extends React.Component {
           onChange={(identifier) => this.setState({ identifier })}
         />
         <InputField
-          label="Password"
+          label={translations.password}
           type="password"
           name="login-password"
           onValidate={this.passwordValidator}

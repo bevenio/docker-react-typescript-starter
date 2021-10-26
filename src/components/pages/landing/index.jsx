@@ -1,13 +1,13 @@
 import React from 'react'
 
+/* Styles */
+import './landing.scss'
+
+/* Components */
 import PageLayout from '@/components/basic/page-layout'
 import NavigationBar from '@/components/composed/navigation-bar'
 import ContentWrapper from '@/components/basic/content-wrapper'
 import LoadingSpinner from '@/components/basic/loading-spinner'
-
-import Translator from '@/services/translation-service'
-
-import './landing.scss'
 
 export default class Landing extends React.Component {
   constructor() {

@@ -28,7 +28,11 @@ export default class Landing extends React.Component {
           <p>
             foo: {TranslationService.translate('foo')}
             <br />
-            level.one: {TranslationService.translate('level.one')}
+            level.one:
+            {TranslationService.translate('level.one', {
+              who: 'Benjamin',
+              what: 'Übersetzer',
+            })}
           </p>
         </ContentWrapper>
       </PageLayout>

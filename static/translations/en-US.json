@@ -1,6 +1,6 @@
 {
   "foo": "bar",
   "level": {
-    "one": "one!"
+    "one": "one naise {{what}}, {{who}}!"
   }
 }

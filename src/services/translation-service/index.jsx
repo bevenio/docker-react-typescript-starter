@@ -61,10 +61,14 @@ class TranslationServiceSingleton {
     return this.currentCode
   }
 
-  translate(identifier) {
-    return this.translations[this.code]
+  translate(identifier = '', replacements) {
+    const translation = this.translations[this.code]
       ? dotProp.get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION
       : this.DEFAULT_TRANSLATION
+
+    return translation.replace(/\{\{(.*?)\}\}/g, (_, key) =>
+      replacements[key] !== undefined ? replacements[key] : ''
+    )
   }
 }
 

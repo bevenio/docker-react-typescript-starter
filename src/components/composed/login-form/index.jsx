@@ -11,6 +11,8 @@ import InputField from '@/components/basic/input-field'
 /* Services */
 import Translator from '@/services/translation-service'
 
+const translations = Translator.translateBatch('components.composed.login-form')
+
 export class LoginForm extends React.Component {
   constructor({ onSuccess, onFailure }) {
     super()
@@ -60,8 +62,6 @@ export class LoginForm extends React.Component {
   }
 
   render() {
-    const translations = Translator.translateBatch('components.composed.login-form')
-
     return (
       <form className="app-login-form" onSubmit={this.login}>
         <center>

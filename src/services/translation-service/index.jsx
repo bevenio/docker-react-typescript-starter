@@ -90,16 +90,20 @@ class TranslatorSingleton {
     const baseTranslationProxy = {}
     return new Proxy(baseTranslationProxy, {
       get: (target, prop) => {
+        // Language code cache
+        if (!target[this.code]) {
+          baseTranslationProxy[this.code] = {}
+        }
         // Cached translation
-        if (target[prop]) {
-          return target[prop]
+        if (target[this.code][prop]) {
+          return target[this.code][prop]
         }
         // Fresh translation
         const translation = this.retrieve(identifier)
         if (typeof translation === 'object' && translation[prop])
-          baseTranslationProxy[prop] = this.replace(translation[prop], replacements)
+          baseTranslationProxy[this.code][prop] = this.replace(translation[prop], replacements)
         // Return translation or default
-        return target[prop] || this.DEFAULT_TRANSLATION
+        return target[this.code][prop] || this.DEFAULT_TRANSLATION
       },
     })
   }

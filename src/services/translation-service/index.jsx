@@ -4,7 +4,7 @@ import LoggingService from '@/services/logging-service'
 
 const logger = new LoggingService('translation-service')
 
-class TranslationServiceSingleton {
+class TranslatorSingleton {
   /* Constant properties */
   DEFAULT_CODE = 'en-US'
   DEFAULT_TRANSLATION = ''
@@ -19,6 +19,7 @@ class TranslationServiceSingleton {
     this.changeLanguage()
   }
 
+  /* Setting and changing language */
   registerLanguageListeners = () => {
     window.addEventListener('pageshow', () => {
       window.addEventListener('languagechange', this.changeLanguage)
@@ -56,22 +57,53 @@ class TranslationServiceSingleton {
     }
   }
 
-  /* Exposed methods and functions */
-  get code() {
-    return this.currentCode
-  }
+  /* Translation processing */
+  replace = (translation, replacements = {}) =>
+    typeof translation === 'string'
+      ? translation.replace(/\{\{(.*?)\}\}/g, (_, key) =>
+          replacements[key] !== undefined ? replacements[key] : ''
+        )
+      : this.DEFAULT_TRANSLATION
 
-  translate(identifier = '', replacements) {
-    const translation = this.translations[this.code]
+  retrieve = (identifier) =>
+    this.translations[this.code]
       ? dotProp.get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION
       : this.DEFAULT_TRANSLATION
 
-    return translation.replace(/\{\{(.*?)\}\}/g, (_, key) =>
-      replacements[key] !== undefined ? replacements[key] : ''
-    )
+  /* Exposed methods and functions */
+  get code() {
+    return this.code
+  }
+
+  get ready() {
+    return !!this.translations[this.code]
+  }
+
+  translate(identifier = '', replacements) {
+    const translation = this.retrieve(identifier)
+    if (typeof translation !== 'string')
+      throw new Error('A single translation string is expected to be found')
+    return this.replace(translation, replacements)
+  }
+
+  translateBatch(identifier = '', replacements) {
+    const baseTranslationProxy = {}
+    return new Proxy(baseTranslationProxy, {
+      get: (target, prop) => {
+        // Cached translation
+        if (target[prop]) {
+          return target[prop]
+        }
+        // Fresh translation
+        const translation = this.retrieve(identifier)
+        if (typeof translation === 'object' && translation[prop])
+          baseTranslationProxy[prop] = this.replace(translation[prop], replacements)
+        // Return translation or default
+        return target[prop] || this.DEFAULT_TRANSLATION
+      },
+    })
   }
 }
 
-const Translation = new TranslationServiceSingleton()
-export { Translation }
-export default Translation
+const Translator = new TranslatorSingleton()
+export default Translator

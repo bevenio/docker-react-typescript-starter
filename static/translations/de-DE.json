@@ -1,6 +1,13 @@
 {
-  "foo": "bär",
-  "level": {
-    "one": "eins naiser {{what}}, {{who}}!"
+  "components": {
+    "basic": {},
+    "composed": {
+      "login-form": {
+        "login": "Login",
+        "username": "Nutzername / Email",
+        "password": "Passwort"
+      }
+    },
+    "pages": {}
   }
 }

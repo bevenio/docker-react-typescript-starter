@@ -2,9 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { entries } from '@/store/store'
 
+/* Styles */
+import './login-form.scss'
+
+/* Components */
 import InputField from '@/components/basic/input-field'
 
-import './login-form.scss'
+/* Services */
+import Translator from '@/services/translation-service'
 
 export class LoginForm extends React.Component {
   constructor({ onSuccess, onFailure }) {
@@ -55,13 +60,15 @@ export class LoginForm extends React.Component {
   }
 
   render() {
+    const translations = Translator.translateBatch('components.composed.login-form')
+
     return (
       <form className="app-login-form" onSubmit={this.login}>
         <center>
-          <h2>Login</h2>
+          <h2>{translations.login}</h2>
         </center>
         <InputField
-          label="Username / Email"
+          label={translations.username}
           type="text"
           name="login-identifier"
           onValidate={this.identifierValidator}
@@ -75,7 +82,7 @@ export class LoginForm extends React.Component {
           onChange={(password) => this.setState({ password })}
         />
         <button type="submit" className="primary" disabled={this.isRequesInProgress()}>
-          Login
+          {translations.login}
         </button>
       </form>
     )

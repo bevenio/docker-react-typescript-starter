@@ -9,7 +9,7 @@ import RouterUtility from '@/router/utility/router-utility.module'
 
 /* Services */
 import ServiceworkerService from '@/services/serviceworker-service'
-import TranslationService from '@/services/translation-service'
+import Translator from '@/services/translation-service'
 
 /* Components */
 import LoadingPage from '@/components/pages/loading'
@@ -62,7 +62,7 @@ export class AppRouter extends React.Component {
         <Helmet>
           <title>{reduxState.appearance.title}</title>
           <link rel="icon" type="image/png" href="./static/images/icon-192x192.png" />
-          <html lang={TranslationService.code} color-scheme={reduxState.appearance.theme} />
+          <html lang={Translator.code} color-scheme={reduxState.appearance.theme} />
         </Helmet>
         <Router basename="/">
           <AppRoutes />

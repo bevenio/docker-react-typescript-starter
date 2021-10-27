@@ -1,0 +1,14 @@
+.app-content-card {
+  min-width: 200px;
+  min-height: 200px;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--default-border-width) solid var(--color-brand);
+  border-left: 20px solid var(--color-brand);
+  padding: var(--default-padding);
+  padding-left: 0px;
+  box-sizing: border-box;
+}

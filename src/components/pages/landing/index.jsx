@@ -8,6 +8,7 @@ import PageLayout from '@/components/basic/page-layout'
 import NavigationBar from '@/components/composed/navigation-bar'
 import ContentWrapper from '@/components/basic/content-wrapper'
 import LoadingSpinner from '@/components/basic/loading-spinner'
+import ContentCard from '@/components/basic/content-card'
 
 export default class Landing extends React.Component {
   constructor() {
@@ -26,7 +27,12 @@ export default class Landing extends React.Component {
         />
         <ContentWrapper navbar="true">
           <h2>Main</h2>
-          <LoadingSpinner />
+          <ContentCard>
+            <LoadingSpinner />
+          </ContentCard>
+          <ContentCard>
+            <LoadingSpinner />
+          </ContentCard>
         </ContentWrapper>
       </PageLayout>
     )

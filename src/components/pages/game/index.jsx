@@ -1,10 +1,12 @@
 import React from 'react'
 
+/* Styles */
+import './game.scss'
+
+/* Components */
 import PageLayout from '@/components/basic/page-layout'
 import BeatGame from '@/components/composed/beat-game'
 import SpotifyPlayer from '@/components/composed/spotify-player'
-
-import './game.scss'
 
 const TEST_TRACK = [
   { time: 550, action: 'a1' },

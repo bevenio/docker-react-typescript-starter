@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* Styles */
 import './page-layout.scss'
 
 export default (props) => {

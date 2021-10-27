@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { entries } from '@/store/store'
 
-import Game from './modules/game-main.module'
-
+/* Styles */
 import './beat-game.scss'
+
+/* Modules */
+import Game from './modules/game-main.module'
 
 export class BeatGame extends React.Component {
   constructor(props) {

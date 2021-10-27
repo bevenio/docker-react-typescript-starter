@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* Styles */
 import './loading-spinner.scss'
 
 export const LoadingSpinner = (/* props */) => (

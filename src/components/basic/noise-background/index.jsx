@@ -1,7 +1,9 @@
 import React from 'react'
 
+/* Styles */
 import './noise-background.scss'
 
+/* Modules */
 import Noise from './noise-background.module'
 
 class NoiseBackground extends React.Component {

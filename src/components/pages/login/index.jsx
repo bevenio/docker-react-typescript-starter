@@ -1,5 +1,8 @@
 import React from 'react'
 
+/* Styles */
+import './login.scss'
+
 /* Services */
 import StylesheetService from '@/services/stylesheet-service'
 
@@ -8,8 +11,6 @@ import PageLayout from '@/components/basic/page-layout'
 import FillAvailable from '@/components/basic/fill-available'
 import LoginForm from '@/components/composed/login-form'
 import NoiseBackground from '@/components/basic/noise-background'
-
-import './login.scss'
 
 export default class Login extends React.Component {
   constructor() {

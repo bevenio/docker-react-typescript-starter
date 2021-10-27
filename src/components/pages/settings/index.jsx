@@ -1,10 +1,12 @@
 import React from 'react'
 
+/* Styles */
+import './settings.scss'
+
+/* Components */
 import PageLayout from '@/components/basic/page-layout'
 import ContentWrapper from '@/components/basic/content-wrapper'
 import NavigationBar from '@/components/composed/navigation-bar'
-
-import './settings.scss'
 
 export default class Settings extends React.Component {
   constructor() {

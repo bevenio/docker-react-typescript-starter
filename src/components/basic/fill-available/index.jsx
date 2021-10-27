@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* Styles */
 import './fill-available.scss'
 
 export default (props) => {

@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* Styles */
 import './content-wrapper.scss'
 
 export default (props) => {

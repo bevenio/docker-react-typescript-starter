@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* Styles */
 import './input-field.scss'
 
 export const InputField = ({

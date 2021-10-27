@@ -2,12 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { entries } from '@/store/store'
 
+/* Styles */
+import './spotify-player.scss'
+
+/* SDKs */
 import SpotifyPlayerSDK from './spotify-player.sdk'
+
+/* Components */
 import { SpotifyPlaybackPlayer } from './components/spotify-playback-player.component'
 import { SpotifyLoginRedirect } from './components/spotify-login-redirect.component'
 import { SpotifyLoading } from './components/spotify-loading.component'
-
-import './spotify-player.scss'
 
 const CONSTANTS = {
   PROGRESS_UPDATE_TIME: 1000,

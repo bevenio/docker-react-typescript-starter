@@ -1,10 +1,10 @@
 import React from 'react'
 import RouterUtility from '@/router/utility/router-utility.module'
 
-const LandingPage = React.lazy(() => import('@/components/pages/landing'))
+const MainPage = React.lazy(() => import('@/components/pages/main'))
 
 export default RouterUtility.createRoute({
-  component: LandingPage,
+  component: MainPage,
   route: '/',
   redirection: '/login',
   dependencies: { 'auth.jwt': (jwt) => jwt !== null },

@@ -14,13 +14,10 @@ const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
 const extractChunkName = (pathData) => {
-  const chunkId = pathData.chunk.id.replace('_jsx', '')
-  const chunkPathParts = chunkId.split('_')
-  if (chunkPathParts[chunkPathParts.length - 1] === 'index') {
-    return `js/chunks/${chunkPathParts[chunkPathParts.length - 2]}.chunk.js`
-  } else {
-    return `js/chunks/${chunkPathParts[chunkPathParts.length - 1]}.chunk.js`
-  }
+  const chunkParts = pathData.chunk.id
+    .split('_')
+    .filter((part) => part !== 'jsx' && part !== 'index')
+  return `js/chunks/${chunkParts.pop()}.chunk.js`
 }
 
 const createEntry = (/* options */) => ['react-hot-loader/patch', path.resolve(srcDir, 'index.jsx')]

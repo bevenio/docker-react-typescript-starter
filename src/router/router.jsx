@@ -18,7 +18,7 @@ import ErrorPage from '@/components/pages/error'
 /* Routes */
 import LoginRoute from '@/router/routes/login.route'
 import SettingsRoute from '@/router/routes/settings.route'
-import LandingRoute from '@/router/routes/landing.route'
+import MainRoute from '@/router/routes/main.route'
 import GameRoute from '@/router/routes/game.route'
 
 const AppRoutes = (/* props */) => {
@@ -32,7 +32,7 @@ const AppRoutes = (/* props */) => {
             <Route path={LoginRoute.route} render={LoginRoute.render} />
             <Route path={SettingsRoute.route} render={SettingsRoute.render} />
             <Route path={GameRoute.route} render={GameRoute.render} />
-            <Route path={LandingRoute.route} render={LandingRoute.render} />
+            <Route path={MainRoute.route} render={MainRoute.render} />
             <Route component={ErrorPage} />
           </Switch>
         </Suspense>

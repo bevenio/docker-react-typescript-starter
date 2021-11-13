@@ -60,9 +60,9 @@ export class AppRouter extends React.Component {
     return (
       <>
         <Helmet>
-          <title>{reduxState.appearance.title}</title>
+          <title>{reduxState.settings.title}</title>
           <link rel="icon" type="image/png" href="./static/images/icon-192x192.png" />
-          <html lang={Translator.code} color-scheme={reduxState.appearance.theme} />
+          <html lang={Translator.code} color-scheme={reduxState.settings.theme} />
         </Helmet>
         <Router basename="/">
           <AppRoutes />
@@ -75,7 +75,7 @@ export class AppRouter extends React.Component {
 /* Redux Connection  */
 const mapStateToProps = (state) => ({
   reduxState: {
-    appearance: state.appearance,
+    settings: state.settings,
   },
 })
 const mapDispatchToProps = (/* dispatch */) => ({

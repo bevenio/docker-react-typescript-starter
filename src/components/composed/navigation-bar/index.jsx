@@ -44,7 +44,7 @@ export class NavigationBar extends React.Component {
 // Redux Connection
 const mapStateToProps = (state) => ({
   reduxState: {
-    appearance: state.appearance,
+    settings: state.settings,
   },
 })
 const mapDispatchToProps = (/* dispatch */) => ({

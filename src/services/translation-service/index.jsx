@@ -45,7 +45,7 @@ class TranslatorSingleton {
   }
 
   dispatchLanguageChange = () => {
-    store.dispatch(entries.actions.appearance.changeLang(this.code))
+    store.dispatch(entries.actions.settings.changeLang(this.code))
   }
 
   loadLanguage = (code) => {

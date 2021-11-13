@@ -4,7 +4,7 @@ const options = {
   themes: ['light', 'dark'],
 }
 
-const preset = storePersist.restoreEntry('appearance') || {
+const preset = storePersist.restoreEntry('settings') || {
   title: 'Docker React',
   lettersize: 'medium',
   lang: 'en-US',

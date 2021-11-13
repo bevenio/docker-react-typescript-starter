@@ -1,4 +1,4 @@
-import constants from '@/store/entries/appearance/constants.module'
+import constants from '@/store/entries/settings/constants.module'
 
 const changeLang = (payload) => ({
   type: constants.CHANGE_LANG,

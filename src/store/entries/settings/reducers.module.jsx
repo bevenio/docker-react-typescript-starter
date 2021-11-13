@@ -1,5 +1,5 @@
-import constants from '@/store/entries/appearance/constants.module'
-import { preset, options } from '@/store/entries/appearance/presets.module'
+import constants from '@/store/entries/settings/constants.module'
+import { preset, options } from '@/store/entries/settings/presets.module'
 
 const changeLang = (state, action) => ({
   ...state,
@@ -21,7 +21,7 @@ const changeLetterSize = (state, action) => ({
   lettersize: action.payload,
 })
 
-const appearanceReducers = (state = preset, action) => {
+const settingsReducers = (state = preset, action) => {
   switch (action.type) {
     case constants.CHANGE_LANG:
       return changeLang(state, action)
@@ -34,4 +34,4 @@ const appearanceReducers = (state = preset, action) => {
   }
 }
 
-export default appearanceReducers
+export default settingsReducers

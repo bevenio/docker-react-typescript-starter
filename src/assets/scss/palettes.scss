@@ -1,6 +1,6 @@
 :root {
   /* general color variables */
-  --hsl-color-brand: 200, 70%, 60%;
+  --hsl-color-brand: 225, 70%, 60%;
   --hsl-color-accent: 230, 30%, 50%;
   --hsl-color-error: 0, 100%, 50%;
   /* general opacity variables */
@@ -35,7 +35,7 @@
 
 [color-scheme='dark'] {
   --color-mono-1: #020014;
-  --color-mono-2: #141414;
+  --color-mono-2: #000000;
   --color-mono-3: #e2e2e2;
   --color-mono-translucent: #e2e2e220;
   --color-mono-translucent-2: #e2e2e240;

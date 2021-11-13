@@ -1,13 +1,21 @@
+import React from 'react'
 import dotProp from 'dot-prop'
 
+/* Store */
+import { store, entries } from '@/store/store'
+
+/* Services */
 import LoggingService from '@/services/logging-service'
+
+/* Components */
+import TextPlaceholder from '@/components/basic/text-placeholder'
 
 const logger = new LoggingService('translation-service')
 
 class TranslatorSingleton {
   /* Constant properties */
   DEFAULT_CODE = 'en-US'
-  DEFAULT_TRANSLATION = ''
+  DEFAULT_TRANSLATION = (<TextPlaceholder />)
 
   /* Private properties */
   code = this.DEFAULT_CODE
@@ -36,6 +44,10 @@ class TranslatorSingleton {
     this.loadLanguage(code)
   }
 
+  dispatchLanguageChange = () => {
+    store.dispatch(entries.actions.appearance.changeLang(this.code))
+  }
+
   loadLanguage = (code) => {
     if (!this.translations[code]) {
       import(
@@ -46,6 +58,7 @@ class TranslatorSingleton {
         .then((translationsAsJSON) => {
           this.translations[code] = translationsAsJSON
           this.code = code
+          this.dispatchLanguageChange()
           logger.debug(`Loaded translations [${code}]`)
         })
         .catch(() => {

@@ -21,7 +21,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <PageLayout>
-        <NoiseBackground color={StylesheetService.getVariable('--color-brand-alt')}>
+        <NoiseBackground color={StylesheetService.getVariable('--color-accent')}>
           <FillAvailable>
             <LoginForm
               onSuccess={() => {

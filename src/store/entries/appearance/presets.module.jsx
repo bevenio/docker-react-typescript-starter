@@ -7,6 +7,7 @@ const options = {
 const preset = storePersist.restoreEntry('appearance') || {
   title: 'Docker React',
   lettersize: 'medium',
+  lang: 'en-US',
   theme: options.themes[1],
 }
 

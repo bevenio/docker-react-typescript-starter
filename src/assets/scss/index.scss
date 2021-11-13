@@ -130,6 +130,7 @@ input {
   border-radius: 0 !important;
   border-color: var(--color-brand) !important;
   background-color: var(--color-brand-translucent-2);
+  font-family: var(--default-font-family-text);
   box-sizing: border-box;
 }
 
@@ -158,6 +159,14 @@ button {
   color: var(--color-mono-1) !important;
   border-radius: 0 !important;
   background-color: var(--color-brand) !important;
+  font-family: var(--default-font-family-text);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:after {
+  content: '_';
+  margin-right: 6px;
 }
 
 button:hover {

@@ -14,6 +14,11 @@ import Translator from '@/services/translation-service'
 const translations = Translator.translateBatch('components.composed.login-form')
 
 export class LoginForm extends React.Component {
+  CONSTANTS = {
+    IDENTIFIER_MIN_LENGTH: 3,
+    PASSWORD_MIN_LENGTH: 8,
+  }
+
   constructor({ onSuccess, onFailure }) {
     super()
     this.state = {
@@ -44,10 +49,14 @@ export class LoginForm extends React.Component {
   }
 
   identifierValidator = () =>
-    this.state.identifier.length >= 4 || !this.state.identifier ? true : 'Identifier is too short'
+    this.state.identifier.length >= this.CONSTANTS.IDENTIFIER_MIN_LENGTH || !this.state.identifier
+      ? true
+      : 'Identifier is too short'
 
   passwordValidator = () =>
-    this.state.identifier.length >= 4 || !this.state.identifier ? true : 'Password is too short'
+    this.state.identifier.length >= this.CONSTANTS.PASSWORD_MIN_LENGTH || !this.state.password
+      ? true
+      : 'Password is too short'
 
   resetRequestProgress = () => {
     this.setState({ isRequesInProgress: false })

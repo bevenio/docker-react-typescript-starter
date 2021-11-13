@@ -20,8 +20,8 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <PageLayout>
-        <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
+      <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
+        <PageLayout>
           <FillAvailable>
             <LoginForm
               onSuccess={() => {
@@ -30,8 +30,8 @@ export default class Login extends React.Component {
               onFailure={() => {}}
             />
           </FillAvailable>
-        </NoiseBackground>
-      </PageLayout>
+        </PageLayout>
+      </NoiseBackground>
     )
   }
 }

@@ -22,8 +22,8 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <PageLayout>
-        <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
+      <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
+        <PageLayout>
           <NavigationBar
             navigationButtons={[
               { name: 'Game', route: '/game' },
@@ -39,8 +39,8 @@ export default class Main extends React.Component {
               <LoadingSpinner />
             </ContentCard>
           </ContentWrapper>
-        </NoiseBackground>
-      </PageLayout>
+        </PageLayout>
+      </NoiseBackground>
     )
   }
 }

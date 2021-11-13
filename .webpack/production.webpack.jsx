@@ -7,6 +7,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
+const RobotstxtPlugin = require('robotstxt-webpack-plugin')
 const path = require('path')
 
 const rootDir = path.resolve(__dirname, './../')
@@ -88,6 +89,8 @@ const createPlugins = (options) => {
       Buffer: ['buffer', 'Buffer'],
     })
   )
+
+  plugins.push(new RobotstxtPlugin())
 
   if (options.sw === true) {
     plugins.push(

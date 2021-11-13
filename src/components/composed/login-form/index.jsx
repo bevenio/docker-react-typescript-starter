@@ -54,7 +54,7 @@ export class LoginForm extends React.Component {
       : 'Identifier is too short'
 
   passwordValidator = () =>
-    this.state.identifier.length >= this.CONSTANTS.PASSWORD_MIN_LENGTH || !this.state.password
+    this.state.password.length >= this.CONSTANTS.PASSWORD_MIN_LENGTH || !this.state.password
       ? true
       : 'Password is too short'
 

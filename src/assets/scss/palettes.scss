@@ -1,7 +1,7 @@
 :root {
   /* general color variables */
-  --hsl-color-brand: 172, 50%, 50%;
-  --hsl-color-accent: 230, 50%, 40%;
+  --hsl-color-brand: 200, 70%, 60%;
+  --hsl-color-accent: 230, 30%, 50%;
   --hsl-color-error: 0, 100%, 50%;
   /* general opacity variables */
   --alpha-light: 0.5;
@@ -26,7 +26,7 @@
 /* Color schemes */
 [color-scheme='light'] {
   --color-mono-1: #d5d5d5;
-  --color-mono-2: #f7f7f7;
+  --color-mono-2: #d8d8d8;
   --color-mono-3: #636363;
   --color-mono-translucent: #63636320;
   --color-mono-translucent-2: #63636340;
@@ -35,7 +35,7 @@
 
 [color-scheme='dark'] {
   --color-mono-1: #020014;
-  --color-mono-2: #353535;
+  --color-mono-2: #141414;
   --color-mono-3: #e2e2e2;
   --color-mono-translucent: #e2e2e220;
   --color-mono-translucent-2: #e2e2e240;

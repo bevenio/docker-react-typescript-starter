@@ -125,14 +125,16 @@ form {
 
 /* Inputs */
 input {
+  box-sizing: border-box;
   color: var(--color-text);
   border: var(--default-border-width) solid !important;
   border-right: calc(var(--default-border-width) * 4) solid !important;
   border-radius: 0 !important;
   border-color: var(--color-brand) !important;
   background-color: var(--color-brand-translucent-2);
+  backdrop-filter: var(--default-filter-blur);
+  -webkit-backdrop-filter: var(--default-filter-blur);
   font-family: var(--default-font-family-text);
-  box-sizing: border-box;
   cursor: url('static/images/cursor-text-20x20.png'), text;
 }
 

@@ -6,9 +6,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: var(--default-border-width) solid var(--color-brand);
-  border-left: 20px solid var(--color-brand);
+  margin: var(--default-margin);
   padding: var(--default-padding);
   padding-left: 0px;
   box-sizing: border-box;
+  border: var(--default-border-width) solid var(--color-brand);
+  border-left: 20px solid var(--color-brand);
+  backdrop-filter: var(--default-filter-blur);
+  -webkit-backdrop-filter: var(--default-filter-blur);
 }

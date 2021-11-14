@@ -32,10 +32,7 @@ export class NavigationBar extends React.Component {
     const { navigationButtons } = this.props
     return (
       <div className="app-navigation-bar">
-        <div className="nav">
-          <img className="nav-logo" src="static/images/icon-192x192.png" alt="nav-logo" />
-          {this.createIconButtons(navigationButtons)}
-        </div>
+        <div className="nav">{this.createIconButtons(navigationButtons)}</div>
       </div>
     )
   }

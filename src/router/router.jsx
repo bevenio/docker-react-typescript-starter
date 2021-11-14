@@ -61,7 +61,7 @@ export class AppRouter extends React.Component {
       <>
         <Helmet>
           <title>{reduxState.settings.title}</title>
-          <link rel="icon" type="image/png" href="./static/images/icon-192x192.png" />
+          <link rel="icon" type="image/png" href="./static/images/icons/icon-192x192.png" />
           <html lang={Translator.code} color-scheme={reduxState.settings.theme} />
         </Helmet>
         <Router basename="/">

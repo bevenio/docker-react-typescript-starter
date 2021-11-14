@@ -10,7 +10,7 @@ body {
   font-family: var(--default-font-family-text);
   color: var(--color-text);
   background-color: var(--color-mono-2);
-  cursor: url('static/images/cursor-point-20x20.png'), auto;
+  cursor: url('static/images/cursors/cursor-point-20x20.png'), auto;
 }
 
 /* React root element */
@@ -135,7 +135,7 @@ input {
   backdrop-filter: var(--default-filter-blur);
   -webkit-backdrop-filter: var(--default-filter-blur);
   font-family: var(--default-font-family-text);
-  cursor: url('static/images/cursor-text-20x20.png'), text;
+  cursor: url('static/images/cursors/cursor-text-20x20.png'), text;
 }
 
 input:hover {
@@ -179,5 +179,5 @@ button:hover {
 }
 
 button {
-  cursor: url('static/images/cursor-click-20x20.png'), pointer;
+  cursor: url('static/images/cursors/cursor-click-20x20.png'), pointer;
 }

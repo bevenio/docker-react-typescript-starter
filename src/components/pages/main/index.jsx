@@ -24,14 +24,9 @@ export default class Main extends React.Component {
     return (
       <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
         <PageLayout>
-          <NavigationBar
-            navigationButtons={[
-              { name: 'Game', route: '/game' },
-              { name: 'Settings', route: '/settings' },
-            ]}
-          />
+          <NavigationBar navigationButtons={[{ name: 'Settings', route: '/settings' }]} />
           <ContentWrapper navbar="true">
-            <h2>Main</h2>
+            <h2>Hacks</h2>
             <ContentCard>
               <LoadingSpinner />
             </ContentCard>

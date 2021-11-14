@@ -6,6 +6,9 @@
         "login": "Login",
         "username": "Nutzername / Email",
         "password": "Passwort"
+      },
+      "navigation-bar": {
+        "home": "Home"
       }
     },
     "pages": {}

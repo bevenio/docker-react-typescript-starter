@@ -24,7 +24,10 @@ export default class Main extends React.Component {
     return (
       <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
         <PageLayout>
-          <NavigationBar navigationButtons={[{ name: 'Settings', route: '/settings' }]} />
+          <NavigationBar
+            hasHomeButton
+            navigationButtons={[{ name: 'Settings', route: '/settings' }]}
+          />
           <ContentWrapper navbar="true">
             <h2>Hacks</h2>
             <ContentCard>

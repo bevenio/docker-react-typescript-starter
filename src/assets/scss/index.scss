@@ -27,20 +27,20 @@ body {
 }
 
 .app-route-change-enter {
-  margin-left: -100vw;
+  opacity: 0;
 }
 
 .app-route-change-enter-active {
-  margin-left: 0px;
+  opacity: 1;
   transition: all var(--default-time-long);
 }
 
 .app-route-change-exit {
-  margin-left: 0px;
+  opacity: 1;
 }
 
 .app-route-change-exit-active {
-  margin-left: 100vw;
+  opacity: 0;
   transition: all var(--default-time-long);
 }
 

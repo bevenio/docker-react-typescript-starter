@@ -5,8 +5,8 @@
   left: 0;
   width: 100vw;
   height: var(--default-navbar-height);
-  border-bottom: 5px solid var(--color-brand);
-  background-color: var(--color-brand-translucent);
+  border-bottom: var(--default-border-width) solid var(--color-brand-translucent);
+  background-color: var(--color-brand-translucent-2);
   backdrop-filter: var(--default-filter-blur);
   -webkit-backdrop-filter: var(--default-filter-blur);
   padding-top: env(safe-area-inset-top, 0px);

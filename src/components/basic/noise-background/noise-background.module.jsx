@@ -1,4 +1,9 @@
 class Noise {
+  /* Constants */
+  CONSTANTS = {
+    WEIRD_CHARACTERS: 'ŠŇƍƎƛϪϚɟϑƜƚɅơƩƵϡϟƿϴƾϞǮЄǾȐϖȞȵɃɎ',
+  }
+
   /* Class states */
   state = {
     color: null,
@@ -16,7 +21,8 @@ class Noise {
     subfrequency: 150,
     subdivision: 3,
     alpha: 0.9,
-    glitch: true,
+    glitch: false,
+    glyphs: true,
     variation: true,
   }
 
@@ -44,7 +50,7 @@ class Noise {
       this.state.isNoiseActive = true
       this.render()
     } else {
-      throw new Error('A canvas element needs to be passed  (noise start)')
+      throw new Error('A canvas element needs to be passed (noise start)')
     }
   }
 
@@ -145,7 +151,6 @@ class Noise {
     context.strokeStyle = color
     context.lineWidth = 1
 
-    context.fillStyle = color
     for (let i = 0; i < this.noise.subfrequency; i += 1) {
       const pixel = this.getRandomPixel(area, this.noise.division)
       const subarea = { leading: pixel.size, width: pixel.x, height: pixel.y }
@@ -154,11 +159,31 @@ class Noise {
     }
   }
 
-  renderGlitch = () => {
-    const { canvas, context } = this.state
-    const area = this.getRenderingArea()
+  renderGlyphs = () => {
+    if (this.noise.glyphs && Math.random() > 0.5) {
+      const { color, context } = this.state
+      const area = this.getRenderingArea()
 
+      context.fillStyle = color
+      context.strokeStyle = color
+      context.lineWidth = 1
+
+      for (let i = 0; i < this.noise.frequency; i += 1) {
+        const pixel = this.getRandomPixel(area, this.noise.division)
+        const subarea = { leading: pixel.size, width: pixel.x, height: pixel.y }
+        const subPixel = this.getRandomPixel(subarea, this.noise.subdivision)
+        const glyph = this.CONSTANTS.WEIRD_CHARACTERS.split('').sort(() => 0.5 - Math.random())[0]
+        context.font = `${pixel.size}px Impact`
+        context.fillText(glyph, subPixel.x, subPixel.y)
+      }
+    }
+  }
+
+  renderGlitch = () => {
     if (this.noise.glitch && Math.random() > 0.5) {
+      const { canvas, context } = this.state
+      const area = this.getRenderingArea()
+
       context.drawImage(
         canvas,
         Math.random() * area.leading,
@@ -187,6 +212,8 @@ class Noise {
       this.renderEraseLayer()
       this.renderDivisionPixelsLayer()
       this.renderSubdivisionPixelsLayer()
+      this.renderGlyphs()
+      this.renderGlitch()
     }
   }
 }

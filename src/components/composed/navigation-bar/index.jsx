@@ -5,59 +5,40 @@ import { withRouter } from 'react-router-dom'
 /* Styles */
 import './navigation-bar.scss'
 
-/* Services */
-import Translator from '@/services/translation-service'
-
-const translations = Translator.translateBatch('components.composed.navigation-bar')
-
 export class NavigationBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
 
-  createHomeButton = (hasHomeButton = false) =>
-    hasHomeButton ? (
+  createRouteButtons = (routes = []) => {
+    const currentRoutePath = this.props.history.location.pathname
+    const routesThatCanBeRendered = routes
+      .filter((route) => route.canRender())
+      .filter((route) => route.route !== currentRoutePath)
+
+    return routesThatCanBeRendered.map((route) => (
       <button
-        key="app-navigation-button-home"
+        key={`app-navigation-button-${route.route}`}
         className="app-navigation-button"
         type="button"
         onClick={() => {
-          this.props.history.push('/')
+          this.props.history.push(route.route)
         }}
       >
-        {translations.home}
+        {route.route}
       </button>
-    ) : null
-
-  createIconButton = ({ name = '', icon = '', route = '/' }) => (
-    <button
-      key={`app-navigation-button-${name}`}
-      className="app-navigation-button"
-      type="button"
-      onClick={() => {
-        this.props.history.push(route)
-      }}
-    >
-      {icon}
-      {name}
-    </button>
-  )
-
-  createIconButtons = (iconButtonsData = []) =>
-    iconButtonsData.map((iconButtonData) => this.createIconButton(iconButtonData))
+    ))
+  }
 
   render() {
-    const { navigationButtons, hasHomeButton } = this.props
-
-    return (
+    const { routes } = this.props
+    const routeButtons = this.createRouteButtons(routes)
+    return routeButtons.length > 0 ? (
       <div className="app-navigation-bar">
-        <div className="nav">
-          {this.createHomeButton(hasHomeButton)}
-          {this.createIconButtons(navigationButtons)}
-        </div>
+        <div className="nav">{routeButtons}</div>
       </div>
-    )
+    ) : null
   }
 }
 

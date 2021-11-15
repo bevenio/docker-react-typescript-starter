@@ -12,6 +12,7 @@ import ServiceworkerService from '@/services/serviceworker-service'
 import Translator from '@/services/translation-service'
 
 /* Components */
+import NavigationBar from '@/components/composed/navigation-bar'
 import LoadingPage from '@/components/pages/loading'
 import ErrorPage from '@/components/pages/error'
 
@@ -19,25 +20,26 @@ import ErrorPage from '@/components/pages/error'
 import LoginRoute from '@/router/routes/login.route'
 import SettingsRoute from '@/router/routes/settings.route'
 import MainRoute from '@/router/routes/main.route'
-import GameRoute from '@/router/routes/game.route'
 
 const AppRoutes = (/* props */) => {
   const location = useLocation()
 
   return (
-    <TransitionGroup className="app-router-transition-group">
-      <CSSTransition key={location.key} classNames="app-route-change" timeout={1000}>
-        <Suspense fallback={<LoadingPage />}>
-          <Switch location={location}>
-            <Route path={LoginRoute.route} render={LoginRoute.render} />
-            <Route path={SettingsRoute.route} render={SettingsRoute.render} />
-            <Route path={GameRoute.route} render={GameRoute.render} />
-            <Route path={MainRoute.route} render={MainRoute.render} />
-            <Route component={ErrorPage} />
-          </Switch>
-        </Suspense>
-      </CSSTransition>
-    </TransitionGroup>
+    <>
+      <NavigationBar routes={[LoginRoute, SettingsRoute, MainRoute]} />
+      <TransitionGroup className="app-router-transition-group">
+        <CSSTransition key={location.key} classNames="app-route-change" timeout={1000}>
+          <Suspense fallback={<LoadingPage />}>
+            <Switch location={location}>
+              <Route path={LoginRoute.route} render={LoginRoute.render} />
+              <Route path={SettingsRoute.route} render={SettingsRoute.render} />
+              <Route path={MainRoute.route} render={MainRoute.render} />
+              <Route component={ErrorPage} />
+            </Switch>
+          </Suspense>
+        </CSSTransition>
+      </TransitionGroup>
+    </>
   )
 }
 

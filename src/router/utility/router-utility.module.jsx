@@ -40,9 +40,13 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
     return <Component />
   }
 
+  // A function that returns if a route can be displayed
+  const canRenderFunction = () => !mustRedirect()
+
   return {
     route,
     render: renderFunction,
+    canRender: canRenderFunction,
   }
 }
 

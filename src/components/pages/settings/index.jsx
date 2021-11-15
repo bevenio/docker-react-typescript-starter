@@ -6,7 +6,6 @@ import './settings.scss'
 /* Components */
 import PageLayout from '@/components/basic/page-layout'
 import ContentWrapper from '@/components/basic/content-wrapper'
-import NavigationBar from '@/components/composed/navigation-bar'
 
 export default class Settings extends React.Component {
   constructor() {
@@ -17,7 +16,6 @@ export default class Settings extends React.Component {
   render() {
     return (
       <PageLayout>
-        <NavigationBar hasHomeButton />
         <ContentWrapper navbar="true">
           <h1>Settings</h1>
           <p>{new Array(1000).fill('Lorem Ipsum, dipsum settings. ', 0, 1000).join(' ')}</p>

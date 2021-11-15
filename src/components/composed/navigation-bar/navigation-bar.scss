@@ -15,14 +15,11 @@
 
 .nav {
   padding: 0 var(--default-padding) 0 var(--default-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav > * {
   margin-right: var(--default-padding);
-}
-
-.app-navigation-bar > .nav > .nav-logo {
-  color: var(--color-text);
-  width: 50px;
-  height: var(--default-navbar-height);
 }

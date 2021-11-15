@@ -8,7 +8,6 @@ import StylesheetService from '@/services/stylesheet-service'
 
 /* Components */
 import PageLayout from '@/components/basic/page-layout'
-import NavigationBar from '@/components/composed/navigation-bar'
 import ContentWrapper from '@/components/basic/content-wrapper'
 import LoadingSpinner from '@/components/basic/loading-spinner'
 import ContentCard from '@/components/basic/content-card'
@@ -24,10 +23,6 @@ export default class Main extends React.Component {
     return (
       <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
         <PageLayout>
-          <NavigationBar
-            hasHomeButton
-            navigationButtons={[{ name: 'Settings', route: '/settings' }]}
-          />
           <ContentWrapper navbar="true">
             <h2>Hacks</h2>
             <ContentCard>

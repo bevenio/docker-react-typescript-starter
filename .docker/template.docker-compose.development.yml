@@ -1,7 +1,7 @@
 version: '3'
 services:
   development-service-client:
-    image: node:14
+    image: node:16
     volumes:
       - nodemodules:/usr/src/service/node_modules:consistent
       - ./../:/usr/src/service:consistent

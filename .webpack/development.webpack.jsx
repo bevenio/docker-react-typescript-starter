@@ -48,13 +48,11 @@ const createOutput = (options) => ({
 const createDevServer = (options) => ({
   host: '0.0.0.0',
   port: options.port,
-  contentBase: distDir,
+  static: distDir,
   compress: false,
   hot: true,
-  watchContentBase: true,
   historyApiFallback: true,
   open: true,
-  openPage: '.',
 })
 
 const createPlugins = (options) => {

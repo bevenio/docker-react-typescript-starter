@@ -1,5 +1,5 @@
 import { BroadcastChannel } from 'broadcast-channel'
-import * as hash from 'hash-sum'
+import hash from 'hash-sum'
 import LoggingService from '@/services/logging-service'
 
 const logger = new LoggingService('store-share')

@@ -5,6 +5,7 @@ import { hot } from 'react-hot-loader/root'
 
 import { store } from '@/store/store'
 import ErrorPage from '@/components/pages/error'
+import RouteLayout from '@/components/basic/route-layout'
 
 const isAppUsingHashRoute = !!window.location.hash
 const router = isAppUsingHashRoute ? hot(HashRouter) : hot(PathRouter)
@@ -37,7 +38,11 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
     if (redirect && !redirection) {
       return <ErrorPage />
     }
-    return <Component />
+    return (
+      <RouteLayout>
+        <Component />
+      </RouteLayout>
+    )
   }
 
   // A function that returns if a route can be displayed

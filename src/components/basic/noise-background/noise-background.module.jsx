@@ -110,11 +110,13 @@ class Noise {
   renderEraseLayer = () => {
     const { canvas, context, shadowCanvas, shadowContext } = this.state
 
-    shadowContext.clearRect(0, 0, shadowCanvas.width, shadowCanvas.height)
-    shadowContext.globalAlpha = this.noise.alpha
-    shadowContext.drawImage(canvas, 0, 0)
-    context.clearRect(0, 0, canvas.width, canvas.height)
-    context.drawImage(shadowCanvas, 0, 0)
+    if (canvas.width > 0 && canvas.height > 0) {
+      shadowContext.clearRect(0, 0, shadowCanvas.width, shadowCanvas.height)
+      shadowContext.globalAlpha = this.noise.alpha
+      shadowContext.drawImage(canvas, 0, 0)
+      context.clearRect(0, 0, canvas.width, canvas.height)
+      context.drawImage(shadowCanvas, 0, 0)
+    }
   }
 
   renderPixel = ({ x, y, size }) => {

@@ -1,9 +1,13 @@
 :root {
-  /* general color variables */
+  /* Default color scheme*/
+  color-scheme: dark;
+
+  /* General color variables */
   --hsl-color-brand: 225, 100%, 50%;
   --hsl-color-accent: 230, 60%, 50%;
   --hsl-color-error: 0, 100%, 50%;
-  /* general opacity variables */
+
+  /* General opacity variables */
   --alpha-light: 0.5;
   --alpha-lighter: 0.15;
 }

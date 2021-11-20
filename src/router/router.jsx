@@ -27,7 +27,7 @@ const AppRoutes = (/* props */) => {
   return (
     <>
       <NavigationBar routes={[LoginRoute, SettingsRoute, MainRoute]} />
-      <TransitionGroup className="app-router-transition-group">
+      <TransitionGroup>
         <CSSTransition key={location.key} classNames="app-route-change" timeout={1000}>
           <Suspense fallback={<LoadingPage />}>
             <Switch location={location}>

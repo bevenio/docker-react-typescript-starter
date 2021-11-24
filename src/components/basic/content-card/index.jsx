@@ -4,7 +4,11 @@ import React from 'react'
 import './content-card.scss'
 
 export default (props) => {
-  const { children } = props
-
-  return <div className="app-content-card">{children}</div>
+  const { children, label } = props
+  return (
+    <div className="app-content-card">
+      {label ? <div className="app-content-card-label">{label}</div> : null}
+      {children}
+    </div>
+  )
 }

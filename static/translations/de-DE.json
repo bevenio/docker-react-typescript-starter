@@ -7,6 +7,10 @@
         "username": "Nutzername / Email",
         "password": "Passwort"
       },
+      "settings-form": {
+        "darkmode": "Dunkelmodus",
+        "animations": "Animationen"
+      },
       "navigation-bar": {
         "home": "Home"
       }

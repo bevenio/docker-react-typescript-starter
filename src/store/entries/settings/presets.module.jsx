@@ -6,8 +6,9 @@ const options = {
 
 const preset = storePersist.restoreEntry('settings') || {
   title: 'Bev Co.',
-  lettersize: 'medium',
+  animations: true,
   lang: 'en-US',
+  lettersize: 'medium',
   theme: options.themes[1],
 }
 

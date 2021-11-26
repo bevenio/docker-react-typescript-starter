@@ -1,6 +1,11 @@
 import constants from '@/store/entries/settings/constants.module'
 import { preset, options } from '@/store/entries/settings/presets.module'
 
+const changeAnimations = (state, action) => ({
+  ...state,
+  animations: action.payload,
+})
+
 const changeLang = (state, action) => ({
   ...state,
   lang: action.payload,
@@ -23,6 +28,8 @@ const changeLetterSize = (state, action) => ({
 
 const settingsReducers = (state = preset, action) => {
   switch (action.type) {
+    case constants.CHANGE_ANIMATIONS:
+      return changeAnimations(state, action)
     case constants.CHANGE_LANG:
       return changeLang(state, action)
     case constants.CHANGE_THEME:

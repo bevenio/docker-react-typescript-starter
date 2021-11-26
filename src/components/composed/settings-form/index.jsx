@@ -30,7 +30,7 @@ export class SettingsForm extends React.Component {
   }
 
   render() {
-    const { theme, animations } = this.props.reduxState
+    const { theme, animations } = this.props.reduxState.settings
 
     return (
       <form className="app-settings-form">

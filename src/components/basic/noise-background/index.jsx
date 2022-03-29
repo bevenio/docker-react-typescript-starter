@@ -40,12 +40,7 @@ class NoiseBackground extends React.Component {
 
     return (
       <div className="app-noise-background-container">
-        <canvas
-          ref={this.state.canvasReference}
-          className="app-noise-background-canvas"
-          width="0"
-          height="0"
-        />
+        <canvas ref={this.state.canvasReference} className="app-noise-background-canvas" width="0" height="0" />
         <div className="app-noise-background-container-content">{children}</div>
       </div>
     )

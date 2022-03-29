@@ -12,9 +12,7 @@
 const isDevMode = process.env.NODE_ENV === 'development'
 
 // Importing modules
-const { composeWithDevTools } = isDevMode
-  ? require('redux-devtools-extension')
-  : { composeWithDevTools: null }
+const { composeWithDevTools } = isDevMode ? require('redux-devtools-extension') : { composeWithDevTools: null }
 
 // Function for applyinhg redux browser devtools
 const applyReduxExtensionDevtools = (middleware) => {

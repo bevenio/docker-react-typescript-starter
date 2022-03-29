@@ -14,11 +14,7 @@ export class SpotifyPlaybackPlayer extends React.Component {
     return (
       <>
         <div className="app-spotify-player">
-          {images.length > 0 ? (
-            <img className="app-spotify-player-cover" src={images[0].url} alt="album cover" />
-          ) : (
-            ''
-          )}
+          {images.length > 0 ? <img className="app-spotify-player-cover" src={images[0].url} alt="album cover" /> : ''}
           <div className="app-spotify-player-progress" style={{ width: `${progress}%` }} />
           <div className="app-spotify-player-text">
             <h4>

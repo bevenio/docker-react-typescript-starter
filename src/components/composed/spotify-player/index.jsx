@@ -91,13 +91,7 @@ export class SpotifyPlayer extends React.Component {
     }
 
     const track = this.state.spotifyPlayerSDK.trackInformation
-    return (
-      <SpotifyPlaybackPlayer
-        track={track}
-        progress={this.state.trackProgress}
-        togglePlayback={toggle}
-      />
-    )
+    return <SpotifyPlaybackPlayer track={track} progress={this.state.trackProgress} togglePlayback={toggle} />
   }
 }
 

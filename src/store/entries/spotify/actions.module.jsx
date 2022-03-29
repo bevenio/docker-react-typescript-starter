@@ -73,9 +73,7 @@ const selectTrack = (payload) => (dispatch, getStore) => {
 
   const params = new URLSearchParams([['device_id', deviceId]])
 
-  spotifyApi
-    .put(`/me/player/play`, { uris: [`spotify:track:${trackId}`] }, { params })
-    .catch(onSpotifyApiRequestFailed)
+  spotifyApi.put(`/me/player/play`, { uris: [`spotify:track:${trackId}`] }, { params }).catch(onSpotifyApiRequestFailed)
 }
 
 export { redirectToSpotify }

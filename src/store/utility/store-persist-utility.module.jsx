@@ -38,10 +38,7 @@ class StorePersistSingleton {
           this.registeredEntries.forEach((entry) => {
             try {
               logger.debug('persisting state')
-              localStorage.setItem(
-                this.createEntryName(entry),
-                JSON.stringify(this.storeReference.getState()[entry])
-              )
+              localStorage.setItem(this.createEntryName(entry), JSON.stringify(this.storeReference.getState()[entry]))
             } catch (error) {
               throw new Error('Store entry could not be saved', error)
             }

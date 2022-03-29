@@ -9,9 +9,7 @@ class GameScore {
   }
 
   hit({ action, track, position }) {
-    const currentDrumHit = track.find(
-      (drum) => Math.abs(position - drum.time) < MAX_DRUM_HIT_RADIUS
-    )
+    const currentDrumHit = track.find((drum) => Math.abs(position - drum.time) < MAX_DRUM_HIT_RADIUS)
 
     let hitResult
     if (currentDrumHit && currentDrumHit.action === action) {

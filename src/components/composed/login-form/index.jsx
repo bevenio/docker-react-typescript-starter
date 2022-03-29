@@ -31,9 +31,7 @@ export class LoginForm extends React.Component {
   }
 
   componentDidUpdate(previousProps) {
-    const didLoginSucceed =
-      previousProps.reduxState.auth.status !== 'SUCCEEDED' &&
-      this.props.reduxState.auth.status === 'SUCCEEDED'
+    const didLoginSucceed = previousProps.reduxState.auth.status !== 'SUCCEEDED' && this.props.reduxState.auth.status === 'SUCCEEDED'
 
     if (didLoginSucceed && this.state.isRequesInProgress) {
       if (this.state.success) {
@@ -49,14 +47,10 @@ export class LoginForm extends React.Component {
   }
 
   identifierValidator = () =>
-    this.state.identifier.length >= this.CONSTANTS.IDENTIFIER_MIN_LENGTH || !this.state.identifier
-      ? true
-      : 'Identifier is too short'
+    this.state.identifier.length >= this.CONSTANTS.IDENTIFIER_MIN_LENGTH || !this.state.identifier ? true : 'Identifier is too short'
 
   passwordValidator = () =>
-    this.state.password.length >= this.CONSTANTS.PASSWORD_MIN_LENGTH || !this.state.password
-      ? true
-      : 'Password is too short'
+    this.state.password.length >= this.CONSTANTS.PASSWORD_MIN_LENGTH || !this.state.password ? true : 'Password is too short'
 
   resetRequestProgress = () => {
     this.setState({ isRequesInProgress: false })

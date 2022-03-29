@@ -130,12 +130,7 @@ export default class SpotifyPlayerSDK {
   }
 
   ensureTrackSelection() {
-    const {
-      spotifyState,
-      isSpotifyTrackSelected,
-      spotifyTrackSelectPromiseResolve,
-      spotifySelectedTrackId,
-    } = this.state
+    const { spotifyState, isSpotifyTrackSelected, spotifyTrackSelectPromiseResolve, spotifySelectedTrackId } = this.state
 
     if (!isSpotifyTrackSelected && spotifyTrackSelectPromiseResolve && spotifySelectedTrackId) {
       if (spotifyState && spotifyState.track_window && spotifyState.track_window.current_track) {

@@ -37,8 +37,7 @@ class Game {
   }
 
   getCurrentTrackPosition = () => {
-    const timeDifferenceInMilliseconds =
-      new Date().getTime() - this.state.lastUpdateTimeInMilliseconds
+    const timeDifferenceInMilliseconds = new Date().getTime() - this.state.lastUpdateTimeInMilliseconds
     return this.state.positionInMilliseconds + timeDifferenceInMilliseconds
   }
 

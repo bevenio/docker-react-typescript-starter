@@ -13,9 +13,7 @@ export class NavigationBar extends React.Component {
 
   createRouteButtons = (routes = []) => {
     const currentRoutePath = this.props.history.location.pathname
-    const routesThatCanBeRendered = routes
-      .filter((route) => route.canRender())
-      .filter((route) => route.route !== currentRoutePath)
+    const routesThatCanBeRendered = routes.filter((route) => route.canRender()).filter((route) => route.route !== currentRoutePath)
 
     return routesThatCanBeRendered.map((route) => (
       <button

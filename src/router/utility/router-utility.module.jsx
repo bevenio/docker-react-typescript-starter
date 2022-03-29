@@ -23,9 +23,7 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
           const dependencyComparison = dependencies[current]
 
           // Dependency can be checked by its value or by validator function
-          return typeof dependencyComparison === 'function'
-            ? !!dependencyComparison(dependencyValue)
-            : dependencyValue === dependencyComparison
+          return typeof dependencyComparison === 'function' ? !!dependencyComparison(dependencyValue) : dependencyValue === dependencyComparison
         }, true)
       : true)
 

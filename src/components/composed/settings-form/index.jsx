@@ -34,18 +34,8 @@ export class SettingsForm extends React.Component {
 
     return (
       <form className="app-settings-form">
-        <InputSwitch
-          name="darkmode"
-          label={translations.darkmode}
-          isOn={theme === 'dark'}
-          onChange={this.darkmodeChanged}
-        />
-        <InputSwitch
-          name="animations"
-          label={translations.animations}
-          isOn={animations === true}
-          onChange={this.animationsChanged}
-        />
+        <InputSwitch name="darkmode" label={translations.darkmode} isOn={theme === 'dark'} onChange={this.darkmodeChanged} />
+        <InputSwitch name="animations" label={translations.animations} isOn={animations === true} onChange={this.animationsChanged} />
       </form>
     )
   }

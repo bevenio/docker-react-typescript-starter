@@ -73,15 +73,11 @@ class TranslatorSingleton {
   /* Translation processing */
   replace = (translation, replacements = {}) =>
     typeof translation === 'string'
-      ? translation.replace(/\{\{(.*?)\}\}/g, (_, key) =>
-          replacements[key] !== undefined ? replacements[key] : ''
-        )
+      ? translation.replace(/\{\{(.*?)\}\}/g, (_, key) => (replacements[key] !== undefined ? replacements[key] : ''))
       : this.DEFAULT_TRANSLATION
 
   retrieve = (identifier) =>
-    this.translations[this.code]
-      ? dotProp.get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION
-      : this.DEFAULT_TRANSLATION
+    this.translations[this.code] ? dotProp.get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION : this.DEFAULT_TRANSLATION
 
   /* Exposed methods and functions */
   get code() {
@@ -94,8 +90,7 @@ class TranslatorSingleton {
 
   translate(identifier = '', replacements) {
     const translation = this.retrieve(identifier)
-    if (typeof translation !== 'string')
-      throw new Error('A single translation string is expected to be found')
+    if (typeof translation !== 'string') throw new Error('A single translation string is expected to be found')
     return this.replace(translation, replacements)
   }
 

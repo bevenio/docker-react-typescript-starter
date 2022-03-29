@@ -3,14 +3,7 @@ import React from 'react'
 /* Styles */
 import './input-field.scss'
 
-export const InputField = ({
-  name = 'no-name',
-  type = 'text',
-  label = '',
-  placeholder = '',
-  onValidate = () => true,
-  onChange = () => {},
-}) => {
+export const InputField = ({ name = 'no-name', type = 'text', label = '', placeholder = '', onValidate = () => true, onChange = () => {} }) => {
   const identifier = `app-input-field-${name}`
 
   const valueChanged = (event) => {

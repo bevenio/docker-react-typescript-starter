@@ -3,12 +3,12 @@ const environment = process.env.NODE_ENV || 'production'
 const mode = process.env.MODE || 'web'
 
 const projectConfiguration = require('./../project.json')
-const localMachineSettings = projectConfiguration.local_machine
+const localSettings = projectConfiguration.local
 
 const optionPresets = {
   development: {
     mode: 'development',
-    port: localMachineSettings.port || '8080',
+    port: localSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: true,
     beautify: true,
@@ -21,7 +21,7 @@ const optionPresets = {
   },
   production: {
     mode: 'production',
-    port: localMachineSettings.port || '8080',
+    port: localSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
     beautify: false,
@@ -34,7 +34,7 @@ const optionPresets = {
   },
   test: {
     mode: 'test',
-    port: localMachineSettings.port || '8080',
+    port: localSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
     beautify: false,

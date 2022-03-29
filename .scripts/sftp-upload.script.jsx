@@ -15,11 +15,7 @@ const readline = require('readline').createInterface({
 
 const consoleArguments = process.argv.slice(2)
 
-const filesNotToUpload = fs
-  .readFileSync('.gitignore', 'utf8')
-  .replace(/\r\n/g, '\r')
-  .replace(/\n/g, '\r')
-  .split(/\r/)
+const filesNotToUpload = fs.readFileSync('.gitignore', 'utf8').replace(/\r\n/g, '\r').replace(/\n/g, '\r').split(/\r/)
 
 filesNotToUpload.push('.git')
 filesNotToUpload.push('.authorization')
@@ -39,9 +35,7 @@ const createSFTPConnection = (name, projectConfiguration) => {
         host: projectConfiguration.remote_machines[name].host,
         port: projectConfiguration.remote_machines[name].port,
         username: projectConfiguration.remote_machines[name].user,
-        privateKey: fs.readFileSync(
-          path.resolve(projectConfiguration.remote_machines[name].ssh_key)
-        ),
+        privateKey: fs.readFileSync(path.resolve(projectConfiguration.remote_machines[name].ssh_key)),
       })
       .then(resolve.bind(null, sftp))
       .catch(reject)

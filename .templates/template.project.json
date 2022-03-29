@@ -1,0 +1,18 @@
+{
+  "general": {
+    "node_version": 17
+  },
+  "local": {
+    "port": 8080
+  },
+  "remote": [
+    {
+      "id": "development-server",
+      "user": "root",
+      "host": "bevenio.org",
+      "port": 22,
+      "path": "/home/traefik/traefik_docker_apps/beatify",
+      "ssh_key": "./.authorization/id_rsa"
+    }
+  ]
+}

@@ -127,13 +127,19 @@ src
 
 After running _"make setup"_ a _project.json_ file will be generated. In this file you can configure attributes like the local machine port or remote machines in order to sync your local project.
 
-### Local machine
+### General Properties
+
+| Attribute    | Purpose                                                    |
+| ------------ | ---------------------------------------------------------- |
+| node_version | The node version that will be used throughout this project |
+
+### Local Properties
 
 | Attribute | Purpose                                                       |
 | --------- | ------------------------------------------------------------- |
 | port      | The port your app will be served on (<http://localhost:XXXX>) |
 
-### Remote machines
+### Remote Properties
 
 | Attribute | Purpose                                                       |
 | --------- | ------------------------------------------------------------- |

@@ -10,12 +10,15 @@ const dependencyFiles = [
 ]
 
 const filesToGenerate = [
-  { from: '../.templates/template.project.json', to: '../project.json', overwrite: false },
-  { from: '../.templates/template.LICENSE', to: '../LICENSE', overwrite: true },
-  { from: '../.templates/template.docker-compose.commands.yml', to: '../.docker/docker-compose.commands.yml', overwrite: true },
-  { from: '../.templates/template.docker-compose.deployment.yml', to: '../.docker/docker-compose.deployment.yml', overwrite: true },
-  { from: '../.templates/template.docker-compose.development.yml', to: '../.docker/docker-compose.development.yml', overwrite: true },
-  { from: '../.templates/template.docker-compose.production.yml', to: '../.docker/docker-compose.production.yml', overwrite: true },
+  { from: '../.templates/project/template.project.json', to: '../project.json', overwrite: false },
+  { from: '../.templates/license/template.LICENSE', to: '../LICENSE', overwrite: true },
+  { from: '../.templates/docker/template.docker-compose.commands.yml', to: '../.docker/docker-compose.commands.yml', overwrite: true },
+  { from: '../.templates/docker/template.docker-compose.deployment.yml', to: '../.docker/docker-compose.deployment.yml', overwrite: true },
+  { from: '../.templates/docker/template.docker-compose.development.yml', to: '../.docker/docker-compose.development.yml', overwrite: true },
+  { from: '../.templates/docker/template.docker-compose.production.yml', to: '../.docker/docker-compose.production.yml', overwrite: true },
+  { from: '../.templates/github/template.nodejs_build.yml', to: '../.github/workflows/nodejs_build.yml', overwrite: true },
+  { from: '../.templates/github/template.nodejs_lint.yml', to: '../.github/workflows/nodejs_lint.yml', overwrite: true },
+  { from: '../.templates/github/template.nodejs_test.yml', to: '../.github/workflows/nodejs_test.yml', overwrite: true },
 ]
 
 // Generation Functions

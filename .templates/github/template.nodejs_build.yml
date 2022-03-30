@@ -1,0 +1,57 @@
+{{={{{ }}}=}}
+name: Github CI [Build]
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [{{{project.general.node_version}}}.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Use Node.js ${{ matrix.node-version }}
+
+      - uses: actions/setup-node@v1
+        name: Setup Node.js ${{ matrix.node-version }}
+        with:
+          node-version: ${{ matrix.node-version }}
+        env:
+          CI: true
+      - run: docker volume create nodemodules
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
+      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
+
+      - uses: martinbeentjes/npm-get-version-action@master
+        name: Create semver version
+        id: create_semver_version
+
+      - uses: actions/create-release@v1
+        name: Build Release
+        id: build_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.create_semver_version.outputs.current-version }}
+          release_name: ${{ steps.create_semver_version.outputs.current-version }}
+          body: Authored by ${{ github.actor }}, Commit ${{ github.sha }}, Repository ${{ github.repository }}
+          draft: false
+          prerelease: true
+
+      - uses: actions/upload-release-asset@v1
+        name: Upload Release Asset
+        id: upload_release_asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.build_release.outputs.upload_url }}
+          asset_path: ./.temp/build_outputs/archive.zip
+          asset_name: archive.zip
+          asset_content_type: application/zip

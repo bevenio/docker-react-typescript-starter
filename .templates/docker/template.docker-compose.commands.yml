@@ -34,8 +34,7 @@ services:
       mkdir -p ./build ./dist/public &&
       mv ./dist/!(public) ./dist/public &&
       cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml &&
-      npx bestzip ./build/archive.zip ./dist/** &&
-      find ./dist/** -delete"
+      npx jszip -o ./build/archive.zip ./dist/** && find ./dist/** -delete"
   # Run the linter
   lint:
     extends:

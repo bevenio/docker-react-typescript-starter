@@ -1,6 +1,6 @@
 {
   "collectCoverageFrom": ["<rootDir>/**/*.js?(x)", "!**/node_modules/**", "!**/vendor/**"],
-  "coverageDirectory": "<rootDir>/temp/jest_coverage",
+  "coverageDirectory": "<rootDir>/.temp/jest_coverage",
   "coverageReporters": ["json-summary"],
   "moduleNameMapper": {
     "^.*\\.(css|less|scss|sass)$": "identity-obj-proxy",
@@ -11,5 +11,5 @@
   "roots": ["<rootDir>/src"],
   "testEnvironment": "node",
   "testMatch": ["**/*.spec.js?(x)"],
-  "cacheDirectory": "<rootDir>/temp/jest_cache"
+  "cacheDirectory": "<rootDir>/.temp/jest_cache"
 }

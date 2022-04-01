@@ -14,7 +14,7 @@ make setup
 
 ### Installing dependencies
 
-> Note: The dependencies in the node_modules directory are not the same as those used by the Docker environment. The reason they need to be installed outside of docker is the **VSCode extension ESlint**, which expects a local version of **ESlint**. This repository uses node 16.
+> Note: The dependencies in the node_modules directory are not the same as those used by the Docker environment. The reason they need to be installed outside of docker is the **VSCode extension ESlint**, which expects a local version of **ESlint**. This repository uses node 17.
 
 ```zsh
 make install

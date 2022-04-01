@@ -1,73 +1,83 @@
 import React, { Suspense } from 'react'
-import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import { Route, Switch, useLocation } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
-// Utility
-import RouterUtility from '@/router/utility/router.utility'
+/* Utility */
+import RouterUtility from '@/router/utility/router-utility.module'
 
-// Components
-import LoadingPage from '@/components/pages/loading/loading'
-import ErrorPage from '@/components/pages/error/error'
+/* Services */
+import ServiceworkerService from '@/services/serviceworker-service'
+import Translator from '@/services/translation-service'
 
-// Routes
-import LoginRoutes from '@/router/routes/login.routes'
-import SettingsRoutes from '@/router/routes/settings.routes'
-import LandingRoutes from '@/router/routes/landing.routes'
+/* Components */
+import NavigationBar from '@/components/composed/navigation-bar'
+import LoadingPage from '@/components/pages/loading'
+import ErrorPage from '@/components/pages/error'
+
+/* Routes */
+import LoginRoute from '@/router/routes/login.route'
+import SettingsRoute from '@/router/routes/settings.route'
+import MainRoute from '@/router/routes/main.route'
+
+const AppRoutes = (/* props */) => {
+  const location = useLocation()
+
+  return (
+    <>
+      <NavigationBar routes={[LoginRoute, SettingsRoute, MainRoute]} />
+      <TransitionGroup>
+        <CSSTransition key={location.key} classNames="app-route-change" timeout={1000}>
+          <Suspense fallback={<LoadingPage />}>
+            <Switch location={location}>
+              <Route path={LoginRoute.route} render={LoginRoute.render} />
+              <Route path={SettingsRoute.route} render={SettingsRoute.render} />
+              <Route path={MainRoute.route} render={MainRoute.render} />
+              <Route component={ErrorPage} />
+            </Switch>
+          </Suspense>
+        </CSSTransition>
+      </TransitionGroup>
+    </>
+  )
+}
 
 export class AppRouter extends React.Component {
   constructor() {
     super()
     this.state = {
       router: RouterUtility.getRouter(),
-      history: RouterUtility.getHistory(),
     }
+  }
+
+  componentDidMount() {
+    ServiceworkerService.registerServiceworker()
   }
 
   render() {
     const { /* reduxActions, */ reduxState } = this.props
-    const { router: Router, history } = this.state
+    const { router: Router } = this.state
 
     return (
       <>
         <Helmet>
-          <title>{reduxState.appearance.title}</title>
-          <html
-            lang={reduxState.appearance.languageID}
-            color-scheme={reduxState.appearance.theme}
-          />
+          <title>{reduxState.settings.title}</title>
+          <link rel="icon" type="image/png" href="./static/images/icons/icon-192x192.png" />
+          <html lang={Translator.code} color-scheme={reduxState.settings.theme} />
         </Helmet>
-        <Router basename="/" history={history}>
-          <Suspense fallback={<LoadingPage />}>
-            <Switch>
-              <Route
-                exact={LoginRoutes.exact}
-                path={LoginRoutes.route}
-                render={LoginRoutes.subroutes}
-              />
-              <Route
-                exact={SettingsRoutes.exact}
-                path={SettingsRoutes.route}
-                render={SettingsRoutes.subroutes}
-              />
-              <Route
-                exact={LandingRoutes.exact}
-                path={LandingRoutes.route}
-                render={LandingRoutes.subroutes}
-              />
-              <Route component={ErrorPage} />
-            </Switch>
-          </Suspense>
+        <Router basename="/">
+          <AppRoutes />
         </Router>
       </>
     )
   }
 }
 
-// Redux Connection
+/* Redux Connection  */
 const mapStateToProps = (state) => ({
   reduxState: {
-    appearance: state.appearance,
+    settings: state.settings,
   },
 })
 const mapDispatchToProps = (/* dispatch */) => ({

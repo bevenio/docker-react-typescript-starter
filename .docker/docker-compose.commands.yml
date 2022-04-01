@@ -1,7 +1,7 @@
 version: '2'
 services:
   base:
-    image: node:14
+    image: node:17
     volumes:
       - nodemodules:/usr/src/service/node_modules
       - ./../:/usr/src/service/
@@ -10,7 +10,7 @@ services:
   prepare:
     extends:
       service: base
-    command: bash -c "node ./.scripts/project-setup.script.jsx && node ./.scripts/project-apply.script.jsx"
+    command: bash -c "node ./.scripts/project-generate.script.jsx"
   # Installing node_modules inside of the docker environment
   install:
     extends:

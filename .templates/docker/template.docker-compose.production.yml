@@ -1,0 +1,16 @@
+version: '3'
+services:
+  production-service-client:
+    image: node:{{project.general.node_version}}
+    volumes:
+      - nodemodules:/usr/src/service/node_modules:consistent
+      - ./../:/usr/src/service:consistent
+    environment:
+      - NODE_ENV=production
+    working_dir: /usr/src/service
+    command: npm run serve:production
+    ports:
+      - '{{project.local.port}}:{{project.local.port}}'
+volumes:
+  nodemodules:
+    external: true

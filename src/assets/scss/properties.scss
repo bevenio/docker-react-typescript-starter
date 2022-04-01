@@ -1,7 +1,22 @@
 /* Root - defaults */
 :root {
+  /* Basic styling */
   --default-padding: 10px;
-  --default-border: 1px;
-  --default-border-thick: 2px;
-  --default-navbar-height: 100px;
+  --default-margin: 5px;
+  --default-border-width: 2px;
+  --default-radius: 9px;
+
+  /* Fonts */
+  --default-font-family-text: 'barlow', Arial, Helvetica, sans-serif;
+  --default-font-family-title: 'things digital', sans-serif;
+
+  /* Filters */
+  --default-filter-blur: blur(5px) saturate(1.5);
+
+  /* Timing */
+  --default-time-short: 500ms;
+  --default-time-long: 1000ms;
+
+  /* Components */
+  --default-navbar-height: 60px;
 }

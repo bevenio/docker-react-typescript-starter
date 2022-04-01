@@ -1,22 +1,25 @@
 .app-navigation-bar {
   position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
   width: 100vw;
-  background-color: var(--color-brand-alternative);
-  border-bottom: 5px solid var(--color-brand);
+  height: var(--default-navbar-height);
+  border-bottom: var(--default-border-width) solid var(--color-brand-translucent);
+  background-color: var(--color-brand-translucent-2);
+  backdrop-filter: var(--default-filter-blur);
+  -webkit-backdrop-filter: var(--default-filter-blur);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
 }
 
-.app-navigation-bar > .nav > .nav-logo {
-  color: var(--color-text);
+.nav {
+  padding: 0 var(--default-padding) 0 var(--default-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media only screen and (max-width: 800px) {
-  .app-navigation-bar {
-    bottom: 0;
-  }
-}
-
-@media only screen and (min-width: 800px) {
-  .app-navigation-bar {
-    top: 0;
-  }
+.nav > * {
+  margin-right: var(--default-padding);
 }

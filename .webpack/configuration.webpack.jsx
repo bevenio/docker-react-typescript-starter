@@ -3,45 +3,45 @@ const environment = process.env.NODE_ENV || 'production'
 const mode = process.env.MODE || 'web'
 
 const projectConfiguration = require('./../project.json')
-const localMachineSettings = projectConfiguration.local_machine
+const localSettings = projectConfiguration.local
 
 const optionPresets = {
   development: {
-    entryFile: 'index.jsx',
-    targetType: 'web',
-    host: '0.0.0.0',
-    port: localMachineSettings.port || '8080',
+    mode: 'development',
+    port: localSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: true,
     beautify: true,
     comments: true,
+    compress: false,
     hmr: true,
+    sw: false,
     publicPath: '/',
     baseHref: '/',
   },
   production: {
-    entryFile: 'index.jsx',
-    targetType: 'web',
-    host: '0.0.0.0',
-    port: localMachineSettings.port || '8080',
+    mode: 'production',
+    port: localSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
     beautify: false,
     comments: false,
+    compress: true,
     hmr: false,
+    sw: true,
     publicPath: '/',
     baseHref: '/',
   },
   test: {
-    entryFile: 'index.jsx',
-    targetType: 'web',
-    host: '0.0.0.0',
-    port: localMachineSettings.port || '8080',
+    mode: 'test',
+    port: localSettings.port || '8080',
     showBundleAnalyzer: false,
     sourceMap: false,
     beautify: false,
     comments: false,
+    compress: false,
     hmr: false,
+    sw: false,
     publicPath: '/',
     baseHref: '/',
   },
@@ -71,9 +71,5 @@ const options = {
   },
 }
 
-console.log(
-  `WEBPACK: ${chalk.blueBright(environment)}, ${chalk.blueBright(mode)}`
-)
-module.exports = require(`./${environment}.webpack.jsx`)(
-  options[`${environment}-${mode}`]
-)
+console.log(`WEBPACK: ${chalk.blueBright(environment)}, ${chalk.blueBright(mode)}`)
+module.exports = require(`./${environment}.webpack.jsx`)(options[`${environment}-${mode}`])

@@ -1,37 +1,47 @@
-/* Root */
 :root {
-  /* General colors */
-  --color-brand-hue: 140;
-  --color-brand-sat: 40%;
-  --color-error-hue: 0;
+  /* Default color scheme*/
+  color-scheme: dark;
 
-  /* Palette: default */
-  --color-brand: hsl(var(--color-brand-hue) var(--color-brand-sat) 50%);
-  --color-brand-alternative: hsl(var(--color-brand-hue) var(--color-brand-sat) 80%);
-  --color-error: hsl(var(--color-error-hue) 100% 50%);
-  --color-background-regular: #d5d5d5;
-  --color-background-raised: #f7f7f7;
-  --color-background-contrast: #636363;
-  --color-text: #000000;
+  /* General color variables */
+  --hsl-color-brand: 225, 100%, 50%;
+  --hsl-color-accent: 230, 60%, 50%;
+  --hsl-color-error: 0, 100%, 50%;
+
+  /* General opacity variables */
+  --alpha-light: 0.5;
+  --alpha-lighter: 0.15;
+}
+
+:root {
+  /* Colors */
+  --color-brand: hsl(var(--hsl-color-brand));
+  --color-brand-translucent: hsla(var(--hsl-color-brand), var(--alpha-light));
+  --color-brand-translucent-2: hsla(var(--hsl-color-brand), var(--alpha-lighter));
+
+  --color-accent: hsl(var(--hsl-color-accent));
+  --color-accent-translucent: hsla(var(--hsl-color-accent), var(--alpha-light));
+  --color-accent-translucent-2: hsla(var(--hsl-color-accent), var(--alpha-lighter));
+
+  --color-error: hsl(var(--hsl-color-error));
+  --color-error-translucent: hsla(var(--hsl-color-error), var(--alpha-light));
+  --color-error-translucent-2: hsla(var(--hsl-color-error), var(--alpha-lighter));
 }
 
 /* Color schemes */
 [color-scheme='light'] {
-  --color-brand: hsl(var(--color-brand-hue) var(--color-brand-sat) 50%);
-  --color-brand-alternative: hsl(var(--color-brand-hue) var(--color-brand-sat) 80%);
-  --color-error: hsl(var(--color-error-hue) 100% 50%);
-  --color-background-regular: #d5d5d5;
-  --color-background-raised: #f7f7f7;
-  --color-background-contrast: #636363;
+  --color-mono-1: #d5d5d5;
+  --color-mono-2: #d8d8d8;
+  --color-mono-3: #636363;
+  --color-mono-translucent: #63636320;
+  --color-mono-translucent-2: #63636340;
   --color-text: #000000;
 }
 
 [color-scheme='dark'] {
-  --color-brand: hsl(var(--color-brand-hue) var(--color-brand-sat) 75%);
-  --color-brand-alternative: hsl(var(--color-brand-hue) var(--color-brand-sat) 10%);
-  --color-error: hsl(var(--color-error-hue) 100% 50%);
-  --color-background-regular: #101010;
-  --color-background-raised: #353535;
-  --color-background-contrast: #e2e2e2;
+  --color-mono-1: #020014;
+  --color-mono-2: #000000;
+  --color-mono-3: #e2e2e2;
+  --color-mono-translucent: #e2e2e220;
+  --color-mono-translucent-2: #e2e2e240;
   --color-text: #d6d6d6;
 }

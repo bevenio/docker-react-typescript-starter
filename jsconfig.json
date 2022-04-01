@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "typeAcquisition": {
+    "exclude": ["dotenv", "crc-32", "fast-safe-stringify"]
+  },
+  "exclude": ["node_modules", "dist"]
+}

@@ -5,18 +5,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const CompressionPlugin = require('compression-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 const path = require('path')
 
 const rootDir = path.resolve(__dirname, './../')
 const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
-const createEntry = (options) => [
-  'react-hot-loader/patch',
-  path.resolve(srcDir, options.entryFile),
-]
+const extractChunkName = (pathData) => {
+  const chunkParts = pathData.chunk.id
+    .split('_')
+    .filter((part) => part !== 'jsx' && part !== 'index')
+  return `js/chunks/${chunkParts.pop()}.chunk.js`
+}
 
-const createTarget = (options) => options.targetType
+const createEntry = (/* options */) => ['react-hot-loader/patch', path.resolve(srcDir, 'index.jsx')]
+
+const createTarget = (/* options */) => 'web'
 
 const createResolve = (/* options */) => ({
   extensions: ['.js', '.jsx'],
@@ -33,24 +39,20 @@ const createResolve = (/* options */) => ({
 const createOutput = (options) => ({
   filename: 'js/[name].bundle.js',
   chunkFilename: (pathData) => {
-    const chunkId = pathData.chunk.id.replace('_jsx', '')
-    const chunkEntryFileName = chunkId.substr(chunkId.lastIndexOf('_') + 1)
-    return `js/chunks/${chunkEntryFileName}.chunk.js`
+    return extractChunkName(pathData)
   },
   path: path.resolve(distDir, './'),
   publicPath: options.publicPath,
 })
 
 const createDevServer = (options) => ({
-  host: options.host,
+  host: '0.0.0.0',
   port: options.port,
-  contentBase: distDir,
+  static: distDir,
   compress: false,
   hot: true,
-  watchContentBase: true,
   historyApiFallback: true,
   open: true,
-  openPage: '.',
 })
 
 const createPlugins = (options) => {
@@ -95,14 +97,36 @@ const createPlugins = (options) => {
     })
   )
 
+  if (options.sw === true) {
+    plugins.push(
+      new WorkboxPlugin.GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+        mode: options.mode,
+        swDest: './static/pwa/service-worker.js',
+      })
+    )
+  }
+
   if (options.hmr === true) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
+  }
+
+  if (options.compress === true) {
+    plugins.push(
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.(js|css)$/,
+      })
+    )
   }
 
   if (options.showBundleAnalyzer === true) {
     plugins.push(
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
+        port: options.port,
+        reportFilename: 'bundle-analyzer.html',
       })
     )
   }
@@ -155,6 +179,19 @@ const createModules = (/* options */) => {
     use: ['@svgr/webpack'],
   })
 
+  rules.push({
+    test: /\.(woff|woff2|ttf)$/,
+    use: {
+      loader: 'url-loader',
+    },
+  })
+
+  rules.push({
+    test: /\.(js|jsx)$/,
+    enforce: 'pre',
+    use: ['source-map-loader'],
+  })
+
   return {
     rules,
   }
@@ -170,9 +207,7 @@ const createOptimization = (/* options */) => ({
       vendor: {
         test: /[\\/]node_modules[\\/]/,
         name(module) {
-          const packageName = module.context.match(
-            /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-          )[1]
+          const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
           return `npm.${packageName.replace('@', '')}`
         },
       },
@@ -182,7 +217,7 @@ const createOptimization = (/* options */) => ({
 })
 
 const config = (options) => ({
-  mode: 'development',
+  mode: options.mode,
   entry: createEntry(options),
   target: createTarget(options),
   resolve: createResolve(options),

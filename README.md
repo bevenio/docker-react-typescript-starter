@@ -14,7 +14,7 @@ make setup
 
 ### Installing dependencies
 
-> Note: The dependencies in the node_modules directory are not the same as those used by the Docker environment. The reason they need to be installed outside of docker is the **VSCode extension ESlint**, which expects a local version of **ESlint**. This repository uses node 14.
+> Note: The dependencies in the node_modules directory are not the same as those used by the Docker environment. The reason they need to be installed outside of docker is the **VSCode extension ESlint**, which expects a local version of **ESlint**. This repository uses node 16.
 
 ```zsh
 make install
@@ -88,10 +88,6 @@ src
 │   └───composed
 │   └───pages
 │
-└───worker
-│   │   worker.jsx
-│   └───workers
-│
 └───router
 │   │   router.jsx
 │   └───routes
@@ -106,17 +102,44 @@ src
 └───services
 ```
 
+### Common file types
+
+| File name        | Purpose                                                      | Location                |
+| ---------------- | ------------------------------------------------------------ | ----------------------- |
+| \*.scss          | A file that contains the styling for a component or the app  | assets / components     |
+| index.jsx        | An entrypoint to a service / component / store               | no location restriction |
+| \*.module.jsx    | A file that contains one or multiple plain js modules        | no location restriction |
+| \*.component.jsx | A file that contains one or multiple react components        | component directory     |
+| \*.service.jsx   | A file that contains side-effect free business logic         | services directory      |
+| \*.sdk.jsx       | A file that interacts with a third party library or software | components / services   |
+| \*.route.jsx     | A file that contains one or multiple routes                  | router directory        |
+| \*.worker.jsx    | A file that contains a webworker                             | components / services   |
+
+### Common directory types
+
+| Directory name        | Purpose                                 | Location                |
+| --------------------- | --------------------------------------- | ----------------------- |
+| _\*/\*\*/components/_ | A directory containing react components | _src/components_        |
+| _\*/\*\*/modules/_    | A directory containing plain js modules | no location restriction |
+| _\*/\*\*/utility/_    | A directory containing utility modules  | no location restriction |
+
 ## Project configuration
 
 After running _"make setup"_ a _project.json_ file will be generated. In this file you can configure attributes like the local machine port or remote machines in order to sync your local project.
 
-### Local machine
+### General Properties
+
+| Attribute    | Purpose                                                    |
+| ------------ | ---------------------------------------------------------- |
+| node_version | The node version that will be used throughout this project |
+
+### Local Properties
 
 | Attribute | Purpose                                                       |
 | --------- | ------------------------------------------------------------- |
 | port      | The port your app will be served on (<http://localhost:XXXX>) |
 
-### Remote machines
+### Remote Properties
 
 | Attribute | Purpose                                                       |
 | --------- | ------------------------------------------------------------- |

@@ -1,0 +1,17 @@
+.app-text-placeholder {
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
+  animation: app-text-placeholder-animation 0.5s infinite alternate;
+}
+
+@keyframes app-text-placeholder-animation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}

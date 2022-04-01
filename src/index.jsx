@@ -20,7 +20,5 @@ if (appRootElement !== null) {
     appRootElement
   )
 } else {
-  throw new Error(
-    `Root element "${appRootElementId}" for react-dom to render has not been not found`
-  )
+  throw new Error(`Root element "${appRootElementId}" for react-dom to render has not been not found`)
 }

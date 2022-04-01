@@ -1,0 +1,67 @@
+version: '2'
+services:
+  base:
+    image: node:{{project.general.node_version}}
+    volumes:
+      - nodemodules:/usr/src/service/node_modules
+      - ./../:/usr/src/service/
+    working_dir: /usr/src/service/
+  # Preparing the environment
+  prepare:
+    extends:
+      service: base
+    command: bash -c "node ./.scripts/project-generate.script.jsx"
+  # Installing node_modules inside of the docker environment
+  install:
+    extends:
+      service: base
+    command: npm i
+  # Building into the dist directory
+  build_development:
+    extends:
+      service: base
+    command: npm run build:development
+  build_production:
+    extends:
+      service: base
+    command: npm run build:production
+  # Building and archiving for deployment
+  build_for_deployment:
+    extends:
+      service: base
+    command: bash -O extglob -c "
+      npm run build:production &&
+      mkdir -p ./.temp/build_outputs ./dist/public &&
+      mv ./dist/!(public) ./dist/public &&
+      cp -f ./.docker/docker-compose.deployment.yml ./dist/docker-compose.yml &&
+      npx bestzip ./.temp/build_outputs/archive.zip ./dist/** &&
+      find ./dist/** -delete"
+  # Run the linter
+  lint:
+    extends:
+      service: base
+    command: npx eslint 'src/**/*.{js,jsx}' -c .eslintrc.json
+  # Run tests with optional pattern
+  test:
+    extends:
+      service: base
+    command: npx jest --config .jestrc.json $ARGS
+  # Run tests for ci
+  test_noui:
+    extends:
+      service: base
+    command: npx jest --config .jestrc.json --reporters=default --coverage
+  # Syncing repository to remote machine
+  sync_repository:
+    extends:
+      service: base
+    command: node ./.scripts/sftp-upload.script.jsx $ARGS
+  # Execute command that has been passed to $ARGS
+  execute_command:
+    extends:
+      service: base
+    command: bash -c "$ARGS"
+
+volumes:
+  nodemodules:
+    external: true

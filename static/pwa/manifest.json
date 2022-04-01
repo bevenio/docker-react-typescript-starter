@@ -1,0 +1,22 @@
+{
+  "short_name": "Bev Co.",
+  "name": "bevenio.org",
+  "description": "bevenio.org dashboard",
+  "icons": [
+    {
+      "src": "/static/images/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/images/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000000"
+}

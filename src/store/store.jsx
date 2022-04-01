@@ -1,21 +1,21 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-import entries from '@/store/entries/entry-bundle'
+import { applyReduxExtensionDevtools } from '@/services/devtool-service'
+import entries from '@/store/entries'
 
-import { applyReduxExtensionDevtools } from '@/services/devtool-service/devtool-service'
-import { restore } from '@/store/utility/store.utility'
+import { storePersist } from '@/store/utility/store-persist-utility.module'
+import { storeShare } from '@/store/utility/store-share-utility.module'
 
-const reducers = Object.fromEntries(
-  Object.entries(entries).map((entry) => [entry[0], entry[1].reducer])
-)
+/* Extend store with custom middlewares */
+const combinedMiddleware = applyMiddleware(thunkMiddleware, storeShare.middleware)
 
-const store = createStore(
-  combineReducers(reducers),
-  applyReduxExtensionDevtools(applyMiddleware(thunkMiddleware))
-)
+/* Creating store */
+const store = createStore(entries.reducer, applyReduxExtensionDevtools(combinedMiddleware))
 
-restore.extendStore(store)
+/* Extend store with custom extensions */
+storePersist.extendStore(store)
+storeShare.extendStore(store)
 
 export { store }
 export { entries }

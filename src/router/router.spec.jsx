@@ -8,7 +8,7 @@ import ConnectedRouter from './router'
 // Creating the mock store
 const mockStore = configureMockStore()
 const mockInitialState = {
-  appearance: {
+  settings: {
     theme: 'light',
     letterSize: 'medium',
   },
@@ -23,9 +23,9 @@ describe('router component', () => {
     })
   })
 
-  test('the element has gotten state property "appearance.theme"', () => {
+  test('the element has gotten state property "settings.theme"', () => {
     const store = mockStore(mockInitialState)
     const wrapper = shallow(<ConnectedRouter store={store} />).children()
-    expect(wrapper.props().reduxState.appearance.theme).toBe(mockInitialState.appearance.theme)
+    expect(wrapper.props().reduxState.settings.theme).toBe(mockInitialState.settings.theme)
   })
 })

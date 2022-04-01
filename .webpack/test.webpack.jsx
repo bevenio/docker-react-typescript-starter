@@ -5,15 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const CompressionPlugin = require('compression-webpack-plugin')
 const path = require('path')
 
 const rootDir = path.resolve(__dirname, './../')
 const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
-const createEntry = (options) => [path.resolve(srcDir, options.entryFile)]
+const createEntry = (/* options */) => [path.resolve(srcDir, 'index.jsx')]
 
-const createTarget = (options) => options.targetType
+const createTarget = (/* options */) => 'web'
 
 const createResolve = (/* options */) => ({
   extensions: ['.js', '.jsx'],
@@ -79,6 +80,15 @@ const createPlugins = (options) => {
     plugins.push(new webpack.HotModuleReplacementPlugin())
   }
 
+  if (options.compress === true) {
+    plugins.push(
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.(js|css)$/,
+      })
+    )
+  }
+
   if (options.showBundleAnalyzer === true) {
     plugins.push(
       new BundleAnalyzerPlugin({
@@ -135,6 +145,13 @@ const createModules = (/* options */) => {
     use: ['@svgr/webpack'],
   })
 
+  rules.push({
+    test: /\.(woff|woff2|ttf)$/,
+    use: {
+      loader: 'url-loader',
+    },
+  })
+
   return {
     rules,
   }
@@ -150,9 +167,7 @@ const createOptimization = (/* options */) => ({
       vendor: {
         test: /[\\/]node_modules[\\/]/,
         name(module) {
-          const packageName = module.context.match(
-            /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-          )[1]
+          const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
           return `npm.${packageName.replace('@', '')}`
         },
       },

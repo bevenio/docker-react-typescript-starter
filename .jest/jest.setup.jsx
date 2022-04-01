@@ -12,5 +12,8 @@ import settings from '../src/settings'
 // Mock a websocket server
 new JestWebsocketMock(settings.api.websocket)
 
+// Mock broadcast channel
+jest.mock('broadcast-channel')
+
 // Adapter for react
 configure({ adapter: new Adapter() })

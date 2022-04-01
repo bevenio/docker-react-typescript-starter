@@ -1,0 +1,68 @@
+/* variables */
+.app-input-switch-container {
+  $base: 1.2rem;
+  margin: var(--default-margin);
+
+  /* switch */
+  .app-input-switch {
+    position: relative;
+    display: inline-block;
+    width: calc($base * 4);
+    height: calc($base * 2);
+  }
+
+  /* Hide default HTML checkbox */
+  .app-input-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* slider */
+  .app-input-switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-mono-3);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .app-input-switch-slider:before {
+    position: absolute;
+    content: '';
+    height: calc($base * 1.5);
+    width: calc($base * 1.5);
+    left: calc($base * 0.5);
+    bottom: calc($base * 0.25);
+    background-color: var(--color-mono-2);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  input:checked + .app-input-switch-slider {
+    background-color: var(--color-brand);
+  }
+
+  input:focus + .app-input-switch-slider {
+    box-shadow: 0 0 1px var(--color-brand);
+  }
+
+  input:checked + .app-input-switch-slider:before {
+    -webkit-transform: translateX(calc($base * 1.5));
+    -ms-transform: translateX(calc($base * 1.5));
+    transform: translateX(calc($base * 1.5));
+  }
+
+  /* text */
+  .app-input-switch-text {
+    position: relative;
+    width: fit-content;
+    height: calc($base * 2);
+    padding-left: calc($base * 0.5);
+    vertical-align: baseline;
+  }
+}

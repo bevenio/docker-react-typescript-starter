@@ -1,0 +1,10 @@
+.app-page-layout {
+  position: absolute;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  width: calc(100vw - env(safe-area-inset-right, 0px) - env(safe-area-inset-left, 0px));
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}

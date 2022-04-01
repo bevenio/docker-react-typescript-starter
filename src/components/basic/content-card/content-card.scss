@@ -1,0 +1,33 @@
+.app-content-card {
+  position: relative;
+  min-width: 200px;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: var(--default-padding);
+  box-sizing: border-box;
+  border: var(--default-border-width) solid var(--color-brand);
+  border-left: 20px solid var(--color-brand);
+  backdrop-filter: var(--default-filter-blur);
+  -webkit-backdrop-filter: var(--default-filter-blur);
+  flex-direction: column;
+  margin-top: var(--default-margin);
+}
+
+.app-content-card-label {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  height: 20px;
+  min-width: 50px;
+  width: fit-content;
+  background-color: var(--color-brand);
+  color: var(--color-mono-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: skew(-20deg);
+  padding-left: var(--default-padding);
+  padding-right: var(--default-padding);
+}

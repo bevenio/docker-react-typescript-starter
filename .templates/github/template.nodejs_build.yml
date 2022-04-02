@@ -27,6 +27,7 @@ jobs:
       - run: docker volume create nodemodules
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
+      - run: mkdir build
       - run: docker build -t docker-react:build . -f ./.docker/dockerfile.deployment --rm
       - run: docker save docker-react:build -o ./build/docker-react.tar
 

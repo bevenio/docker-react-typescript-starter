@@ -27,8 +27,8 @@ jobs:
       - run: docker volume create nodemodules
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm install
       - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm prepare
-      - run: docker-compose -f ./.docker/docker-compose.commands.yml run --rm build_for_deployment
-      - run: ls -lisa ./build
+      - run: docker build -t docker-react:build . -f ./.docker/dockerfile.deployment --rm
+      - run: docker save docker-react:build -o ./build/docker-react.tar
 
       - uses: martinbeentjes/npm-get-version-action@master
         name: Create semver version
@@ -53,6 +53,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.build_release.outputs.upload_url }}
-          asset_path: ./build/archive.zip
-          asset_name: archive.zip
-          asset_content_type: application/zip
+          asset_path: ./build/docker-react.tar
+          asset_name: docker-react.tar
+          asset_content_type: application/x-tar

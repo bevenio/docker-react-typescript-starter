@@ -41,4 +41,4 @@ sync:
 
 ### RELEASE COMMANDS
 release:
-	ARGS="" make prepare && $(RUN_DOCKER_COMMAND) build_for_deployment
+	make prepare && docker build -t docker-react:build . -f ./.docker/dockerfile.deployment --rm && docker save docker-react:build -o ./build/docker-react.tar

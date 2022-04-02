@@ -1,0 +1,26 @@
+FROM node:17 as webbuild
+
+### STAGE - WEBBUILD ###
+
+# working in app dir
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Copying project into app dir
+COPY ./ /usr/src/app/
+
+# Build website in production mode
+RUN npm run build:production
+
+### STAGE - SERVERBUILD ###
+
+FROM halverneus/static-file-server:latest as serverbuild
+
+# Copy build website
+COPY --from=webbuild /usr/src/app/dist /web
+
+# Expose default port
+EXPOSE 8080
+
+# Run
+CMD []

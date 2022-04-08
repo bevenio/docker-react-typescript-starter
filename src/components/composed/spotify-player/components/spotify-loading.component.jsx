@@ -8,13 +8,11 @@ export class SpotifyLoading extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="app-spotify-player">
-          <div className="app-spotify-player-text">
-            <h4>Loading...</h4>
-          </div>
+      <div className="app-spotify-player">
+        <div className="app-spotify-player-text">
+          <h4>Loading...</h4>
         </div>
-      </>
+      </div>
     )
   }
 }

@@ -4,6 +4,14 @@
 ![Test](https://github.com/bevenio/docker-react/actions/workflows/nodejs_test.yml/badge.svg?event=push)
 ![Build](https://github.com/bevenio/docker-react/actions/workflows/nodejs_build.yml/badge.svg?event=push)
 
+## Todos
+
+- update to named exports only
+
+- update to function components only
+
+- implement typescript support and components
+
 ## General
 
 ### Setting up this project

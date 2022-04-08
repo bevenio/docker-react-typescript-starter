@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 /* Styles */
 import './input-switch.scss'
 
-export const InputField = ({ name = `no-name`, label = '', isOn = false, onChange = () => {} }) => {
+export function InputField({ name = `no-name`, label = '', isOn = false, onChange = () => {} }) {
   const identifier = `app-input-switch-${name}`
   const [isSwitchChecked, setSwitchChecked] = useState(isOn)
 

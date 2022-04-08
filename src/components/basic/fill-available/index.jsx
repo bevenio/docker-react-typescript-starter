@@ -3,7 +3,7 @@ import React from 'react'
 /* Styles */
 import './fill-available.scss'
 
-export default (props) => {
+export default function FillAvailable(props) {
   const { children } = props
 
   return (

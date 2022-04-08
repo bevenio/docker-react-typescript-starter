@@ -3,7 +3,7 @@ import React from 'react'
 /* Styles */
 import './content-wrapper.scss'
 
-export default (props) => {
+export default function ContentWrapper(props) {
   const { children, navbar = false } = props
 
   return (

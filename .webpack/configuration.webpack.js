@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const environment = process.env.NODE_ENV || 'production'
 const mode = process.env.MODE || 'web'
 
-const projectConfiguration = require('./../project.json')
+const projectConfiguration = require('../project.json')
 const localSettings = projectConfiguration.local
 
 const optionPresets = {
@@ -72,4 +72,4 @@ const options = {
 }
 
 console.log(`WEBPACK: ${chalk.blueBright(environment)}, ${chalk.blueBright(mode)}`)
-module.exports = require(`./${environment}.webpack.jsx`)(options[`${environment}-${mode}`])
+module.exports = require(`./${environment}.webpack.js`)(options[`${environment}-${mode}`])

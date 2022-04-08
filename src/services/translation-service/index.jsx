@@ -1,5 +1,5 @@
 import React from 'react'
-import dotProp from 'dot-prop'
+import { get } from 'dot-prop'
 
 /* Store */
 import { store, entries } from '@/store/store'
@@ -77,24 +77,20 @@ class TranslatorSingleton {
       : this.DEFAULT_TRANSLATION
 
   retrieve = (identifier) =>
-    this.translations[this.code] ? dotProp.get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION : this.DEFAULT_TRANSLATION
+    this.translations[this.code] ? get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION : this.DEFAULT_TRANSLATION
 
   /* Exposed methods and functions */
-  get code() {
-    return this.code
-  }
-
   get ready() {
     return !!this.translations[this.code]
   }
 
-  translate(identifier = '', replacements) {
+  translate(identifier = '', replacements = {}) {
     const translation = this.retrieve(identifier)
     if (typeof translation !== 'string') throw new Error('A single translation string is expected to be found')
     return this.replace(translation, replacements)
   }
 
-  translateBatch(identifier = '', replacements) {
+  translateBatch(identifier = '', replacements = {}) {
     const baseTranslationProxy = {}
     return new Proxy(baseTranslationProxy, {
       get: (target, prop) => {

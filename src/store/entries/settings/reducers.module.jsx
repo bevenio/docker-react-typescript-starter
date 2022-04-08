@@ -26,7 +26,7 @@ const changeLetterSize = (state, action) => ({
   lettersize: action.payload,
 })
 
-const settingsReducers = (state = preset, action) => {
+const settingsReducers = (state = preset, action = {}) => {
   switch (action.type) {
     case constants.CHANGE_ANIMATIONS:
       return changeAnimations(state, action)

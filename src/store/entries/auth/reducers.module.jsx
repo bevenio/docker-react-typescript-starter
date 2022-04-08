@@ -19,7 +19,7 @@ const responseLoginFailed = (state /* , action */) => ({
   status: options.status.failed,
 })
 
-const authReducers = (state = preset, action) => {
+const authReducers = (state = preset, action = {}) => {
   switch (action.type) {
     case constants.LOGIN_REQUEST:
       return requestLogin(state, action)

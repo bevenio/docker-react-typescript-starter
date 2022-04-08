@@ -3,7 +3,7 @@
     "browser": true,
     "jest": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier", "react", "import"],
   "parserOptions": {
@@ -31,6 +31,7 @@
     "react/jsx-one-expression-per-line": "off",
     "no-underscore-dangle": "off",
     "react/destructuring-assignment": "off",
-    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "class-methods-use-this": "off"
   }
 }

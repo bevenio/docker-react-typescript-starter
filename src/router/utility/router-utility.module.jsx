@@ -1,5 +1,5 @@
 import React from 'react'
-import dotProp from 'dot-prop'
+import { get } from 'dot-prop'
 import { Redirect, BrowserRouter as PathRouter, HashRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
 
@@ -19,7 +19,7 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
           if (previous === false) {
             return false
           }
-          const dependencyValue = dotProp.get(store.getState(), current)
+          const dependencyValue = get(store.getState(), current)
           const dependencyComparison = dependencies[current]
 
           // Dependency can be checked by its value or by validator function

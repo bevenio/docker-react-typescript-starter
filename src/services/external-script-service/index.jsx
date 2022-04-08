@@ -11,15 +11,18 @@ const getScriptParent = () => {
 }
 
 const appendScript = (url) => {
-  if (new URL(url)) {
+  try {
+    const parsedUrl = new URL(url)
     const parent = getScriptParent()
     const script = document.createElement('script')
     script.src = url
     script.async = false
+    script.setAttribute('app-script-url', parsedUrl.href)
     parent.appendChild(script)
     return script
+  } catch {
+    throw new Error(`Invalid URL: ${url}`)
   }
-  throw new Error(`Invalid URL: ${url}`)
 }
 
 const removeScript = (node) => {

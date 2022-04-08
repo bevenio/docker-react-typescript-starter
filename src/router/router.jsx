@@ -21,7 +21,7 @@ import LoginRoute from '@/router/routes/login.route'
 import SettingsRoute from '@/router/routes/settings.route'
 import MainRoute from '@/router/routes/main.route'
 
-const AppRoutes = (/* props */) => {
+function AppRoutes() {
   const location = useLocation()
 
   return (

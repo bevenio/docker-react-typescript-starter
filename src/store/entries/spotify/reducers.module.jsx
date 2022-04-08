@@ -25,7 +25,7 @@ const selectTrack = (state, action) => ({
   },
 })
 
-const spotifyReducers = (state = preset, action) => {
+const spotifyReducers = (state = preset, action = {}) => {
   switch (action.type) {
     case constants.REDIRECT_TO_SPOTIFY:
       return state

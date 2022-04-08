@@ -19,7 +19,7 @@ export default class Main extends React.Component {
   }
 
   renderHack = ({ title, level, route }) => (
-    <ContentCard label={`Level ${level}`}>
+    <ContentCard label={`Level ${level}`} key={`key-${title}`}>
       <h4>{title}</h4>
       <button type="button">{`Start ${route}`}</button>
     </ContentCard>

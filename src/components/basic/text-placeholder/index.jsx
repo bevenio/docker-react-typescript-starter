@@ -3,21 +3,18 @@ import React from 'react'
 /* Styles */
 import './text-placeholder.scss'
 
-class TextPlaceholder extends React.Component {
+const TextPlaceholder = function () {
   /* Constant properties */
   CONSTANTS = {
     WEIRD_CHARACTERS: 'ŠŇƍƎƛϪϚɟϑƜƚɅơƩƵϡϟƿϴƾϞǮЄǾȐϖȞȵɃɎŠŇƍƎƛϪϚɟϑƜƚɅơƩƵϡϟƿϴƾϞǮЄǾȐϖȞȵɃɎ'.split(''),
   }
 
   /* Component implementation */
-  generateText = () => {
-    const shuffledCharacters = this.CONSTANTS.WEIRD_CHARACTERS.sort(() => 0.5 - Math.random())
-    return shuffledCharacters.join('')
+  generateWeirdText = () => {
+    return CONSTANTS.WEIRD_CHARACTERS.sort(() => 0.5 - Math.random()).join('')
   }
 
-  render() {
-    return <span className="app-text-placeholder">{this.generateText()}</span>
-  }
+  return <span className="app-text-placeholder">{generateWeirdText()}</span>
 }
 
 export default TextPlaceholder

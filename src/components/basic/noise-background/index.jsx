@@ -18,7 +18,6 @@ const NoiseBackground = function ({ color, children }) {
       color: color,
     })
     noiseInstance.start()
-    console.log(noiseInstance)
     setNoise(noiseInstance)
   }
 

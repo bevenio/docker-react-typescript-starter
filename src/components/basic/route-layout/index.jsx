@@ -1,28 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 /* Styles */
 import './route-layout.scss'
 
-class RouteLayout extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      routeReference: React.createRef(),
-    }
-  }
+const RouteLayout = function ({ children }) {
+  const routeReference = React.createRef()
 
-  componentDidMount() {
-    this.state.routeReference.current.focus()
-  }
+  useEffect(() => {
+    routeReference.current.focus()
+  }, [])
 
-  render() {
-    const { children } = this.props
-    return (
-      <span ref={this.state.routeReference} className="app-route-layout">
-        {children}
-      </span>
-    )
-  }
+  return (
+    <span ref={routeReference} className="app-route-layout">
+      {children}
+    </span>
+  )
 }
 
 export default RouteLayout

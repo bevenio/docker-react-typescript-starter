@@ -1,6 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { entries } from '@/store/store'
+import { usePrevious } from '@/hooks'
 
 /* Styles */
 import './login-form.scss'
@@ -11,98 +12,79 @@ import InputField from '@/components/basic/input-field'
 /* Services */
 import Translator from '@/services/translation-service'
 
+/* Translations */
 const translations = Translator.translateBatch('components.composed.login-form')
 
-export class LoginForm extends React.Component {
-  CONSTANTS = {
+const LoginForm = function ({ onSuccess, onFailure }) {
+  const CONSTANTS = {
     IDENTIFIER_MIN_LENGTH: 3,
     PASSWORD_MIN_LENGTH: 8,
   }
 
-  constructor({ onSuccess, onFailure }) {
-    super()
-    this.state = {
-      isRequesInProgress: false,
-      success: onSuccess,
-      failure: onFailure,
-      identifier: '',
-      password: '',
-    }
-  }
+  // Component state
+  const [isLocalRequestInProgress, setLocalRequestInProgress] = useState(false)
+  const [password, setPassword] = useState('')
+  const [identifier, setIdentifier] = useState('')
 
-  componentDidUpdate(previousProps) {
-    const didLoginSucceed = previousProps.reduxState.auth.status !== 'SUCCEEDED' && this.props.reduxState.auth.status === 'SUCCEEDED'
+  // Component hooks
+  const authStatus = useSelector((state) => state.auth.status)
+  const previousStatus = usePrevious(authStatus)
+  const dispatch = useDispatch()
 
-    if (didLoginSucceed && this.state.isRequesInProgress) {
-      if (this.state.success) {
-        this.state.success()
-        this.resetRequestProgress()
-      }
-    } else if (this.props.reduxState.auth.status === 'FAILED' && this.state.isRequesInProgress) {
-      if (this.state.failure) {
-        this.state.failure()
-        this.resetRequestProgress()
-      }
-    }
-  }
+  // Component business logic
+  const identifierValidator = () => (identifier.length >= CONSTANTS.IDENTIFIER_MIN_LENGTH || !identifier ? true : 'Identifier is too short')
 
-  identifierValidator = () =>
-    this.state.identifier.length >= this.CONSTANTS.IDENTIFIER_MIN_LENGTH || !this.state.identifier ? true : 'Identifier is too short'
+  const passwordValidator = () => (password.length >= CONSTANTS.PASSWORD_MIN_LENGTH || !password ? true : 'Password is too short')
 
-  passwordValidator = () =>
-    this.state.password.length >= this.CONSTANTS.PASSWORD_MIN_LENGTH || !this.state.password ? true : 'Password is too short'
+  const isRequesInProgress = () => authStatus === 'TRYING'
 
-  resetRequestProgress = () => {
-    this.setState({ isRequesInProgress: false })
-  }
-
-  isRequesInProgress = () => this.props.reduxState.auth.status === 'TRYING'
-
-  login = (event) => {
+  const login = (event) => {
     event.preventDefault()
-    this.setState({ isRequesInProgress: true })
-    this.props.reduxActions.login(this.state.identifier, this.state.password)
+    setLocalRequestInProgress(true)
+    dispatch(entries.actions.auth.requestLogin({ identifier, password }))
   }
 
-  render() {
-    return (
-      <form className="app-login-form" onSubmit={this.login}>
-        <center>
-          <h2>{translations.login}</h2>
-        </center>
-        <InputField
-          label={translations.username}
-          type="text"
-          name="login-identifier"
-          onValidate={this.identifierValidator}
-          onChange={(identifier) => this.setState({ identifier })}
-        />
-        <InputField
-          label={translations.password}
-          type="password"
-          name="login-password"
-          onValidate={this.passwordValidator}
-          onChange={(password) => this.setState({ password })}
-        />
-        <button type="submit" className="primary" disabled={this.isRequesInProgress()}>
-          {translations.login}
-        </button>
-      </form>
-    )
-  }
+  // Component effects
+  useEffect(() => {
+    const didLoginSucceed = previousStatus !== 'SUCCEEDED' && authStatus === 'SUCCEEDED'
+    if (didLoginSucceed && isLocalRequestInProgress) {
+      if (onSuccess) {
+        onSuccess()
+        setLocalRequestInProgress(false)
+      }
+    } else if (authStatus === 'FAILED' && isLocalRequestInProgress) {
+      if (onFailure) {
+        onFailure()
+        setLocalRequestInProgress(false)
+      }
+    }
+  }, [authStatus, password, identifier])
+
+  // Component render
+  return (
+    <form className="app-login-form" onSubmit={login}>
+      <center>
+        <h2>{translations.login}</h2>
+      </center>
+      <InputField
+        label={translations.username}
+        type="text"
+        name="login-identifier"
+        onValidate={identifierValidator}
+        onChange={(identifier) => setIdentifier(identifier)}
+      />
+      <InputField
+        label={translations.password}
+        type="password"
+        name="login-password"
+        onValidate={passwordValidator}
+        onChange={(password) => setPassword(password)}
+      />
+      <button type="submit" className="primary" disabled={isRequesInProgress()}>
+        {translations.login}
+      </button>
+    </form>
+  )
 }
 
-// Redux Connection
-const mapStateToProps = (state) => ({
-  reduxState: {
-    auth: state.auth,
-  },
-})
-const mapDispatchToProps = (dispatch) => ({
-  reduxActions: {
-    login: (identifier, password) => {
-      dispatch(entries.actions.auth.requestLogin({ identifier, password }))
-    },
-  },
-})
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default LoginForm

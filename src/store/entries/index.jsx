@@ -8,22 +8,16 @@ import settingsReducer from '@/store/entries/settings/reducers.module'
 import authActions from '@/store/entries/auth/actions.module'
 import authReducer from '@/store/entries/auth/reducers.module'
 
-/* SPOTIFY */
-import spotifyActions from '@/store/entries/spotify/actions.module'
-import spotifyReducer from '@/store/entries/spotify/reducers.module'
-
 /* COMBINED ACTIONS */
 const actions = {
   auth: authActions,
   settings: settingsActions,
-  spotify: spotifyActions,
 }
 
 /* COMBINED REDUCERS */
 const reducers = {
   auth: authReducer,
   settings: settingsReducer,
-  spotify: spotifyReducer,
 }
 
 /* ROOT ACTION / REDUCER */

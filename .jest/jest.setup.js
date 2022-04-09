@@ -15,5 +15,8 @@ new JestWebsocketMock(settings.api.websocket)
 // Mock broadcast channel
 jest.mock('broadcast-channel')
 
+// Preload React, since it is resolved via provide plugin
+globalThis.React = require('react')
+
 // Adapter for react
 configure({ adapter: new Adapter() })

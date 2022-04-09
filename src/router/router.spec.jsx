@@ -2,7 +2,7 @@ import 'jsdom-global/register'
 import { shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 
-import ConnectedRouter from './router'
+import { AppRouter } from './router'
 
 // Creating the mock store
 const mockStore = configureMockStore()
@@ -24,7 +24,7 @@ describe('router component', () => {
 
   test('the element has gotten state property "settings.theme"', () => {
     const store = mockStore(mockInitialState)
-    const wrapper = shallow(<ConnectedRouter store={store} />).children()
+    const wrapper = shallow(<AppRouter store={store} />).children()
     expect(wrapper.props().reduxState.settings.theme).toBe(mockInitialState.settings.theme)
   })
 })

@@ -1,9 +1,7 @@
-import React from 'react'
-
 /* Styles */
 import './content-wrapper.scss'
 
-export default function ContentWrapper(props) {
+const ContentWrapper = function (props) {
   const { children, navbar = false } = props
 
   return (
@@ -12,3 +10,5 @@ export default function ContentWrapper(props) {
     </span>
   )
 }
+
+export { ContentWrapper }

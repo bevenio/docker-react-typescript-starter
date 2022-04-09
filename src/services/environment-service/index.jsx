@@ -1,4 +1,4 @@
-export default class EnvironmentService {
+class EnvironmentService {
   constructor() {
     this.jsdom = navigator.userAgent.includes('jsdom')
   }
@@ -7,3 +7,5 @@ export default class EnvironmentService {
     return this.jsdom
   }
 }
+
+export { EnvironmentService }

@@ -1,9 +1,7 @@
-import React from 'react'
-
 /* Styles */
 import './content-card.scss'
 
-export default function ContentCard(props) {
+const ContentCard = function (props) {
   const { children, label } = props
   return (
     <div className="app-content-card">
@@ -12,3 +10,5 @@ export default function ContentCard(props) {
     </div>
   )
 }
+
+export { ContentCard }

@@ -14,10 +14,4 @@ const preset = storePersist.restoreEntry('auth') || {
   status: options.status.unset,
 }
 
-export { options }
-export { preset }
-
-export default {
-  options,
-  preset,
-}
+export { options, preset }

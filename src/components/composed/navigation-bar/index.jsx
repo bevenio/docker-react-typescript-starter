@@ -1,11 +1,11 @@
-import React from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 /* Styles */
 import './navigation-bar.scss'
 
-export class NavigationBar extends React.Component {
+class NavigationBar extends Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -49,4 +49,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (/* dispatch */) => ({
   reduxActions: {},
 })
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavigationBar))
+
+const ConnectedNavigationBar = connect(mapStateToProps, mapDispatchToProps)(withRouter(NavigationBar))
+export { ConnectedNavigationBar as NavigationBar }

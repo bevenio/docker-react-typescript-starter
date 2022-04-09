@@ -1,6 +1,7 @@
 import { BroadcastChannel } from 'broadcast-channel'
 import hash from 'hash-sum'
-import LoggingService from '@/services/logging-service'
+
+import { LoggingService } from '@/services/logging-service'
 
 const logger = new LoggingService('store-share')
 
@@ -142,4 +143,3 @@ class StoreShareSingleton {
 
 const storeShare = new StoreShareSingleton()
 export { storeShare }
-export default { storeShare }

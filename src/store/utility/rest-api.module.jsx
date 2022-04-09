@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import settings from '@/settings'
+import { settings } from '@/settings'
 import { store } from '@/store/store'
 
 const axiosInstance = axios.create({
@@ -24,4 +24,4 @@ axiosInstance.interceptors.request.use((config) => {
   return config
 })
 
-export default axiosInstance
+export { axiosInstance as api }

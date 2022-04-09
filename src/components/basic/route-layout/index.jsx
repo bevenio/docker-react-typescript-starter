@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect, createRef } from 'react'
 
 /* Styles */
 import './route-layout.scss'
 
 const RouteLayout = function ({ children }) {
-  const routeReference = React.createRef()
+  const routeReference = createRef()
 
   useEffect(() => {
     routeReference.current.focus()
@@ -17,4 +17,4 @@ const RouteLayout = function ({ children }) {
   )
 }
 
-export default RouteLayout
+export { RouteLayout }

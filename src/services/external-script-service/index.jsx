@@ -33,10 +33,4 @@ const removeScript = (node) => {
   throw new Error('Element is not a valid script node')
 }
 
-export { appendScript }
-export { removeScript }
-
-export default {
-  appendScript,
-  removeScript,
-}
+export { appendScript, removeScript }

@@ -1,9 +1,7 @@
-import React from 'react'
-
 /* Styles */
 import './loading-spinner.scss'
 
-export function LoadingSpinner() {
+const LoadingSpinner = function () {
   return (
     <div className="app-loading-spinner-container">
       <div className="app-loading-spinner">
@@ -15,4 +13,4 @@ export function LoadingSpinner() {
   )
 }
 
-export default LoadingSpinner
+export { LoadingSpinner }

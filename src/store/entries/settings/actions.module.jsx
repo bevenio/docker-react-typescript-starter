@@ -1,4 +1,4 @@
-import constants from '@/store/entries/settings/constants.module'
+import { constants } from '@/store/entries/settings/constants.module'
 
 const changeAnimations = (payload) => ({
   type: constants.CHANGE_ANIMATIONS,
@@ -20,14 +20,6 @@ const changeLetterSize = (payload) => ({
   payload,
 })
 
-export { changeAnimations }
-export { changeLang }
-export { changeTheme }
-export { changeLetterSize }
+const settingsActions = { changeAnimations, changeLang, changeTheme, changeLetterSize }
 
-export default {
-  changeAnimations,
-  changeLang,
-  changeTheme,
-  changeLetterSize,
-}
+export { settingsActions }

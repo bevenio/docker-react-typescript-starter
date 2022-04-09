@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, createRef } from 'react'
 
 /* Styles */
 import './noise-background.scss'
 
 /* Modules */
-import Noise from './noise-background.module'
+import { Noise } from './noise-background.module'
 
 const NoiseBackground = function ({ color, children }) {
   // Component state
   const [noise, setNoise] = useState(null)
-  const canvasRef = React.createRef()
+  const canvasRef = createRef()
 
   // Component effects
   const startNoise = () => {
     const noiseInstance = new Noise({
       canvas: canvasRef.current,
-      color: color,
+      color,
     })
     noiseInstance.start()
     setNoise(noiseInstance)
@@ -41,4 +41,4 @@ const NoiseBackground = function ({ color, children }) {
   )
 }
 
-export default NoiseBackground
+export { NoiseBackground }

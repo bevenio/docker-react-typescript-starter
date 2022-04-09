@@ -1,18 +1,18 @@
-import React from 'react'
+import { Component } from 'react'
 
 /* Styles */
 import './main.scss'
 
 /* Services */
-import StylesheetService from '@/services/stylesheet-service'
+import { getVariable } from '@/services/stylesheet-service'
 
 /* Components */
-import PageLayout from '@/components/basic/page-layout'
-import ContentWrapper from '@/components/basic/content-wrapper'
-import ContentCard from '@/components/basic/content-card'
-import NoiseBackground from '@/components/basic/noise-background'
+import { PageLayout } from '@/components/basic/page-layout'
+import { ContentWrapper } from '@/components/basic/content-wrapper'
+import { ContentCard } from '@/components/basic/content-card'
+import { NoiseBackground } from '@/components/basic/noise-background'
 
-export default class Main extends React.Component {
+class MainPage extends Component {
   constructor() {
     super()
     this.state = {}
@@ -27,7 +27,7 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
+      <NoiseBackground color={getVariable('--color-accent-translucent')}>
         <PageLayout>
           <ContentWrapper navbar="true">
             <h2>Hacks</h2>
@@ -42,3 +42,5 @@ export default class Main extends React.Component {
     )
   }
 }
+
+export { MainPage }

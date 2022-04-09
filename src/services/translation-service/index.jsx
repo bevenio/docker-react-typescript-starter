@@ -1,14 +1,13 @@
-import React from 'react'
 import { get } from 'dot-prop'
 
 /* Store */
 import { store, entries } from '@/store/store'
 
 /* Services */
-import LoggingService from '@/services/logging-service'
+import { LoggingService } from '@/services/logging-service'
 
 /* Components */
-import TextPlaceholder from '@/components/basic/text-placeholder'
+import { TextPlaceholder } from '@/components/basic/text-placeholder'
 
 const logger = new LoggingService('translation-service')
 
@@ -114,4 +113,4 @@ class TranslatorSingleton {
 }
 
 const Translator = new TranslatorSingleton()
-export default Translator
+export { Translator }

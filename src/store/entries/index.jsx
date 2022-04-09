@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 
 /* SETTINGS */
-import settingsActions from '@/store/entries/settings/actions.module'
-import settingsReducer from '@/store/entries/settings/reducers.module'
+import { settingsActions } from '@/store/entries/settings/actions.module'
+import { settingsReducers } from '@/store/entries/settings/reducers.module'
 
 /* AUTH */
-import authActions from '@/store/entries/auth/actions.module'
-import authReducer from '@/store/entries/auth/reducers.module'
+import { authActions } from '@/store/entries/auth/actions.module'
+import { authReducers } from '@/store/entries/auth/reducers.module'
 
 /* COMBINED ACTIONS */
 const actions = {
@@ -16,8 +16,8 @@ const actions = {
 
 /* COMBINED REDUCERS */
 const reducers = {
-  auth: authReducer,
-  settings: settingsReducer,
+  auth: authReducers,
+  settings: settingsReducers,
 }
 
 /* ROOT ACTION / REDUCER */
@@ -30,6 +30,4 @@ const reducer = (state, action) => {
   return combineReducers(reducers)(state, action)
 }
 
-export { actions }
-export { reducer }
-export default { actions, reducer }
+export { actions, reducer }

@@ -1,5 +1,5 @@
-import constants from '@/store/entries/auth/constants.module'
-import api from '@/store/utility/rest-api.module'
+import { constants } from '@/store/entries/auth/constants.module'
+import { api } from '@/store/utility/rest-api.module'
 
 const responseLoginSuccess = (payload) => ({
   type: constants.LOGIN_RESPONSE_SUCCESS,
@@ -28,8 +28,8 @@ const requestLogin = (payload) => (dispatch /* , getStore */) => {
     })
 }
 
-export { requestLogin }
-
-export default {
+const authActions = {
   requestLogin,
 }
+
+export { authActions }

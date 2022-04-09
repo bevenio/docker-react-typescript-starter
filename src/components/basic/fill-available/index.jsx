@@ -1,9 +1,7 @@
-import React from 'react'
-
 /* Styles */
 import './fill-available.scss'
 
-export default function FillAvailable(props) {
+const FillAvailable = function (props) {
   const { children } = props
 
   return (
@@ -12,3 +10,5 @@ export default function FillAvailable(props) {
     </span>
   )
 }
+
+export { FillAvailable }

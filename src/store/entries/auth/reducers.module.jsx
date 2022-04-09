@@ -1,4 +1,4 @@
-import constants from '@/store/entries/auth/constants.module'
+import { constants } from '@/store/entries/auth/constants.module'
 import { preset, options } from '@/store/entries/auth/presets.module'
 
 const requestLogin = (state /* , action */) => ({
@@ -32,4 +32,4 @@ const authReducers = (state = preset, action = {}) => {
   }
 }
 
-export default authReducers
+export { authReducers }

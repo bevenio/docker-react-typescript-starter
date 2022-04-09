@@ -220,4 +220,4 @@ class Noise {
   }
 }
 
-export default Noise
+export { Noise }

@@ -1,18 +1,18 @@
-import React from 'react'
+import { Component } from 'react'
 
 /* Styles */
 import './login.scss'
 
 /* Services */
-import StylesheetService from '@/services/stylesheet-service'
+import { getVariable } from '@/services/stylesheet-service'
 
 /* Components */
-import PageLayout from '@/components/basic/page-layout'
-import FillAvailable from '@/components/basic/fill-available'
-import LoginForm from '@/components/composed/login-form'
-import NoiseBackground from '@/components/basic/noise-background'
+import { PageLayout } from '@/components/basic/page-layout'
+import { FillAvailable } from '@/components/basic/fill-available'
+import { LoginForm } from '@/components/composed/login-form'
+import { NoiseBackground } from '@/components/basic/noise-background'
 
-export default class Login extends React.Component {
+class LoginPage extends Component {
   constructor() {
     super()
     this.state = {}
@@ -20,7 +20,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <NoiseBackground color={StylesheetService.getVariable('--color-accent-translucent')}>
+      <NoiseBackground color={getVariable('--color-accent-translucent')}>
         <PageLayout>
           <FillAvailable>
             <LoginForm
@@ -35,3 +35,5 @@ export default class Login extends React.Component {
     )
   }
 }
+
+export { LoginPage }

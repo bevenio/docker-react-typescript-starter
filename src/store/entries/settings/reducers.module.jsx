@@ -1,4 +1,4 @@
-import constants from '@/store/entries/settings/constants.module'
+import { constants } from '@/store/entries/settings/constants.module'
 import { preset, options } from '@/store/entries/settings/presets.module'
 
 const changeAnimations = (state, action) => ({
@@ -41,4 +41,4 @@ const settingsReducers = (state = preset, action = {}) => {
   }
 }
 
-export default settingsReducers
+export { settingsReducers }

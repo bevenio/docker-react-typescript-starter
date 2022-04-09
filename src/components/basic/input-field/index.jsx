@@ -1,9 +1,7 @@
-import React from 'react'
-
 /* Styles */
 import './input-field.scss'
 
-export function InputField({ name = 'no-name', type = 'text', label = '', placeholder = '', onValidate = () => true, onChange = () => {} }) {
+const InputField = function ({ name = 'no-name', type = 'text', label = '', placeholder = '', onValidate = () => true, onChange = () => {} }) {
   const identifier = `app-input-field-${name}`
 
   const valueChanged = (event) => {
@@ -29,4 +27,4 @@ export function InputField({ name = 'no-name', type = 'text', label = '', placeh
   )
 }
 
-export default InputField
+export { InputField }

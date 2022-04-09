@@ -28,10 +28,20 @@
         "devDependencies": ["src/**/*.spec.jsx", "**/*.script.jsx"]
       }
     ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ExportDefaultDeclaration",
+        "message": "Prefer named exports"
+      }
+    ],
     "react/jsx-one-expression-per-line": "off",
     "no-underscore-dangle": "off",
     "react/destructuring-assignment": "off",
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": "off",
+    "func-names": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }

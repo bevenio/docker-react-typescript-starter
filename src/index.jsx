@@ -1,12 +1,11 @@
 import '@/assets/scss/index.scss'
 
 import { hot } from 'react-hot-loader/root'
-import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import { store } from '@/store/store'
-import AppRouter from '@/router/router'
+import { AppRouter } from '@/router/router'
 
 const appRootElementId = 'app'
 const appRootElement = document.getElementById(appRootElementId)

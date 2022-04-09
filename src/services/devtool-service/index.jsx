@@ -22,9 +22,4 @@ const applyReduxExtensionDevtools = (middleware) => {
   return middleware
 }
 
-export default {
-  isDevMode,
-  applyReduxExtensionDevtools,
-}
-
 export { isDevMode, applyReduxExtensionDevtools }

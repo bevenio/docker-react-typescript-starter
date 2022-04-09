@@ -1,14 +1,12 @@
-import React from 'react'
-
 /* Styles */
 import './loading.scss'
 
 /* Components */
-import PageLayout from '@/components/basic/page-layout'
-import FillAvailable from '@/components/basic/fill-available'
-import LoadingSpinner from '@/components/basic/loading-spinner'
+import { PageLayout } from '@/components/basic/page-layout'
+import { FillAvailable } from '@/components/basic/fill-available'
+import { LoadingSpinner } from '@/components/basic/loading-spinner'
 
-export function Loading() {
+const LoadingPage = function () {
   return (
     <PageLayout>
       <FillAvailable>
@@ -18,4 +16,4 @@ export function Loading() {
   )
 }
 
-export default Loading
+export { LoadingPage }

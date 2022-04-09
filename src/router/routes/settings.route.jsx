@@ -1,11 +1,13 @@
-import React from 'react'
-import RouterUtility from '@/router/utility/router-utility.module'
+import { lazily } from 'react-lazily'
+import { createRoute } from '@/router/utility/router-utility.module'
 
-const SettingsPage = React.lazy(() => import('@/components/pages/settings'))
+const { SettingsPage } = lazily(() => import('@/components/pages/settings'))
 
-export default RouterUtility.createRoute({
+const SettingsRoute = createRoute({
   component: SettingsPage,
   route: '/settings',
   redirection: '/login',
   dependencies: { 'auth.jwt': (jwt) => jwt !== null },
 })
+
+export { SettingsRoute }

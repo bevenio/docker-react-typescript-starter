@@ -1,11 +1,10 @@
-import React from 'react'
 import { get } from 'dot-prop'
 import { Redirect, BrowserRouter as PathRouter, HashRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
 
 import { store } from '@/store/store'
-import ErrorPage from '@/components/pages/error'
-import RouteLayout from '@/components/basic/route-layout'
+import { ErrorPage } from '@/components/pages/error'
+import { RouteLayout } from '@/components/basic/route-layout'
 
 const isAppUsingHashRoute = !!window.location.hash
 const router = isAppUsingHashRoute ? hot(HashRouter) : hot(PathRouter)
@@ -53,7 +52,4 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
   }
 }
 
-export default {
-  getRouter,
-  createRoute,
-}
+export { getRouter, createRoute }

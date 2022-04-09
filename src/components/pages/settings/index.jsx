@@ -1,14 +1,14 @@
-import React from 'react'
+import { Component } from 'react'
 
 /* Styles */
 import './settings.scss'
 
 /* Components */
-import PageLayout from '@/components/basic/page-layout'
-import ContentWrapper from '@/components/basic/content-wrapper'
-import SettingsForm from '@/components/composed/settings-form'
+import { PageLayout } from '@/components/basic/page-layout'
+import { ContentWrapper } from '@/components/basic/content-wrapper'
+import { SettingsForm } from '@/components/composed/settings-form'
 
-export default class Settings extends React.Component {
+class SettingsPage extends Component {
   constructor() {
     super()
     this.state = {}
@@ -25,3 +25,5 @@ export default class Settings extends React.Component {
     )
   }
 }
+
+export { SettingsPage }

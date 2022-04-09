@@ -8,4 +8,3 @@ const extendConstants = (constantPrepend, constants) => {
 }
 
 export { extendConstants }
-export default { extendConstants }

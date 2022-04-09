@@ -1,4 +1,4 @@
-import LoggingService from '@/services/logging-service'
+import { LoggingService } from '@/services/logging-service'
 
 const logger = new LoggingService('store-persist')
 
@@ -69,4 +69,3 @@ class StorePersistSingleton {
 
 const storePersist = new StorePersistSingleton()
 export { storePersist }
-export default { storePersist }

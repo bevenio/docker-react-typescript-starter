@@ -1,11 +1,13 @@
-import React from 'react'
-import RouterUtility from '@/router/utility/router-utility.module'
+import { lazily } from 'react-lazily'
+import { createRoute } from '@/router/utility/router-utility.module'
 
-const MainPage = React.lazy(() => import('@/components/pages/main'))
+const { MainPage } = lazily(() => import('@/components/pages/main'))
 
-export default RouterUtility.createRoute({
+const MainRoute = createRoute({
   component: MainPage,
   route: '/',
   redirection: '/login',
   dependencies: { 'auth.jwt': (jwt) => jwt !== null },
 })
+
+export { MainRoute }

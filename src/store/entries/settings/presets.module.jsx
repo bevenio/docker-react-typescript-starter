@@ -12,10 +12,4 @@ const preset = storePersist.restoreEntry('settings') || {
   theme: options.themes[1],
 }
 
-export { options }
-export { preset }
-
-export default {
-  options,
-  preset,
-}
+export { options, preset }

@@ -81,4 +81,4 @@ class LoggingService {
   }
 }
 
-export default LoggingService
+export { LoggingService }

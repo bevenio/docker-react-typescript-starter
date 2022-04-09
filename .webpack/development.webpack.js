@@ -14,9 +14,7 @@ const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
 const extractChunkName = (pathData) => {
-  const chunkParts = pathData.chunk.id
-    .split('_')
-    .filter((part) => part !== 'jsx' && part !== 'index')
+  const chunkParts = pathData.chunk.id.split('_').filter((part) => part !== 'jsx' && part !== 'index')
   return `js/chunks/${chunkParts.pop()}.chunk.js`
 }
 
@@ -94,6 +92,12 @@ const createPlugins = (options) => {
   plugins.push(
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
+    })
+  )
+
+  plugins.push(
+    new webpack.ProvidePlugin({
+      React: 'react',
     })
   )
 

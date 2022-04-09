@@ -1,25 +1,25 @@
-import React, { Suspense } from 'react'
+import { Component, Suspense } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 /* Utility */
-import RouterUtility from '@/router/utility/router-utility.module'
+import { getRouter } from '@/router/utility/router-utility.module'
 
 /* Services */
-import ServiceworkerService from '@/services/serviceworker-service'
-import Translator from '@/services/translation-service'
+import { registerServiceworker } from '@/services/serviceworker-service'
+import { Translator } from '@/services/translation-service'
 
 /* Components */
-import NavigationBar from '@/components/composed/navigation-bar'
-import LoadingPage from '@/components/pages/loading'
-import ErrorPage from '@/components/pages/error'
+import { NavigationBar } from '@/components/composed/navigation-bar'
+import { LoadingPage } from '@/components/pages/loading'
+import { ErrorPage } from '@/components/pages/error'
 
 /* Routes */
-import LoginRoute from '@/router/routes/login.route'
-import SettingsRoute from '@/router/routes/settings.route'
-import MainRoute from '@/router/routes/main.route'
+import { LoginRoute } from '@/router/routes/login.route'
+import { SettingsRoute } from '@/router/routes/settings.route'
+import { MainRoute } from '@/router/routes/main.route'
 
 function AppRoutes() {
   const location = useLocation()
@@ -43,16 +43,16 @@ function AppRoutes() {
   )
 }
 
-export class AppRouter extends React.Component {
+class AppRouter extends Component {
   constructor() {
     super()
     this.state = {
-      router: RouterUtility.getRouter(),
+      router: getRouter(),
     }
   }
 
   componentDidMount() {
-    ServiceworkerService.registerServiceworker()
+    registerServiceworker()
   }
 
   render() {
@@ -83,4 +83,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (/* dispatch */) => ({
   reduxActions: {},
 })
-export default connect(mapStateToProps, mapDispatchToProps)(AppRouter)
+
+const ConnectedAppRouter = connect(mapStateToProps, mapDispatchToProps)(AppRouter)
+export { ConnectedAppRouter as AppRouter }

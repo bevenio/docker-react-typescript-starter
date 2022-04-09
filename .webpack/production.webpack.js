@@ -88,6 +88,12 @@ const createPlugins = (options) => {
     })
   )
 
+  plugins.push(
+    new webpack.ProvidePlugin({
+      React: 'react',
+    })
+  )
+
   plugins.push(new RobotstxtPlugin())
 
   if (options.sw === true) {

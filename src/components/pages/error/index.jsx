@@ -1,11 +1,9 @@
 import './error.scss'
 
-import React from 'react'
+import { PageLayout } from '@/components/basic/page-layout'
+import { FillAvailable } from '@/components/basic/fill-available'
 
-import PageLayout from '@/components/basic/page-layout'
-import FillAvailable from '@/components/basic/fill-available'
-
-export function Error({ code = 'Oops..', text = 'Something bad happened' }) {
+const ErrorPage = function ({ code = 'Oops..', text = 'Something bad happened' }) {
   return (
     <PageLayout>
       <FillAvailable>
@@ -18,4 +16,4 @@ export function Error({ code = 'Oops..', text = 'Something bad happened' }) {
   )
 }
 
-export default Error
+export { ErrorPage }

@@ -8,8 +8,4 @@ const getVariable = (variableName) => {
   throw Error('Variable name has to be a string')
 }
 
-export default {
-  getVariable,
-}
-
 export { getVariable }

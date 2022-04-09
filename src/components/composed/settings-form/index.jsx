@@ -1,4 +1,4 @@
-import React from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import { entries } from '@/store/store'
 
@@ -6,14 +6,14 @@ import { entries } from '@/store/store'
 import './settings-form.scss'
 
 /* Components */
-import InputSwitch from '@/components/basic/input-switch'
+import { InputSwitch } from '@/components/basic/input-switch'
 
 /* Services */
-import Translator from '@/services/translation-service'
+import { Translator } from '@/services/translation-service'
 
 const translations = Translator.translateBatch('components.composed.settings-form')
 
-export class SettingsForm extends React.Component {
+class SettingsForm extends Component {
   constructor() {
     super()
     this.state = {}
@@ -57,4 +57,5 @@ const mapDispatchToProps = (dispatch) => ({
     },
   },
 })
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsForm)
+const ConnectedSettingsForm = connect(mapStateToProps, mapDispatchToProps)(SettingsForm)
+export { ConnectedSettingsForm as SettingsForm }

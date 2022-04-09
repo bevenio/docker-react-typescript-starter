@@ -76,6 +76,12 @@ const createPlugins = (options) => {
     })
   )
 
+  plugins.push(
+    new webpack.ProvidePlugin({
+      React: 'react',
+    })
+  )
+
   if (options.hmr === true) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
   }

@@ -1,4 +1,4 @@
-import settings from '@/settings'
+import { settings } from '@/settings'
 
 const RECONNECT_TIMEOUT = 2500
 
@@ -99,4 +99,4 @@ class SocketInterface {
 }
 
 const socketInterface = new SocketInterface()
-export default socketInterface
+export { socketInterface as socket }

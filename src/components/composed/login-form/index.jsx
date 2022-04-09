@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { entries } from '@/store/store'
 import { usePrevious } from '@/hooks'
@@ -7,10 +7,10 @@ import { usePrevious } from '@/hooks'
 import './login-form.scss'
 
 /* Components */
-import InputField from '@/components/basic/input-field'
+import { InputField } from '@/components/basic/input-field'
 
 /* Services */
-import Translator from '@/services/translation-service'
+import { Translator } from '@/services/translation-service'
 
 /* Translations */
 const translations = Translator.translateBatch('components.composed.login-form')
@@ -66,20 +66,8 @@ const LoginForm = function ({ onSuccess, onFailure }) {
       <center>
         <h2>{translations.login}</h2>
       </center>
-      <InputField
-        label={translations.username}
-        type="text"
-        name="login-identifier"
-        onValidate={identifierValidator}
-        onChange={(identifier) => setIdentifier(identifier)}
-      />
-      <InputField
-        label={translations.password}
-        type="password"
-        name="login-password"
-        onValidate={passwordValidator}
-        onChange={(password) => setPassword(password)}
-      />
+      <InputField label={translations.username} type="text" name="login-identifier" onValidate={identifierValidator} onChange={setIdentifier} />
+      <InputField label={translations.password} type="password" name="login-password" onValidate={passwordValidator} onChange={setPassword} />
       <button type="submit" className="primary" disabled={isRequesInProgress()}>
         {translations.login}
       </button>
@@ -87,4 +75,4 @@ const LoginForm = function ({ onSuccess, onFailure }) {
   )
 }
 
-export default LoginForm
+export { LoginForm }

@@ -1,5 +1,3 @@
-import { Component } from 'react'
-
 /* Styles */
 import './settings.scss'
 
@@ -8,22 +6,15 @@ import { PageLayout } from '@/components/basic/page-layout'
 import { ContentWrapper } from '@/components/basic/content-wrapper'
 import { SettingsForm } from '@/components/composed/settings-form'
 
-class SettingsPage extends Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
-
-  render() {
-    return (
-      <PageLayout>
-        <ContentWrapper navbar="true">
-          <h1>Settings</h1>
-          <SettingsForm />
-        </ContentWrapper>
-      </PageLayout>
-    )
-  }
+const SettingsPage = function () {
+  return (
+    <PageLayout>
+      <ContentWrapper navbar="true">
+        <h1>Settings</h1>
+        <SettingsForm />
+      </ContentWrapper>
+    </PageLayout>
+  )
 }
 
 export { SettingsPage }

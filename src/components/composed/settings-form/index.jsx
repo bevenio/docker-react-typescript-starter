@@ -1,5 +1,4 @@
-import { Component } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { entries } from '@/store/store'
 
 /* Styles */
@@ -13,49 +12,25 @@ import { Translator } from '@/services/translation-service'
 
 const translations = Translator.translateBatch('components.composed.settings-form')
 
-class SettingsForm extends Component {
-  constructor() {
-    super()
-    this.state = {}
+const SettingsForm = function () {
+  const theme = useSelector((state) => state.settings.theme)
+  const animations = useSelector((state) => state.settings.animations)
+  const dispatch = useDispatch()
+
+  const animationsChanged = (isOn) => {
+    dispatch(entries.actions.settings.changeAnimations(!!isOn))
   }
 
-  animationsChanged = (isOn) => {
-    const { changeAnimations } = this.props.reduxActions
-    changeAnimations(!!isOn)
+  const darkmodeChanged = (isOn) => {
+    dispatch(entries.actions.settings.changeTheme(isOn ? 'dark' : 'light'))
   }
 
-  darkmodeChanged = (isOn) => {
-    const { changeTheme } = this.props.reduxActions
-    changeTheme(isOn ? 'dark' : 'light')
-  }
-
-  render() {
-    const { theme, animations } = this.props.reduxState.settings
-
-    return (
-      <form className="app-settings-form">
-        <InputSwitch name="darkmode" label={translations.darkmode} isOn={theme === 'dark'} onChange={this.darkmodeChanged} />
-        <InputSwitch name="animations" label={translations.animations} isOn={animations === true} onChange={this.animationsChanged} />
-      </form>
-    )
-  }
+  return (
+    <form className="app-settings-form">
+      <InputSwitch name="darkmode" label={translations.darkmode} isOn={theme === 'dark'} onChange={darkmodeChanged} />
+      <InputSwitch name="animations" label={translations.animations} isOn={animations === true} onChange={animationsChanged} />
+    </form>
+  )
 }
 
-// Redux Connection
-const mapStateToProps = (state) => ({
-  reduxState: {
-    settings: state.settings,
-  },
-})
-const mapDispatchToProps = (dispatch) => ({
-  reduxActions: {
-    changeAnimations: (animations) => {
-      dispatch(entries.actions.settings.changeAnimations(animations))
-    },
-    changeTheme: (theme) => {
-      dispatch(entries.actions.settings.changeTheme(theme))
-    },
-  },
-})
-const ConnectedSettingsForm = connect(mapStateToProps, mapDispatchToProps)(SettingsForm)
-export { ConnectedSettingsForm as SettingsForm }
+export { SettingsForm }

@@ -6,11 +6,9 @@
 
 ## Todos
 
-- update to named exports only
-
-- update to function components only
-
 - implement typescript support and components
+
+- replace enzyme with another test library
 
 ## General
 

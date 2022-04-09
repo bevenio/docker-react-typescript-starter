@@ -1,5 +1,5 @@
-import { Component, Suspense } from 'react'
-import { connect } from 'react-redux'
+import { Suspense, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
@@ -43,46 +43,30 @@ function AppRoutes() {
   )
 }
 
-class AppRouter extends Component {
-  constructor() {
-    super()
-    this.state = {
-      router: getRouter(),
-    }
-  }
+const AppRouter = function () {
+  const router = getRouter()
 
-  componentDidMount() {
+  const title = useSelector((state) => state.settings.title)
+  const theme = useSelector((state) => state.settings.theme)
+
+  useEffect(() => {
     registerServiceworker()
-  }
+  }, [])
 
-  render() {
-    const { /* reduxActions, */ reduxState } = this.props
-    const { router: Router } = this.state
+  const { router: Router } = { router }
 
-    return (
-      <>
-        <Helmet>
-          <title>{reduxState.settings.title}</title>
-          <link rel="icon" type="image/png" href="./static/images/icons/icon-192x192.png" />
-          <html lang={Translator.code} color-scheme={reduxState.settings.theme} />
-        </Helmet>
-        <Router basename="/">
-          <AppRoutes />
-        </Router>
-      </>
-    )
-  }
+  return (
+    <>
+      <Helmet>
+        <title>{title}</title>
+        <link rel="icon" type="image/png" href="./static/images/icons/icon-192x192.png" />
+        <html lang={Translator.code} color-scheme={theme} />
+      </Helmet>
+      <Router basename="/">
+        <AppRoutes />
+      </Router>
+    </>
+  )
 }
 
-/* Redux Connection  */
-const mapStateToProps = (state) => ({
-  reduxState: {
-    settings: state.settings,
-  },
-})
-const mapDispatchToProps = (/* dispatch */) => ({
-  reduxActions: {},
-})
-
-const ConnectedAppRouter = connect(mapStateToProps, mapDispatchToProps)(AppRouter)
-export { ConnectedAppRouter as AppRouter }
+export { AppRouter }

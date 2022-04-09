@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const CompressionPlugin = require('compression-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const path = require('path')
 
@@ -18,15 +19,14 @@ const extractChunkName = (pathData) => {
   return `js/chunks/${chunkParts.pop()}.chunk.js`
 }
 
-const createEntry = (/* options */) => ['react-hot-loader/patch', path.resolve(srcDir, 'index.jsx')]
+const createEntry = (/* options */) => [path.resolve(srcDir, 'index.jsx')]
 
 const createTarget = (/* options */) => 'web'
 
-const createResolve = (/* options */) => ({
+const createResolve = (/* options */ ç) => ({
   extensions: ['.js', '.jsx'],
   alias: {
     '@': srcDir,
-    'react-dom': '@hot-loader/react-dom',
   },
   fallback: {
     stream: require.resolve('stream-browserify'),
@@ -114,6 +114,7 @@ const createPlugins = (options) => {
 
   if (options.hmr === true) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
+    plugins.push(new ReactRefreshWebpackPlugin())
   }
 
   if (options.compress === true) {
@@ -155,7 +156,7 @@ const createModules = (/* options */) => {
       loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env'],
-        plugins: [],
+        plugins: [require.resolve('react-refresh/babel')],
       },
     },
   })

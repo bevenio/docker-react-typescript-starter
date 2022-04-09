@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { useHistory } from 'react-router-dom'
 
 /* Styles */
 import './login.scss'
@@ -12,28 +12,22 @@ import { FillAvailable } from '@/components/basic/fill-available'
 import { LoginForm } from '@/components/composed/login-form'
 import { NoiseBackground } from '@/components/basic/noise-background'
 
-class LoginPage extends Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
-
-  render() {
-    return (
-      <NoiseBackground color={getVariable('--color-accent-translucent')}>
-        <PageLayout>
-          <FillAvailable>
-            <LoginForm
-              onSuccess={() => {
-                this.props.history.push('/')
-              }}
-              onFailure={() => {}}
-            />
-          </FillAvailable>
-        </PageLayout>
-      </NoiseBackground>
-    )
-  }
+const LoginPage = function () {
+  const history = useHistory()
+  return (
+    <NoiseBackground color={getVariable('--color-accent-translucent')}>
+      <PageLayout>
+        <FillAvailable>
+          <LoginForm
+            onSuccess={() => {
+              history.push('/')
+            }}
+            onFailure={() => {}}
+          />
+        </FillAvailable>
+      </PageLayout>
+    </NoiseBackground>
+  )
 }
 
 export { LoginPage }

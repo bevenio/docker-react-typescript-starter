@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 
 /*
@@ -11,15 +13,23 @@
 // Is current execution in "development" mode?
 const isDevMode = process.env.NODE_ENV === 'development'
 
-// Importing modules
-const { composeWithDevTools } = isDevMode ? require('redux-devtools-extension') : { composeWithDevTools: null }
-
 // Function for applyinhg redux browser devtools
 const applyReduxExtensionDevtools = (middleware) => {
+  const { composeWithDevTools } = isDevMode ? require('redux-devtools-extension') : { composeWithDevTools: null }
   if (composeWithDevTools) {
     return composeWithDevTools(middleware)
   }
   return middleware
 }
 
-export { isDevMode, applyReduxExtensionDevtools }
+const applyFastRefresh = (filePath) => {
+  if (isDevMode && window) {
+    const runtime = require('react-refresh/runtime')
+    runtime.injectIntoGlobalHook(window)
+    window.$RefreshReg$ = () => {}
+    window.$RefreshSig$ = () => () => () => {}
+    require(`${filePath}`)
+  }
+}
+
+export { isDevMode, applyReduxExtensionDevtools, applyFastRefresh }

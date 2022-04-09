@@ -58,7 +58,7 @@ const LoginForm = function ({ onSuccess, onFailure }) {
         setLocalRequestInProgress(false)
       }
     }
-  }, [authStatus, password, identifier])
+  }, [authStatus, isLocalRequestInProgress])
 
   // Component render
   return (

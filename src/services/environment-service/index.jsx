@@ -1,10 +1,8 @@
-class EnvironmentService {
-  constructor() {
-    this.jsdom = navigator.userAgent.includes('jsdom')
-  }
+const EnvironmentService = function () {
+  this.jsdom = navigator.userAgent.includes('jsdom')
 
-  get isJsdom() {
-    return this.jsdom
+  return {
+    jsdom: this.jsdom,
   }
 }
 

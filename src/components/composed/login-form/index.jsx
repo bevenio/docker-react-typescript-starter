@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { entries } from '@/store/store'
+import { actions } from '@/store/store'
 import { usePrevious } from '@/hooks'
 
 /* Styles */
@@ -41,7 +41,7 @@ const LoginForm = function ({ onSuccess, onFailure }) {
   const login = (event) => {
     event.preventDefault()
     setLocalRequestInProgress(true)
-    dispatch(entries.actions.auth.requestLogin({ identifier, password }))
+    dispatch(actions.auth.requestLogin({ identifier, password }))
   }
 
   // Component effects
@@ -66,8 +66,22 @@ const LoginForm = function ({ onSuccess, onFailure }) {
       <center>
         <h2>{translations.login}</h2>
       </center>
-      <InputField label={translations.username} type="text" name="login-identifier" onValidate={identifierValidator} onChange={setIdentifier} />
-      <InputField label={translations.password} type="password" name="login-password" onValidate={passwordValidator} onChange={setPassword} />
+      <InputField
+        label={translations.username}
+        type="text"
+        name="login-identifier"
+        autocomplete="username"
+        onValidate={identifierValidator}
+        onChange={setIdentifier}
+      />
+      <InputField
+        label={translations.password}
+        type="password"
+        name="login-password"
+        autocomplete="current-password"
+        onValidate={passwordValidator}
+        onChange={setPassword}
+      />
       <button type="submit" className="primary" disabled={isRequesInProgress()}>
         {translations.login}
       </button>

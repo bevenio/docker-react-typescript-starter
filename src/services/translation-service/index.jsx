@@ -1,7 +1,7 @@
 import { get } from 'dot-prop'
 
 /* Store */
-import { store, entries } from '@/store/store'
+import { store, actions } from '@/store/store'
 
 /* Services */
 import { LoggingService } from '@/services/logging-service'
@@ -44,7 +44,7 @@ class TranslatorSingleton {
   }
 
   dispatchLanguageChange = () => {
-    store.dispatch(entries.actions.settings.changeLang(this.code))
+    store.dispatch(actions.settings.changeLang(this.code))
   }
 
   loadLanguage = (code) => {

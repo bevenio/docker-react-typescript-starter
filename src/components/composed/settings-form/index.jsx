@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { entries } from '@/store/store'
+import { actions } from '@/store/store'
 
 /* Styles */
 import './settings-form.scss'
@@ -18,11 +18,11 @@ const SettingsForm = function () {
   const dispatch = useDispatch()
 
   const animationsChanged = (isOn) => {
-    dispatch(entries.actions.settings.changeAnimations(!!isOn))
+    dispatch(actions.settings.changeAnimations(!!isOn))
   }
 
   const darkmodeChanged = (isOn) => {
-    dispatch(entries.actions.settings.changeTheme(isOn ? 'dark' : 'light'))
+    dispatch(actions.settings.changeTheme(isOn ? 'dark' : 'light'))
   }
 
   return (

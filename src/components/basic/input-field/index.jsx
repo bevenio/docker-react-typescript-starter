@@ -1,7 +1,15 @@
 /* Styles */
 import './input-field.scss'
 
-const InputField = function ({ name = 'no-name', type = 'text', label = '', placeholder = '', onValidate = () => true, onChange = () => {} }) {
+const InputField = function ({
+  name = 'no-name',
+  type = 'text',
+  label = '',
+  placeholder = '',
+  autocomplete = 'off',
+  onValidate = () => true,
+  onChange = () => {},
+}) {
   const identifier = `app-input-field-${name}`
 
   const valueChanged = (event) => {
@@ -18,6 +26,7 @@ const InputField = function ({ name = 'no-name', type = 'text', label = '', plac
         type={type}
         id={identifier}
         placeholder={placeholder}
+        autoComplete={autocomplete}
         onPaste={valueChanged}
         onBlur={valueChanged}
         onFocus={valueChanged}

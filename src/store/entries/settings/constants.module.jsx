@@ -1,10 +1,12 @@
 import { extendConstants } from '@/store/utility/store-general-utility.module'
 
-const constants = extendConstants('SETTINGS', {
+const key = 'settings'
+
+const constants = extendConstants(key, {
   CHANGE_ANIMATIONS: 'CHANGE_ANIMATIONS',
   CHANGE_LANG: 'CHANGE_LANG',
   CHANGE_THEME: 'CHANGE_THEME',
   CHANGE_LETTER_SIZE: 'CHANGE_LETTER_SIZE',
 })
 
-export { constants }
+export { key, constants }

@@ -1,16 +1,16 @@
 const PARENT_NODE_CLASS = 'app-external-scripts'
 
-const getScriptParent = () => {
-  if (!document.querySelectorAll(`.${PARENT_NODE_CLASS}`).length > 0) {
+const getScriptParent = (): HTMLSpanElement => {
+  if (document.querySelectorAll(`.${PARENT_NODE_CLASS}`).length < 0) {
     const parentNode = document.createElement('span')
     parentNode.classList.add(PARENT_NODE_CLASS)
     document.body.appendChild(parentNode)
     return parentNode
   }
-  return document.querySelector(`.${PARENT_NODE_CLASS}`)
+  return document.querySelector(`.${PARENT_NODE_CLASS}`) as HTMLSpanElement
 }
 
-const appendScript = (url) => {
+const appendScript = (url: string): HTMLScriptElement => {
   try {
     const parsedUrl = new URL(url)
     const parent = getScriptParent()
@@ -25,12 +25,9 @@ const appendScript = (url) => {
   }
 }
 
-const removeScript = (node) => {
-  if (node instanceof HTMLElement && node.tagName === 'script') {
-    const parent = getScriptParent()
-    parent.removeChild(node)
-  }
-  throw new Error('Element is not a valid script node')
+const removeScript = (node: HTMLScriptElement) => {
+  const parent = getScriptParent()
+  parent.removeChild(node)
 }
 
 export { appendScript, removeScript }

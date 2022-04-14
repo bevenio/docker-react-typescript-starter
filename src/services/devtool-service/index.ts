@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -10,19 +12,23 @@
  * Importing extraneous dependencies is forbidden outside this service
  */
 
-// Is current execution in "development" mode?
-const isDevMode = process.env.NODE_ENV === 'development'
+enum RuntimeMode {
+  Development = 'development',
+  Production = 'production',
+}
+
+const isDevMode = process.env.NODE_ENV === RuntimeMode.Development
 
 // Function for applyinhg redux browser devtools
-const applyReduxExtensionDevtools = (middleware) => {
-  const { composeWithDevTools } = isDevMode ? require('redux-devtools-extension') : { composeWithDevTools: null }
-  if (composeWithDevTools) {
+const applyReduxExtensionDevtools = (middleware: unknown): unknown => {
+  if (isDevMode) {
+    const { composeWithDevTools } = require('redux-devtools-extension')
     return composeWithDevTools(middleware)
   }
   return middleware
 }
 
-const applyFastRefresh = (filePath) => {
+const applyFastRefresh = (filePath: string): void => {
   if (isDevMode && window) {
     const runtime = require('react-refresh/runtime')
     runtime.injectIntoGlobalHook(window)

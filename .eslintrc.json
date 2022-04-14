@@ -3,25 +3,29 @@
     "browser": true,
     "jest": true
   },
-  "parser": "@babel/eslint-parser",
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier", "react", "import"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./.webpack/configuration.webpack.js",
+        "env": {
+          "NODE_ENV": "development"
+        }
+      }
+    }
+  },
+  "extends": ["airbnb", "prettier", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["prettier", "react", "import", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": "error",
     "import/extensions": "off",
     "react/prop-types": 0,
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": ["@/"]
-      }
-    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -42,6 +46,10 @@
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
     "func-names": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-shadow": "off",
+    "import/no-cycle": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-empty-function": "off"
   }
 }

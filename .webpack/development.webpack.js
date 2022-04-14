@@ -24,10 +24,11 @@ const createEntry = (/* options */) => [path.resolve(srcDir, 'index.jsx')]
 const createTarget = (/* options */) => 'web'
 
 const createResolve = (/* options */ ç) => ({
-  extensions: ['.js', '.jsx'],
+  extensions: ['.js', '.jsx', '.ts', '.tsx'],
   alias: {
     '@': srcDir,
   },
+  mainFiles: ['index'],
   fallback: {
     stream: require.resolve('stream-browserify'),
     zlib: require.resolve('browserify-zlib'),
@@ -150,12 +151,12 @@ const createModules = (/* options */) => {
   })
 
   rules.push({
-    test: /\.(js|jsx)$/,
+    test: /\.(js|jsx|ts|tsx)$/,
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader',
       options: {
-        presets: ['@babel/preset-env'],
+        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
         plugins: [require.resolve('react-refresh/babel')],
       },
     },
@@ -192,7 +193,7 @@ const createModules = (/* options */) => {
   })
 
   rules.push({
-    test: /\.(js|jsx)$/,
+    test: /\.(js|ts|jsx|tsx)$/,
     enforce: 'pre',
     use: ['source-map-loader'],
   })

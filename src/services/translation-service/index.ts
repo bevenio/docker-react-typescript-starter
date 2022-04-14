@@ -1,5 +1,5 @@
 import { get } from 'dot-prop'
-
+import { FC } from 'react'
 /* Store */
 import { store, actions } from '@/store/store'
 
@@ -9,16 +9,31 @@ import { LoggingService } from '@/services/logging-service'
 /* Components */
 import { TextPlaceholder } from '@/components/basic/text-placeholder'
 
+type LanguageCode = string
+type Translation = string
+
+interface TranslationCollection {
+  [translationKey: string]: TranslationCollection | Translation | FC
+}
+
+interface TranslationLanguageCollection {
+  [translationLanguageKey: string]: TranslationCollection
+}
+
+interface Replacements {
+  [replacementKey: string]: string
+}
+
 const logger = new LoggingService('translation-service')
 
 class TranslatorSingleton {
   /* Constant properties */
   DEFAULT_CODE = 'en-US'
-  DEFAULT_TRANSLATION = (<TextPlaceholder />)
+  DEFAULT_TRANSLATION = TextPlaceholder
 
   /* Private properties */
-  code = this.DEFAULT_CODE
-  translations = {}
+  code: LanguageCode = this.DEFAULT_CODE
+  translations: TranslationLanguageCollection = {}
 
   /* Class implementation */
   constructor() {
@@ -47,7 +62,7 @@ class TranslatorSingleton {
     store.dispatch(actions.settings.changeLang(this.code))
   }
 
-  loadLanguage = (code) => {
+  loadLanguage = (code: string) => {
     if (!this.translations[code]) {
       import(
         /* webpackMode: "lazy" */
@@ -70,12 +85,12 @@ class TranslatorSingleton {
   }
 
   /* Translation processing */
-  replace = (translation, replacements = {}) =>
+  replace = (translation: Translation, replacements: Replacements = {}): Translation | FC =>
     typeof translation === 'string'
       ? translation.replace(/\{\{(.*?)\}\}/g, (_, key) => (replacements[key] !== undefined ? replacements[key] : ''))
       : this.DEFAULT_TRANSLATION
 
-  retrieve = (identifier) =>
+  retrieve = (identifier: string): Translation | FC =>
     this.translations[this.code] ? get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION : this.DEFAULT_TRANSLATION
 
   /* Exposed methods and functions */
@@ -83,16 +98,16 @@ class TranslatorSingleton {
     return !!this.translations[this.code]
   }
 
-  translate(identifier = '', replacements = {}) {
+  translate(identifier = '', replacements: Replacements = {}) {
     const translation = this.retrieve(identifier)
     if (typeof translation !== 'string') throw new Error('A single translation string is expected to be found')
     return this.replace(translation, replacements)
   }
 
-  translateBatch(identifier = '', replacements = {}) {
-    const baseTranslationProxy = {}
+  translateBatch(identifier = '', replacements: Replacements = {}) {
+    const baseTranslationProxy: TranslationLanguageCollection = {}
     return new Proxy(baseTranslationProxy, {
-      get: (target, prop) => {
+      get: (target: TranslationLanguageCollection, prop: string) => {
         // Language code cache
         if (!target[this.code]) {
           baseTranslationProxy[this.code] = {}
@@ -103,8 +118,9 @@ class TranslatorSingleton {
         }
         // Fresh translation
         const translation = this.retrieve(identifier)
-        if (typeof translation === 'object' && translation[prop])
+        if (typeof translation === 'object' && translation[prop]) {
           baseTranslationProxy[this.code][prop] = this.replace(translation[prop], replacements)
+        }
         // Return translation or default
         return target[this.code][prop] || this.DEFAULT_TRANSLATION
       },

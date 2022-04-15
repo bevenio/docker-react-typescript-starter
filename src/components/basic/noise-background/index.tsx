@@ -6,13 +6,18 @@ import './noise-background.scss'
 /* Modules */
 import { Noise } from './noise-background.module'
 
-const NoiseBackground = function ({ color, children }) {
+interface Props {
+  color: string
+  children?: React.ReactChild[]
+}
+
+const NoiseBackground: React.FC<Props> = function ({ color, children }) {
   // Component state
-  const [noise, setNoise] = useState(null)
-  const canvasRef = createRef()
+  const [noise, setNoise] = useState<Noise | null>(null)
+  const canvasRef = createRef<HTMLCanvasElement>()
 
   // Component effects
-  const startNoise = () => {
+  const startNoise = (): void => {
     const noiseInstance = new Noise({
       canvas: canvasRef.current,
       color,
@@ -21,7 +26,7 @@ const NoiseBackground = function ({ color, children }) {
     setNoise(noiseInstance)
   }
 
-  const endNoise = () => {
+  const endNoise = (): void => {
     if (noise) {
       noise.pause()
     }

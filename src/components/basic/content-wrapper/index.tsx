@@ -1,7 +1,12 @@
 /* Styles */
 import './content-wrapper.scss'
 
-const ContentWrapper = function (props) {
+interface Props {
+  navbar?: boolean
+  children: React.ReactChild[]
+}
+
+const ContentWrapper: React.FC<Props> = function (props) {
   const { children, navbar = false } = props
 
   return (

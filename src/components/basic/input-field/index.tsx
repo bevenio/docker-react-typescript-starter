@@ -1,22 +1,31 @@
 /* Styles */
 import './input-field.scss'
 
-const InputField = function ({
+interface Props {
+  name?: string
+  type?: string
+  label?: string
+  placeholder?: string
+  autocomplete?: string
+  onValidate?: (...args: unknown[]) => string
+  onChange?: (...args: unknown[]) => string
+}
+
+const InputField: React.FC<Props> = function ({
   name = 'no-name',
   type = 'text',
   label = '',
   placeholder = '',
   autocomplete = 'off',
-  onValidate = () => true,
+  onValidate = () => '',
   onChange = () => {},
 }) {
   const identifier = `app-input-field-${name}`
 
-  const valueChanged = (event) => {
-    onChange(event.target.value)
-    const validationResult = onValidate(event.target.value)
-    const validationError = validationResult === true ? '' : validationResult
-    event.target.setCustomValidity(validationError)
+  const valueChanged = (event: React.FormEvent<HTMLInputElement>) => {
+    onChange(event.currentTarget.value)
+    const validationResult = onValidate(event.currentTarget.value)
+    event.currentTarget.setCustomValidity(validationResult)
   }
 
   return (

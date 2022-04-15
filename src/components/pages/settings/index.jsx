@@ -9,7 +9,7 @@ import { SettingsForm } from '@/components/composed/settings-form'
 const SettingsPage = function () {
   return (
     <PageLayout>
-      <ContentWrapper navbar="true">
+      <ContentWrapper navbar>
         <h1>Settings</h1>
         <SettingsForm />
       </ContentWrapper>

@@ -3,13 +3,20 @@ import { useState } from 'react'
 /* Styles */
 import './input-switch.scss'
 
-const InputSwitch = function ({ name = `no-name`, label = '', isOn = false, onChange = () => {} }) {
+interface Props {
+  name?: string
+  label?: string
+  isOn?: boolean
+  onChange?: (...agrs: unknown[]) => boolean
+}
+
+const InputSwitch: React.FC<Props> = function ({ name = `no-name`, label = '', isOn = false, onChange = () => {} }) {
   const identifier = `app-input-switch-${name}`
   const [isSwitchChecked, setSwitchChecked] = useState(isOn)
 
-  const valueChanged = (event) => {
-    setSwitchChecked(event.target.checked)
-    onChange(event.target.checked)
+  const valueChanged = (event: React.FormEvent<HTMLInputElement>) => {
+    setSwitchChecked(event.currentTarget.checked)
+    onChange(event.currentTarget.checked)
   }
 
   return (

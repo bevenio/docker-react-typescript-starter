@@ -3,11 +3,17 @@ import { useEffect, createRef } from 'react'
 /* Styles */
 import './route-layout.scss'
 
-const RouteLayout = function ({ children }) {
-  const routeReference = createRef()
+interface Props {
+  children: React.ReactChild[]
+}
+
+const RouteLayout: React.FC<Props> = function ({ children }) {
+  const routeReference = createRef<HTMLElement>()
 
   useEffect(() => {
-    routeReference.current.focus()
+    if (routeReference.current) {
+      routeReference.current.focus()
+    }
   }, [])
 
   return (

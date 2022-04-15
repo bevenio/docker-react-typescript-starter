@@ -1,7 +1,7 @@
 /* Styles */
 import './loading-spinner.scss'
 
-const LoadingSpinner = function () {
+const LoadingSpinner: React.FC = function () {
   return (
     <div className="app-loading-spinner-container">
       <div className="app-loading-spinner">

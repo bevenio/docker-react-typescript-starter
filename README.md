@@ -6,8 +6,6 @@
 
 ## Todos
 
-- implement typescript support and components
-
 - replace enzyme with another test library
 
 ## General
@@ -113,9 +111,9 @@ src
 ### Common file types
 
 | File name        | Purpose                                                      | Location                                       |
-| ---------------- | ------------------------------------------------------------ | ---------------------------------------------- | ----------------------- |
+| ---------------- | ------------------------------------------------------------ | ---------------------------------------------- |
 | \*.scss          | A file that contains the styling for a component or the app  | assets / components                            |
-| index.ts         | ts                                                           | An entrypoint to a service / component / store | no location restriction |
+| index.ts         | ts                                                           | An entrypoint to a service / component / store |
 | \*.module.ts     | A file that contains one or multiple plain js modules        | no location restriction                        |
 | \*.component.tsx | A file that contains one or multiple react components        | component directory                            |
 | \*.service.ts    | A file that contains side-effect free business logic         | services directory                             |

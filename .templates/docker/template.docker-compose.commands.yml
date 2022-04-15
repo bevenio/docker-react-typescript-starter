@@ -39,7 +39,7 @@ services:
   lint:
     extends:
       service: base
-    command: npx eslint 'src/**/*.{js,jsx}' -c .eslintrc.json --format codeframe
+    command: npx eslint 'src/**/*.{js,jsx}' -c .eslintrc --format codeframe
   # Run tests with optional pattern
   test:
     extends:

@@ -1,7 +1,11 @@
 /* Styles */
 import './fill-available.scss'
 
-const FillAvailable = function (props) {
+interface Props {
+  children: React.ReactChild[]
+}
+
+const FillAvailable: React.FC<Props> = function (props) {
   const { children } = props
 
   return (

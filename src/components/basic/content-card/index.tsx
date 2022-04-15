@@ -1,7 +1,12 @@
 /* Styles */
 import './content-card.scss'
 
-const ContentCard = function (props) {
+interface Props {
+  label?: string
+  children: React.ReactChild[]
+}
+
+const ContentCard: React.FC<Props> = function (props) {
   const { children, label } = props
   return (
     <div className="app-content-card">

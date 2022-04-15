@@ -21,7 +21,7 @@ const MainPage = function () {
   return (
     <NoiseBackground color={getVariable('--color-accent-translucent')}>
       <PageLayout>
-        <ContentWrapper navbar="true">
+        <ContentWrapper navbar>
           <h2>Hacks</h2>
           {[
             { title: 'AI', level: 3, route: '/ai' },

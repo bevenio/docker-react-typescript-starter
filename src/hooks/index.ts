@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 
 // Returns the previous version of the passed value
-const usePrevious = function (value) {
-  const ref = useRef()
+const usePrevious = function <T>(value: T): T | undefined {
+  const ref = useRef<T>()
   useEffect(() => {
     ref.current = value
   }, [value])

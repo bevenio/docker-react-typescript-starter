@@ -20,7 +20,7 @@ enum RuntimeMode {
 const isDevMode = process.env.NODE_ENV === RuntimeMode.Development
 
 // Function for applyinhg redux browser devtools
-const applyReduxExtensionDevtools = (middleware: unknown): unknown => {
+const applyReduxExtensionDevtools = <T>(middleware: T): T => {
   if (isDevMode) {
     const { composeWithDevTools } = require('redux-devtools-extension')
     return composeWithDevTools(middleware)

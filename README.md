@@ -120,7 +120,8 @@ src
 | \*.sdk.ts        | A file that interacts with a third party library or software | components / services                          |
 | \*.route.tsx     | A file that contains one or multiple routes                  | router directory                               |
 | \*.worker.tsx    | A file that contains a webworker                             | components / services                          |
-| \*.d.ts          | A file that contains typescript definitions                  | components / services                          |
+| \*types.ts       | A file that contains typescript definitions                  | no location restriction                        |
+| \*.d.ts          | A file that contains global typescript definitions           | no location restriction                        |
 
 ### Common directory types
 

@@ -7,7 +7,7 @@ interface Props {
   name?: string
   label?: string
   isOn?: boolean
-  onChange?: (...agrs: unknown[]) => boolean
+  onChange?: (value: boolean) => void
 }
 
 const InputSwitch: React.FC<Props> = function ({ name = `no-name`, label = '', isOn = false, onChange = () => {} }) {

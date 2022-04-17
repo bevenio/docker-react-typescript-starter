@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, Dispatch } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import { applyReduxExtensionDevtools } from '@/services/devtool-service'
@@ -16,5 +16,10 @@ const store = createStore(rootReducer, applyReduxExtensionDevtools(combinedMiddl
 /* Extend store with custom extensions */
 storePersist.extendStore(store)
 storeShare.extendStore(store)
+
+declare global {
+  type ReduxState = ReturnType<typeof rootReducer>
+  type ReduxDispatch = Dispatch
+}
 
 export { store, actions }

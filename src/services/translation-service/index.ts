@@ -1,23 +1,30 @@
 import { get } from 'dot-prop'
-import { FC } from 'react'
+
 /* Store */
 import { store, actions } from '@/store/store'
 
 /* Services */
 import { LoggingService } from '@/services/logging-service'
 
-/* Components */
-import { TextPlaceholder } from '@/components/basic/text-placeholder'
-
 type LanguageCode = string
-type Translation = string
+type Translation = string | undefined
 
 interface TranslationCollection {
-  [translationKey: string]: TranslationCollection | Translation | FC
+  [translationKey: string]: TranslationCollection | Translation
 }
 
 interface TranslationLanguageCollection {
   [translationLanguageKey: string]: TranslationCollection
+}
+
+interface TranslationLanguageExportCollection {
+  [translationLanguageKey: string]: {
+    [translationKey: string]: Translation
+  }
+}
+
+interface TranslationExportCollection {
+  [translationKey: string]: Translation
 }
 
 interface Replacements {
@@ -29,7 +36,7 @@ const logger = new LoggingService('translation-service')
 class TranslatorSingleton {
   /* Constant properties */
   DEFAULT_CODE = 'en-US'
-  DEFAULT_TRANSLATION = TextPlaceholder
+  DEFAULT_TRANSLATION = undefined
 
   /* Private properties */
   code: LanguageCode = this.DEFAULT_CODE
@@ -59,7 +66,7 @@ class TranslatorSingleton {
   }
 
   dispatchLanguageChange = () => {
-    store.dispatch(actions.settings.changeLang(this.code))
+    store.dispatch(actions.settings.changeLang({ lang: this.code }))
   }
 
   loadLanguage = (code: string) => {
@@ -85,12 +92,12 @@ class TranslatorSingleton {
   }
 
   /* Translation processing */
-  replace = (translation: Translation, replacements: Replacements = {}): Translation | FC =>
+  replace = (translation: Translation, replacements: Replacements = {}): Translation =>
     typeof translation === 'string'
       ? translation.replace(/\{\{(.*?)\}\}/g, (_, key) => (replacements[key] !== undefined ? replacements[key] : ''))
       : this.DEFAULT_TRANSLATION
 
-  retrieve = (identifier: string): Translation | FC =>
+  retrieve = (identifier: string): Translation =>
     this.translations[this.code] ? get(this.translations[this.code], identifier) || this.DEFAULT_TRANSLATION : this.DEFAULT_TRANSLATION
 
   /* Exposed methods and functions */
@@ -98,23 +105,25 @@ class TranslatorSingleton {
     return !!this.translations[this.code]
   }
 
-  translate(identifier = '', replacements: Replacements = {}) {
+  translate(identifier = '', replacements: Replacements = {}): Translation {
     const translation = this.retrieve(identifier)
     if (typeof translation !== 'string') throw new Error('A single translation string is expected to be found')
     return this.replace(translation, replacements)
   }
 
   translateBatch(identifier = '', replacements: Replacements = {}) {
-    const baseTranslationProxy: TranslationLanguageCollection = {}
-    return new Proxy(baseTranslationProxy, {
-      get: (target: TranslationLanguageCollection, prop: string) => {
+    const baseTranslationProxy: TranslationLanguageExportCollection = {}
+    const baseProxy = baseTranslationProxy as unknown as TranslationExportCollection
+
+    return new Proxy<TranslationExportCollection>(baseProxy, {
+      get: (target: TranslationExportCollection, prop: string): string | undefined => {
         // Language code cache
         if (!target[this.code]) {
           baseTranslationProxy[this.code] = {}
         }
         // Cached translation
-        if (target[this.code][prop]) {
-          return target[this.code][prop]
+        if (baseTranslationProxy[this.code][prop]) {
+          return String(baseTranslationProxy[this.code][prop])
         }
         // Fresh translation
         const translation = this.retrieve(identifier)
@@ -122,7 +131,7 @@ class TranslatorSingleton {
           baseTranslationProxy[this.code][prop] = this.replace(translation[prop], replacements)
         }
         // Return translation or default
-        return target[this.code][prop] || this.DEFAULT_TRANSLATION
+        return String(baseTranslationProxy[this.code][prop] || this.DEFAULT_TRANSLATION)
       },
     })
   }

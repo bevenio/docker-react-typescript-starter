@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { actions } from '@/store/store'
 import { usePrevious } from '@/hooks'
@@ -15,7 +15,12 @@ import { Translator } from '@/services/translation-service'
 /* Translations */
 const translations = Translator.translateBatch('components.composed.login-form')
 
-const LoginForm = function ({ onSuccess, onFailure }) {
+interface Props {
+  onSuccess: (...args: unknown[]) => void
+  onFailure: (...args: unknown[]) => void
+}
+
+const LoginForm: React.FC<Props> = function ({ onSuccess, onFailure }) {
   const CONSTANTS = {
     IDENTIFIER_MIN_LENGTH: 3,
     PASSWORD_MIN_LENGTH: 8,
@@ -27,18 +32,18 @@ const LoginForm = function ({ onSuccess, onFailure }) {
   const [identifier, setIdentifier] = useState('')
 
   // Component hooks
-  const authStatus = useSelector((state) => state.auth.status)
+  const authStatus = useSelector((state: ReduxState) => state.auth.status)
   const previousStatus = usePrevious(authStatus)
   const dispatch = useDispatch()
 
   // Component business logic
-  const identifierValidator = () => (identifier.length >= CONSTANTS.IDENTIFIER_MIN_LENGTH || !identifier ? true : 'Identifier is too short')
+  const identifierValidator = () => (identifier.length >= CONSTANTS.IDENTIFIER_MIN_LENGTH || !identifier ? '' : 'Identifier is too short')
 
-  const passwordValidator = () => (password.length >= CONSTANTS.PASSWORD_MIN_LENGTH || !password ? true : 'Password is too short')
+  const passwordValidator = () => (password.length >= CONSTANTS.PASSWORD_MIN_LENGTH || !password ? '' : 'Password is too short')
 
   const isRequesInProgress = () => authStatus === 'TRYING'
 
-  const login = (event) => {
+  const login = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setLocalRequestInProgress(true)
     dispatch(actions.auth.requestLogin({ identifier, password }))
@@ -63,9 +68,9 @@ const LoginForm = function ({ onSuccess, onFailure }) {
   // Component render
   return (
     <form className="app-login-form" onSubmit={login}>
-      <center>
+      <span>
         <h2>{translations.login}</h2>
-      </center>
+      </span>
       <InputField
         label={translations.username}
         type="text"

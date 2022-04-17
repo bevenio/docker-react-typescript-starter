@@ -27,7 +27,7 @@ class LoggingService {
   /* Private properties */
   selectedLogName = 'default'
   selectedLevel: LogValue = 0
-  selectedLevelName: LogLevel = 'log'
+  selectedLevelName: LogLevel = 'debug'
 
   /* Class implementation */
   constructor(name: string, level?: LogLevel) {

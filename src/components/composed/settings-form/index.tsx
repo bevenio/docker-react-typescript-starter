@@ -13,16 +13,16 @@ import { Translator } from '@/services/translation-service'
 const translations = Translator.translateBatch('components.composed.settings-form')
 
 const SettingsForm = function () {
-  const theme = useSelector((state) => state.settings.theme)
-  const animations = useSelector((state) => state.settings.animations)
+  const theme = useSelector((state: ReduxState) => state.settings.theme)
+  const animations = useSelector((state: ReduxState) => state.settings.animations)
   const dispatch = useDispatch()
 
-  const animationsChanged = (isOn) => {
-    dispatch(actions.settings.changeAnimations(!!isOn))
+  const animationsChanged = (isOn: boolean) => {
+    dispatch(actions.settings.changeAnimations({ animations: !!isOn }))
   }
 
-  const darkmodeChanged = (isOn) => {
-    dispatch(actions.settings.changeTheme(isOn ? 'dark' : 'light'))
+  const darkmodeChanged = (isOn: boolean) => {
+    dispatch(actions.settings.changeTheme({ theme: isOn ? 'dark' : 'light' }))
   }
 
   return (

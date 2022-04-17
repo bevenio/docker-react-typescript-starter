@@ -8,7 +8,7 @@ interface Props {
   placeholder?: string
   autocomplete?: string
   onValidate?: (...args: unknown[]) => string
-  onChange?: (...args: unknown[]) => string
+  onChange?: (value: string) => void
 }
 
 const InputField: React.FC<Props> = function ({

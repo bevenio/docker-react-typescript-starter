@@ -5,12 +5,25 @@ import { store } from '@/store/store'
 import { ErrorPage } from '@/components/pages/error'
 import { RouteLayout } from '@/components/basic/route-layout'
 
-const isAppUsingHashRoute = !!window.location.hash
-const router = isAppUsingHashRoute ? HashRouter : PathRouter
+type RouteType = 'hash' | 'path'
 
-const getRouter = () => router
+interface RouteParameters {
+  component: React.FC
+  route: string
+  redirection: string
+  dependencies: {
+    [key: string]: (...args: unknown[]) => boolean | boolean
+  }
+}
 
-const createRoute = ({ component: Component, route, redirection, dependencies }) => {
+const getRouteType = (): RouteType => (window.location.hash ? 'hash' : 'path')
+
+const getRouters = () => ({
+  hash: HashRouter,
+  path: PathRouter,
+})
+
+const createRoute = ({ component, route, redirection, dependencies }: RouteParameters) => {
   const mustRedirect = () =>
     !(dependencies
       ? Object.keys(dependencies).reduce((previous, current) => {
@@ -27,6 +40,7 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
 
   // Decide what component to return
   const renderFunction = () => {
+    const Component = component
     const redirect = mustRedirect()
     if (redirect && !!redirection) {
       return <Redirect to={redirection} />
@@ -51,4 +65,4 @@ const createRoute = ({ component: Component, route, redirection, dependencies })
   }
 }
 
-export { getRouter, createRoute }
+export { getRouteType, getRouters, createRoute }

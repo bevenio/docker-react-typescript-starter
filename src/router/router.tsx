@@ -5,7 +5,7 @@ import { Route, Switch, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 /* Utility */
-import { getRouter } from '@/router/utility/router-utility.module'
+import { getRouteType, getRouters } from '@/router/utility/router-utility.module'
 
 /* Services */
 import { registerServiceworker } from '@/services/serviceworker-service'
@@ -44,16 +44,14 @@ function AppRoutes() {
 }
 
 const AppRouter = function () {
-  const router = getRouter()
-
-  const title = useSelector((state) => state.settings.title)
-  const theme = useSelector((state) => state.settings.theme)
+  const type = getRouteType()
+  const Routers = getRouters()
+  const title = useSelector((state: ReduxState) => state.settings.title)
+  const theme = useSelector((state: ReduxState) => state.settings.theme)
 
   useEffect(() => {
     registerServiceworker()
   }, [])
-
-  const { router: Router } = { router }
 
   return (
     <>
@@ -62,9 +60,15 @@ const AppRouter = function () {
         <link rel="icon" type="image/png" href="./static/images/icons/icon-192x192.png" />
         <html lang={Translator.code} color-scheme={theme} />
       </Helmet>
-      <Router basename="/">
-        <AppRoutes />
-      </Router>
+      {type === 'hash' ? (
+        <Routers.hash>
+          <AppRoutes />
+        </Routers.hash>
+      ) : (
+        <Routers.path>
+          <AppRoutes />
+        </Routers.path>
+      )}
     </>
   )
 }

@@ -14,8 +14,10 @@ const rootDir = path.resolve(__dirname, './../')
 const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
+const filteredChunkParts = ['js', 'ts', 'jsx', 'tsx']
+
 const extractChunkName = (pathData) => {
-  const chunkParts = pathData.chunk.id.split('_').filter((part) => part !== 'jsx' && part !== 'index')
+  const chunkParts = pathData.chunk.id.split('_').filter((part) => !filteredChunkParts.includes(part) && part !== 'index')
   return `js/chunks/${chunkParts.pop()}.chunk.js`
 }
 

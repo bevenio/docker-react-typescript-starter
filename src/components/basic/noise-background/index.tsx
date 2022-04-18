@@ -8,7 +8,7 @@ import { Noise } from './noise-background.module'
 
 interface Props {
   color: string
-  children?: React.ReactChild[]
+  children?: React.ReactNode
 }
 
 const NoiseBackground: React.FC<Props> = function ({ color, children }) {

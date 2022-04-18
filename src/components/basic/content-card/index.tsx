@@ -3,7 +3,7 @@ import './content-card.scss'
 
 interface Props {
   label?: string
-  children: React.ReactChild[]
+  children: React.ReactNode
 }
 
 const ContentCard: React.FC<Props> = function (props) {

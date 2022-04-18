@@ -2,7 +2,7 @@
 import './page-layout.scss'
 
 interface Props {
-  children: React.ReactChild[]
+  children: React.ReactNode
 }
 
 const PageLayout: React.FC<Props> = function (props) {

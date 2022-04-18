@@ -4,7 +4,7 @@ import { useEffect, createRef } from 'react'
 import './route-layout.scss'
 
 interface Props {
-  children: React.ReactChild[]
+  children: React.ReactChildren
 }
 
 const RouteLayout: React.FC<Props> = function ({ children }) {

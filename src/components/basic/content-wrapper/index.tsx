@@ -3,7 +3,7 @@ import './content-wrapper.scss'
 
 interface Props {
   navbar?: boolean
-  children: React.ReactChild[]
+  children: React.ReactNode
 }
 
 const ContentWrapper: React.FC<Props> = function (props) {

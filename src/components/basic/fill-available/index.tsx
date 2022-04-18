@@ -2,7 +2,7 @@
 import './fill-available.scss'
 
 interface Props {
-  children: React.ReactChild[]
+  children: React.ReactNode
 }
 
 const FillAvailable: React.FC<Props> = function (props) {

@@ -51,6 +51,8 @@
     "@babel/register": "^7.17.7",
     "@babel/runtime": "^7.17.9",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
     "@types/hash-sum": "^1.0.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.24",
@@ -116,7 +118,6 @@
     "workbox-webpack-plugin": "^6.5.2"
   },
   "references": {
-    "enzyme": "https://airbnb.io/enzyme/docs/api/",
     "guide-destructuring": "https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f",
     "jest-cheatsheet": "https://github.com/sapegin/jest-cheat-sheet",
     "react": "https://reactjs.org/",

@@ -61,13 +61,13 @@ const AppRouter = function () {
         <html lang={Translator.code} color-scheme={theme} />
       </Helmet>
       {type === 'hash' ? (
-        <Routers.hash>
+        <Routers.Hash>
           <AppRoutes />
-        </Routers.hash>
+        </Routers.Hash>
       ) : (
-        <Routers.path>
+        <Routers.Path>
           <AppRoutes />
-        </Routers.path>
+        </Routers.Path>
       )}
     </>
   )

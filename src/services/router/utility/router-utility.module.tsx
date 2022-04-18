@@ -19,8 +19,8 @@ interface RouteParameters {
 const getRouteType = (): RouteType => (window.location.hash ? 'hash' : 'path')
 
 const getRouters = () => ({
-  Hash: HashRouter,
-  Path: PathRouter,
+  hash: HashRouter,
+  path: PathRouter,
 })
 
 const createRoute = ({ component, route, redirection, dependencies }: RouteParameters) => {

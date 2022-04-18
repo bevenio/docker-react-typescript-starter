@@ -1,6 +1,7 @@
-import 'jsdom-global/register'
 import configureMockStore from 'redux-mock-store'
+import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import Helmet from 'react-helmet'
 
 import { AppRouter } from './router'
 
@@ -23,14 +24,14 @@ describe('router component', () => {
     })
   })
 
-  test('the element has gotten state property "settings.theme"', () => {
+  test('the router uses the theme from redux and applies it to the html tag', () => {
     const store = mockStore(mockInitialState)
-    expect(
-      true || (
-        <Provider store={store}>
-          <AppRouter />
-        </Provider>
-      )
-    ).toBe(true)
+
+    render(
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    )
+    expect(Helmet.peek().htmlAttributes['color-scheme']).toBe('light')
   })
 })

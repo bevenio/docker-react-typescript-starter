@@ -6,8 +6,6 @@
 
 ## Todos
 
-- replace enzyme with another test library
-
 - fix routing
 
 ## General
@@ -60,7 +58,7 @@ make sync name=<name-of-machine>
 
 ### Testing this project
 
-For testing we use the frameworks **jest**, **enzyme** and **react-test-renderer**.
+For testing we use the frameworks **jest**, **react-testing-library** and **react-test-renderer**.
 In order to run a test on a single _\*.spec.jsx_ file execute the following:
 
 ```zsh

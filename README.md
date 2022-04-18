@@ -4,10 +4,6 @@
 ![Test](https://github.com/bevenio/docker-react/actions/workflows/nodejs_test.yml/badge.svg?event=push)
 ![Build](https://github.com/bevenio/docker-react/actions/workflows/nodejs_build.yml/badge.svg?event=push)
 
-## Todos
-
-- fix routing
-
 ## General
 
 ### Setting up this project
@@ -119,7 +115,7 @@ src
 | \*.service.ts    | A file that contains side-effect free business logic         | services directory                             |
 | \*.sdk.ts        | A file that interacts with a third party library or software | components / services                          |
 | \*.route.tsx     | A file that contains one or multiple routes                  | router directory                               |
-| \*.worker.tsx    | A file that contains a webworker                             | components / services                          |
+| \*.worker.ts     | A file that contains a webworker                             | components / services                          |
 | \*types.ts       | A file that contains typescript definitions                  | no location restriction                        |
 | \*.d.ts          | A file that contains global typescript definitions           | no location restriction                        |
 

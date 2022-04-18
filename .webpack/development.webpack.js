@@ -21,7 +21,7 @@ const extractChunkName = (pathData) => {
   return `js/chunks/${chunkParts.pop()}.chunk.js`
 }
 
-const createEntry = (/* options */) => [path.resolve(srcDir, 'index.jsx')]
+const createEntry = (/* options */) => [path.resolve(srcDir, 'index.tsx')]
 
 const createTarget = (/* options */) => 'web'
 

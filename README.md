@@ -80,8 +80,8 @@ make test-noui
 ```dir
 src
 |   index.html
-│   index.jsx
-│   settings.jsx
+│   index.tsx
+│   settings.ts
 │
 └───components
 │   └───basic
@@ -89,12 +89,12 @@ src
 │   └───pages
 │
 └───router
-│   │   router.jsx
+│   │   router.tsx
 │   └───routes
 │   └───utility
 │
 └───store
-│   │   store.jsx
+│   │   store.ts
 │   └───entries
 │   └───utility
 │

@@ -12,7 +12,7 @@ const rootDir = path.resolve(__dirname, './../')
 const srcDir = path.resolve(rootDir, './src')
 const distDir = path.resolve(rootDir, './dist')
 
-const createEntry = (/* options */) => [path.resolve(srcDir, 'index.jsx')]
+const createEntry = (/* options */) => [path.resolve(srcDir, 'index.tsx')]
 
 const createTarget = (/* options */) => 'web'
 
@@ -124,7 +124,7 @@ const createModules = (/* options */) => {
       loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-        plugins: [require.resolve('react-refresh/babel')],
+        plugins: [],
       },
     },
   })

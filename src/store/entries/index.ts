@@ -1,4 +1,5 @@
-import { CombinedState, combineReducers } from 'redux'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { combineReducers } from 'redux'
 
 /* SETTINGS */
 import { settingsActions } from '@/store/entries/settings/actions.module'

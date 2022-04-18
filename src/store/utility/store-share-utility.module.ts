@@ -5,6 +5,25 @@ import { LoggingService } from '@/services/logging-service'
 
 const logger = new LoggingService('store-share')
 
+interface BroadcastAction {
+  action: ReduxAction<unknown>
+  hash: string
+}
+
+interface BroadcastState {
+  state: ReduxState
+  hash: string
+}
+
+interface BroadcastEvent {
+  data: {
+    type: string
+    content: string
+  }
+  type: string
+  content: string
+}
+
 class StoreShareSingleton {
   /* Constant properties */
   CONTENT_TYPES = {
@@ -19,19 +38,19 @@ class StoreShareSingleton {
 
   /* Private properties */
   key = 'redux-broadcast-channel'
-  stateHash = null
-  storeReference = null
-  broadcastChannel = null
+  stateHash = ''
+  storeReference: ReduxStore | null = null
+  broadcastChannel: BroadcastChannel | null = null
 
   /* Class implementation */
   /* Channel methods and functions */
   registerChannel = () => {
     this.broadcastChannel = new BroadcastChannel(this.key)
     window.addEventListener('pageshow', () => {
-      this.broadcastChannel.addEventListener('message', this.onChannelMessage)
+      if (this.broadcastChannel) this.broadcastChannel.addEventListener('message', this.onChannelMessage)
     })
     window.addEventListener('pagehide', () => {
-      this.broadcastChannel.removeEventListener('message', this.onChannelMessage)
+      if (this.broadcastChannel) this.broadcastChannel.removeEventListener('message', this.onChannelMessage)
     })
   }
 
@@ -43,62 +62,68 @@ class StoreShareSingleton {
   }
 
   updateStateHash = () => {
-    this.stateHash = this.storeReference ? hash(this.storeReference.getState()) : null
+    this.stateHash = this.storeReference ? hash(this.storeReference.getState()) : ''
   }
 
-  onRemoteAction = async ({ action: remoteAction, hash: remoteHash }) => {
-    if (this.stateHash === remoteHash) {
+  onRemoteAction = async (broadcastAction: BroadcastAction) => {
+    if (this.stateHash === broadcastAction.hash) {
       // Remote is executing action on the same state
-      const action = {
-        type: remoteAction.type,
-        payload: remoteAction.payload,
+      const remoteAction: ReduxAction<unknown> = {
+        type: broadcastAction.action.type,
+        payload: broadcastAction.action.payload,
         shared: true,
       }
-      this.reduxDispatch(action, remoteHash)
+      this.reduxDispatch(remoteAction)
     } else {
       // Remote is executing action on a different state (hash mismatch)
-      logger.debug(`hash mismatch [${this.stateHash}:${remoteHash}]`)
+      logger.debug(`hash mismatch [${this.stateHash}:${broadcastAction.hash}]`)
       this.sendChannelMessage(this.CONTENT_TYPES.STATE_REQUEST, {})
     }
   }
 
   onStateRequest = async () => {
-    logger.debug('broadcasting state due to request')
-    this.sendChannelMessage(this.CONTENT_TYPES.STATE_RESPONSE, {
-      state: this.storeReference.getState(),
-      hash: this.stateHash,
-    })
-  }
-
-  onStateResponse = async ({ state: remoteState, hash: remoteHash }) => {
-    if (this.stateHash !== remoteHash) {
-      logger.debug('received state response')
-      const action = {
-        type: this.ACTION_TYPES.INIT,
-        payload: remoteState,
-        shared: true,
-      }
-      this.reduxDispatch(action, remoteHash)
+    if (this.storeReference) {
+      logger.debug('broadcasting state due to request')
+      this.sendChannelMessage(this.CONTENT_TYPES.STATE_RESPONSE, {
+        state: this.storeReference.getState(),
+        hash: this.stateHash,
+      })
+    } else {
+      logger.debug('cannot broadcast requested state')
     }
   }
 
-  onChannelMessage = (event) => {
+  onStateResponse = async (broadcastState: BroadcastState) => {
+    if (this.stateHash !== broadcastState.hash) {
+      logger.debug('received state response')
+      const action = {
+        type: this.ACTION_TYPES.INIT,
+        payload: broadcastState.state,
+        shared: true,
+      }
+      this.reduxDispatch(action)
+    }
+  }
+
+  onChannelMessage = (event: BroadcastEvent) => {
     const message = event && event.data ? event.data : event
 
     switch (message.type) {
       // Another instance triggers a store action, content: { action, hash }
       case this.CONTENT_TYPES.ACTION: {
-        this.onRemoteAction(message.content)
+        const remoteAction = message.content as unknown as BroadcastAction
+        this.onRemoteAction(remoteAction)
         break
       }
       // Another instance requests a state update, content: undefined
       case this.CONTENT_TYPES.STATE_REQUEST: {
-        this.onStateRequest(message.content)
+        this.onStateRequest()
         break
       }
       // Another instance broadcasts a state update, content: {state, hash}
       case this.CONTENT_TYPES.STATE_RESPONSE: {
-        this.onStateResponse(message.content)
+        const remoteState = message.content as unknown as BroadcastState
+        this.onStateResponse(remoteState)
         break
       }
       default: {
@@ -107,20 +132,20 @@ class StoreShareSingleton {
     }
   }
 
-  sendChannelMessage = (type, content) => {
+  sendChannelMessage = (type: string, content: unknown) => {
     if (this.broadcastChannel) {
       this.broadcastChannel.postMessage({ type, content })
     }
   }
 
   /* Redux methods and functions */
-  reduxDispatch = (action) => {
+  reduxDispatch = (action: ReduxAction<unknown>) => {
     if (this.storeReference) {
       this.storeReference.dispatch(action)
     }
   }
 
-  reduxActionMiddleware = (/* store */) => (next) => (action) => {
+  reduxActionMiddleware = (/* store */) => (next: ReduxDispatch) => (action: ReduxAction<unknown>) => {
     if (!action.shared) {
       this.sendChannelMessage(this.CONTENT_TYPES.ACTION, { action, hash: this.stateHash })
     }
@@ -134,7 +159,7 @@ class StoreShareSingleton {
     return this.reduxActionMiddleware
   }
 
-  extendStore(store) {
+  extendStore(store: ReduxStore) {
     this.storeReference = store
     this.registerChannel()
     this.registerStateRequest()

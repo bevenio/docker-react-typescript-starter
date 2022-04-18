@@ -38,9 +38,9 @@ class StorePersistSingleton {
               if (this.storeReference) {
                 logger.debug('persisting state')
                 const state: ReduxState = this.storeReference.getState()
-                localStorage.setItem(this.createEntryName(entry), JSON.stringify(state[state]))
+                localStorage.setItem(this.createEntryName(entry), JSON.stringify(state[entry]))
               } else {
-                logger.debug('state cannot be persisted, since there is no reference')
+                logger.error('state cannot be persisted, since there is no reference')
               }
             } catch {
               throw new Error('Store entry could not be saved')
@@ -54,10 +54,15 @@ class StorePersistSingleton {
   }
 
   restoreEntry(entry: ReduxStateKey): ReduxState[ReduxStateKey] {
-    logger.debug(`restoring entry (${String(entry)})`)
-    this.registerEntry(entry)
-    const restoredEntry = localStorage.getItem(this.createEntryName(entry))
-    return restoredEntry ? JSON.parse(restoredEntry) : null
+    try {
+      logger.debug(`restoring entry (${String(entry)})`)
+      this.registerEntry(entry)
+      const restoredEntry = localStorage.getItem(this.createEntryName(entry))
+      return restoredEntry && restoredEntry !== undefined ? JSON.parse(restoredEntry) : null
+    } catch {
+      logger.error(`could not restore entry (${String(entry)})`)
+      return null
+    }
   }
 
   extendStore(store: ReduxStore): void {

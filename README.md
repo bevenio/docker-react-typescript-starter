@@ -8,6 +8,8 @@
 
 - replace enzyme with another test library
 
+- fix routing
+
 ## General
 
 ### Setting up this project

@@ -1,0 +1,51 @@
+{
+  "sources": [
+    {
+      "id": "project",
+      "from": "./project.json"
+    },
+    {
+      "id": "package",
+      "from": "./package.json"
+    }
+  ],
+  "replacements": [
+    {
+      "from": "./.templates/project/template.project.json",
+      "to": "./project.json",
+      "generateOnce": true
+    },
+    {
+      "from": "./.templates/license/template.LICENSE",
+      "to": "./LICENSE"
+    },
+    {
+      "from": "./.templates/docker/template.docker-compose.commands.yml",
+      "to": "./.docker/docker-compose.commands.yml"
+    },
+    {
+      "from": "./.templates/docker/template.docker-compose.development.yml",
+      "to": "./.docker/docker-compose.development.yml"
+    },
+    {
+      "from": "./.templates/docker/template.docker-compose.production.yml",
+      "to": "./.docker/docker-compose.production.yml"
+    },
+    {
+      "from": "./.templates/docker/template.dockerfile.deployment",
+      "to": "./.docker/dockerfile.deployment"
+    },
+    {
+      "from": "./.templates/github/template.nodejs_build.yml",
+      "to": "./.github/workflows/nodejs_build.yml"
+    },
+    {
+      "from": "./.templates/github/template.nodejs_lint.yml",
+      "to": "./.github/workflows/nodejs_lint.yml"
+    },
+    {
+      "from": "./.templates/github/template.nodejs_test.yml",
+      "to": "./.github/workflows/nodejs_test.yml"
+    }
+  ]
+}

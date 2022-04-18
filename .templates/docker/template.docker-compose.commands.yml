@@ -10,7 +10,7 @@ services:
   prepare:
     extends:
       service: base
-    command: bash -c "node ./.scripts/project-generate.script.jsx"
+    command: bash -c "node ./.scripts/project-generate.script.js"
   # Installing node_modules inside of the docker environment
   install:
     extends:
@@ -39,22 +39,22 @@ services:
   lint:
     extends:
       service: base
-    command: npx eslint 'src/**/*.{js,jsx}' -c .eslintrc.json
+    command: npx eslint 'src/**/*.{js,jsx}' -c .eslintrc --format codeframe
   # Run tests with optional pattern
   test:
     extends:
       service: base
-    command: npx jest --config .jestrc.json $ARGS
+    command: npx jest --config ./.jest/jest.config.js $ARGS
   # Run tests for ci
   test_noui:
     extends:
       service: base
-    command: npx jest --config .jestrc.json --reporters=default --coverage
+    command: npx jest --config ./.jest/jest.config.js --reporters=default --coverage
   # Syncing repository to remote machine
   sync_repository:
     extends:
       service: base
-    command: node ./.scripts/sftp-upload.script.jsx $ARGS
+    command: node ./.scripts/sftp-upload.script.js $ARGS
   # Execute command that has been passed to $ARGS
   execute_command:
     extends:

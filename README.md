@@ -54,7 +54,7 @@ make sync name=<name-of-machine>
 
 ### Testing this project
 
-For testing we use the frameworks **jest**, **enzyme** and **react-test-renderer**.
+For testing we use the frameworks **jest**, **react-testing-library** and **react-test-renderer**.
 In order to run a test on a single _\*.spec.jsx_ file execute the following:
 
 ```zsh
@@ -99,21 +99,25 @@ src
 │   └───utility
 │
 └───assets
+└───hooks
 └───services
+└───types
 ```
 
 ### Common file types
 
-| File name        | Purpose                                                      | Location                |
-| ---------------- | ------------------------------------------------------------ | ----------------------- |
-| \*.scss          | A file that contains the styling for a component or the app  | assets / components     |
-| index.jsx        | An entrypoint to a service / component / store               | no location restriction |
-| \*.module.jsx    | A file that contains one or multiple plain js modules        | no location restriction |
-| \*.component.jsx | A file that contains one or multiple react components        | component directory     |
-| \*.service.jsx   | A file that contains side-effect free business logic         | services directory      |
-| \*.sdk.jsx       | A file that interacts with a third party library or software | components / services   |
-| \*.route.jsx     | A file that contains one or multiple routes                  | router directory        |
-| \*.worker.jsx    | A file that contains a webworker                             | components / services   |
+| File name        | Purpose                                                      | Location                                       |
+| ---------------- | ------------------------------------------------------------ | ---------------------------------------------- |
+| \*.scss          | A file that contains the styling for a component or the app  | assets / components                            |
+| index.ts         | ts                                                           | An entrypoint to a service / component / store |
+| \*.module.ts     | A file that contains one or multiple plain js modules        | no location restriction                        |
+| \*.component.tsx | A file that contains one or multiple react components        | component directory                            |
+| \*.service.ts    | A file that contains side-effect free business logic         | services directory                             |
+| \*.sdk.ts        | A file that interacts with a third party library or software | components / services                          |
+| \*.route.tsx     | A file that contains one or multiple routes                  | router directory                               |
+| \*.worker.ts     | A file that contains a webworker                             | components / services                          |
+| \*types.ts       | A file that contains typescript definitions                  | no location restriction                        |
+| \*.d.ts          | A file that contains global typescript definitions           | no location restriction                        |
 
 ### Common directory types
 

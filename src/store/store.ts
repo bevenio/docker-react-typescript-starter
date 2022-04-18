@@ -14,9 +14,10 @@ const combinedMiddleware = applyMiddleware(thunkMiddleware, storeShare.middlewar
 const store = createStore(rootReducer, applyReduxExtensionDevtools(combinedMiddleware))
 
 declare global {
+  type ReduxDispatch = Dispatch
   type ReduxStore = typeof store
   type ReduxState = ReturnType<typeof rootReducer>
-  type ReduxDispatch = Dispatch
+  type ReduxStateKey = keyof ReduxState
 }
 
 /* Extend store with custom extensions */

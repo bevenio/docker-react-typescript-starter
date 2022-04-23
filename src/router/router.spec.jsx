@@ -26,7 +26,6 @@ describe('router component', () => {
 
   test('the router uses the theme from redux and applies it to the html tag', () => {
     const store = mockStore(mockInitialState)
-
     render(
       <Provider store={store}>
         <AppRouter />

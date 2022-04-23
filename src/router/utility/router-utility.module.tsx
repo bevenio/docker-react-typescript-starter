@@ -4,10 +4,11 @@ import { Redirect, BrowserRouter as PathRouter, HashRouter } from 'react-router-
 import { store } from '@/store/store'
 import { ErrorPage } from '@/components/pages/error'
 import { RouteLayout } from '@/components/basic/route-layout'
+import React from 'react'
 
 type RouteType = 'hash' | 'path'
 
-interface RouteParameters {
+export interface RouteDescription {
   component: React.FC
   route: string
   redirection: string
@@ -23,46 +24,48 @@ const getRouters = () => ({
   Path: PathRouter,
 })
 
-const createRoute = ({ component, route, redirection, dependencies }: RouteParameters) => {
-  const mustRedirect = () =>
-    !(dependencies
-      ? Object.keys(dependencies).reduce((previous, current) => {
+const createRoute = (route: RouteDescription) => {
+  // Checks if all dependencies are fulfilled to render a route
+  const mustRedirect = (mustRedirectRoute: RouteDescription) =>
+    !(mustRedirectRoute.dependencies
+      ? Object.keys(mustRedirectRoute.dependencies).reduce((previous, current) => {
           if (previous === false) {
             return false
           }
           const dependencyValue = get(store.getState(), current)
-          const dependencyComparison = dependencies[current]
-
-          // Dependency can be checked by its value or by validator function
+          const dependencyComparison = mustRedirectRoute.dependencies[current]
           return typeof dependencyComparison === 'function' ? !!dependencyComparison(dependencyValue) : dependencyValue === dependencyComparison
         }, true)
       : true)
 
-  // Decide what component to return
-  const renderFunction = () => {
-    const Component = component
-    const redirect = mustRedirect()
-    if (redirect && !!redirection) {
-      return <Redirect to={redirection} />
+  // Renders route or its replacement/proxy
+  const createRender = (renderRoute: RouteDescription): React.FC =>
+    function render() {
+      const Component: React.FC = renderRoute.component
+      const redirect = mustRedirect(renderRoute)
+      if (redirect && !!renderRoute.redirection) {
+        return <Redirect to={renderRoute.redirection} />
+      }
+      if (redirect && !renderRoute.redirection) {
+        return <ErrorPage />
+      }
+      return (
+        <RouteLayout>
+          <Component />
+        </RouteLayout>
+      )
     }
-    if (redirect && !redirection) {
-      return <ErrorPage />
-    }
-    return (
-      <RouteLayout>
-        <Component />
-      </RouteLayout>
-    )
-  }
 
   // A function that returns if a route can be displayed
-  const canRenderFunction = () => !mustRedirect()
+  const createCanRender = (canRenderRoute: RouteDescription) => () => !mustRedirect(canRenderRoute)
 
   return {
-    route,
-    render: renderFunction,
-    canRender: canRenderFunction,
+    route: route.route,
+    render: createRender(route),
+    canRender: createCanRender(route),
   }
 }
 
-export { getRouteType, getRouters, createRoute }
+const createRoutes = (routes: RouteDescription[]) => routes.map((route) => createRoute(route))
+
+export { getRouteType, getRouters, createRoutes }

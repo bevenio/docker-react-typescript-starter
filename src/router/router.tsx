@@ -17,23 +17,21 @@ import { LoadingPage } from '@/components/pages/loading'
 import { ErrorPage } from '@/components/pages/error'
 
 /* Routes */
-import { LoginRoute } from '@/router/routes/login.route'
-import { SettingsRoute } from '@/router/routes/settings.route'
-import { MainRoute } from '@/router/routes/main.route'
+import { routes } from '@/router/routes'
 
 function AppRoutes() {
   const location = useLocation()
 
   return (
     <>
-      <NavigationBar routes={[LoginRoute, SettingsRoute, MainRoute]} />
+      <NavigationBar routes={routes} />
       <TransitionGroup>
         <CSSTransition key={location.key} classNames="app-route-change" timeout={1000}>
           <Suspense fallback={<LoadingPage />}>
             <Switch location={location}>
-              <Route path={LoginRoute.route} render={LoginRoute.render} />
-              <Route path={SettingsRoute.route} render={SettingsRoute.render} />
-              <Route path={MainRoute.route} render={MainRoute.render} />
+              {routes.map(({ route, render }) => (
+                <Route key={`route-${route}`} path={route} render={render} />
+              ))}
               <Route component={ErrorPage} />
             </Switch>
           </Suspense>

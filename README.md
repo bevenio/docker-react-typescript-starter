@@ -90,7 +90,7 @@ src
 │
 └───router
 │   │   router.tsx
-│   └───routes.tsx
+│   │   routes.tsx
 │   └───utility
 │
 └───store

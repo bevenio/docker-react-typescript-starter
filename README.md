@@ -1,10 +1,48 @@
-# docker-react
+# docker-react-typescript-starter
 
 ![Lint](https://github.com/bevenio/docker-react/actions/workflows/nodejs_lint.yml/badge.svg?event=push)
 ![Test](https://github.com/bevenio/docker-react/actions/workflows/nodejs_test.yml/badge.svg?event=push)
 ![Build](https://github.com/bevenio/docker-react/actions/workflows/nodejs_build.yml/badge.svg?event=push)
 
 ## General
+
+### About
+
+This project is a docker based starter repository aiming for enterprise solutions. The only dependencies needed are **docker** and **make** script support.
+
+### Included Technologies/Libraries
+
+- Node _LTS/17_
+- React _18_
+- Webpack _4_
+- Redux
+- Typescript
+- EsLint
+- Jest
+- Axios
+- React testing library
+- Browser devtools
+
+### Included Features
+
+- PWA support
+- Translation service
+- Logging service
+- Serviceworker caching
+- Webworker support
+- Sass support
+- Static assets
+- Conditional routing
+- Redux localstorage syncing
+- Lazy loading
+- Serverless sharing state between browser windows
+- File generation from templates with package.json and project.json data
+- Development, production and test builds
+- Github actions integration
+- Hot module replacement
+- VSCode integration
+- Code linting and autoformatting
+- Single docker image as output file
 
 ### Setting up this project
 

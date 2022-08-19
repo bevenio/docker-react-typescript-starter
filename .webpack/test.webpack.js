@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -45,10 +44,6 @@ const createPlugins = (options) => {
       template: path.resolve(srcDir, './index.html'),
     })
   )
-
-  if (options.baseHref) {
-    plugins.push(new BaseHrefWebpackPlugin({ baseHref: options.baseHref }))
-  }
 
   plugins.push(new webpack.ids.HashedModuleIdsPlugin())
 

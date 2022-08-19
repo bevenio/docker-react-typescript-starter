@@ -17,7 +17,6 @@ const optionPresets = {
     hmr: true,
     sw: false,
     publicPath: '/',
-    baseHref: '/',
   },
   production: {
     mode: 'production',
@@ -30,7 +29,6 @@ const optionPresets = {
     hmr: false,
     sw: true,
     publicPath: '/',
-    baseHref: '/',
   },
   test: {
     mode: 'test',
@@ -43,7 +41,6 @@ const optionPresets = {
     hmr: false,
     sw: false,
     publicPath: '/',
-    baseHref: '/',
   },
 }
 
@@ -53,21 +50,18 @@ const options = {
   'development-file': {
     ...optionPresets.development,
     publicPath: '',
-    baseHref: './',
   },
   // Production options
   'production-web': optionPresets.production,
   'production-file': {
     ...optionPresets.production,
     publicPath: '',
-    baseHref: './',
   },
   // Test options
   'test-web': optionPresets.test,
   'test-file': {
     ...optionPresets.test,
     publicPath: '',
-    baseHref: './',
   },
 }
 

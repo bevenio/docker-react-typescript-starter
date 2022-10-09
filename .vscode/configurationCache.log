@@ -1,0 +1,1 @@
+{"buildTargets":["build","build-production","execute","install","lint","make","prepare","release","serve","serve-production","setup","sync","test","test-noui"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

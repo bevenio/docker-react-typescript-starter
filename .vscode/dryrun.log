@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/benjaminbrachmann/Code/Privat/development/github_projects/docker-react'
+ARGS="" docker compose -f ./.docker/docker-compose.commands.yml run --rm lint 
+make: Leaving directory `/Users/benjaminbrachmann/Code/Privat/development/github_projects/docker-react'
+ 

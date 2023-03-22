@@ -1,4 +1,4 @@
-FROM node:17 as webbuild
+FROM node:18 as webbuild
 
 ### STAGE - WEBBUILD ###
 

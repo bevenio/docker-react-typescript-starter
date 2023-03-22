@@ -12,7 +12,7 @@ This project is a docker based starter repository aiming for enterprise solution
 
 ### Included Technologies/Libraries
 
-- Node _LTS/17_
+- Node _LTS/18_
 - React _18_
 - Webpack _4_
 - Redux
@@ -52,7 +52,7 @@ make setup
 
 ### Installing dependencies
 
-> Note: The dependencies in the node_modules directory are not the same as those used by the Docker environment. The reason they need to be installed outside of docker is the **VSCode extension ESlint**, which expects a local version of **ESlint**. This repository uses node 17.
+> Note: The dependencies in the node_modules directory are not the same as those used by the Docker environment. The reason they need to be installed outside of docker is the **VSCode extension ESlint**, which expects a local version of **ESlint**. This repository uses node 18.
 
 ```zsh
 make install
